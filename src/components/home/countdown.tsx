@@ -36,12 +36,34 @@ function TimeUnit({ value, label }: { value: number; label: string }) {
 }
 
 export function Countdown() {
-  const [timeLeft, setTimeLeft] = useState<TimeLeft>(calcTimeLeft);
+  const [mounted, setMounted] = useState(false);
+  const [timeLeft, setTimeLeft] = useState<TimeLeft>({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
 
   useEffect(() => {
+    setMounted(true);
+    setTimeLeft(calcTimeLeft());
     const timer = setInterval(() => setTimeLeft(calcTimeLeft()), 1000);
     return () => clearInterval(timer);
   }, []);
+
+  if (!mounted) {
+    return (
+      <section className="bg-light py-12" aria-label="Countdown to ACM23">
+        <div className="max-w-7xl mx-auto px-4">
+          <div className="flex items-center justify-center gap-6 sm:gap-10">
+            {["Days", "Hours", "Minutes", "Seconds"].map((label) => (
+              <TimeUnit key={label} value={0} label={label} />
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="bg-light py-12" aria-label="Countdown to ACM23">
