@@ -24,10 +24,40 @@ export const metadata: Metadata = {
   ],
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Event",
+  name: "ACM23 — The 23rd Annual Meeting",
+  description:
+    "Asian Consortium for the Conservation and Sustainable Use of Microbial Resources",
+  startDate: "2026-10-15",
+  endDate: "2026-10-16",
+  eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+  eventStatus: "https://schema.org/EventScheduled",
+  location: {
+    "@type": "Place",
+    name: "Hanoi, Vietnam",
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Hanoi",
+      addressCountry: "VN",
+    },
+  },
+  organizer: {
+    "@type": "Organization",
+    name: "ACM — Asian Consortium for the Conservation and Sustainable Use of Microbial Resources",
+    url: "https://www.acm-mrc.asia",
+  },
+};
+
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body className={inter.className}>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <Navbar />
         <main className="pt-16">{children}</main>
         <Footer />
