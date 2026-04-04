@@ -7,6 +7,7 @@ import "@/styles/globals.css";
 const inter = Inter({ subsets: ["latin", "vietnamese"] });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://acm23.org"),
   title: {
     default: "ACM23 — Hanoi, Vietnam | October 2026",
     template: "%s | ACM23 Hanoi",
