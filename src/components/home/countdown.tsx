@@ -45,8 +45,10 @@ export function Countdown() {
   });
 
   useEffect(() => {
-    setMounted(true);
-    setTimeLeft(calcTimeLeft());
+    void Promise.resolve().then(() => {
+      setMounted(true);
+      setTimeLeft(calcTimeLeft());
+    });
     const timer = setInterval(() => setTimeLeft(calcTimeLeft()), 1000);
     return () => clearInterval(timer);
   }, []);
