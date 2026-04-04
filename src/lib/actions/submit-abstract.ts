@@ -25,7 +25,7 @@ export async function submitAbstractAction(formData: FormData): Promise<ActionRe
 
   const parsed = abstractSchema.safeParse(rawData);
   if (!parsed.success) {
-    return { success: false, error: parsed.error.errors[0].message };
+    return { success: false, error: parsed.error.issues[0].message };
   }
 
   try {

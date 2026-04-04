@@ -14,7 +14,7 @@ interface ActionResult {
 export async function registerAction(data: RegistrationInput): Promise<ActionResult> {
   const parsed = registrationSchema.safeParse(data);
   if (!parsed.success) {
-    return { success: false, error: parsed.error.errors[0].message };
+    return { success: false, error: parsed.error.issues[0].message };
   }
 
   try {

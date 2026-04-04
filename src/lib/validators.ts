@@ -6,7 +6,7 @@ export const registrationSchema = z.object({
   affiliation: z.string().min(2, "Affiliation is required").max(300),
   country: z.string().min(2, "Country is required").max(100),
   role: z.enum(["researcher", "student", "industry", "other"], {
-    required_error: "Please select a role",
+    message: "Please select a role",
   }),
   dietaryRequirements: z.string().max(500).optional(),
   specialRequests: z.string().max(500).optional(),
@@ -34,7 +34,7 @@ export const abstractSchema = z.object({
     )
     .refine((arr) => arr.length >= 3 && arr.length <= 5, "Please provide 3-5 keywords"),
   presentationType: z.enum(["oral", "poster"], {
-    required_error: "Please select presentation type",
+    message: "Please select presentation type",
   }),
 });
 

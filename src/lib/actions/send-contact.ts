@@ -11,7 +11,7 @@ interface ActionResult {
 export async function sendContactAction(data: ContactInput): Promise<ActionResult> {
   const parsed = contactSchema.safeParse(data);
   if (!parsed.success) {
-    return { success: false, error: parsed.error.errors[0].message };
+    return { success: false, error: parsed.error.issues[0].message };
   }
 
   try {
