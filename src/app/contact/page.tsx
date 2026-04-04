@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { PageHeader } from "@/components/ui/page-header";
 import { Mail, MapPin, Globe } from "lucide-react";
+import { ContactForm } from "@/components/forms/contact-form";
 
 export const metadata: Metadata = { title: "Contact" };
 
@@ -26,9 +27,7 @@ export default function ContactPage() {
             <p className="text-sm text-gray-500 mt-1">acm-mrc.asia</p>
           </div>
         </div>
-        <div className="rounded-xl bg-light p-8 text-center text-gray-400">
-          Contact form placeholder
-        </div>
+        <ContactForm />
       </div>
     </>
   );
