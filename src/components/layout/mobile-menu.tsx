@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 
@@ -11,12 +11,22 @@ interface MobileMenuProps {
 export function MobileMenu({ links }: MobileMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
 
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setIsOpen(false);
+    };
+    document.addEventListener("keydown", handleKeyDown);
+    return () => document.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen]);
+
   return (
     <div className="lg:hidden">
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="p-2 text-gray-600 hover:text-primary"
         aria-label={isOpen ? "Close menu" : "Open menu"}
+        aria-expanded={isOpen}
       >
         {isOpen ? <X size={24} /> : <Menu size={24} />}
       </button>

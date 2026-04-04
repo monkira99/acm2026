@@ -38,10 +38,10 @@ export function Footer() {
             </p>
             <div className="flex items-center gap-4 mt-4 text-sm text-gray-400">
               <span className="flex items-center gap-1.5">
-                <MapPin size={14} /> Hanoi, Vietnam
+                <MapPin size={14} aria-hidden="true" /> Hanoi, Vietnam
               </span>
               <span className="flex items-center gap-1.5">
-                <Mail size={14} /> contact@acm23.org
+                <Mail size={14} aria-hidden="true" /> contact@acm23.org
               </span>
             </div>
           </div>
