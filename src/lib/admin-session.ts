@@ -36,5 +36,7 @@ export async function setAdminSession() {
 
 export async function clearAdminSession() {
   const cookieStore = await cookies();
-  cookieStore.delete(ADMIN_COOKIE);
+  // Delete cookie at both paths to handle legacy cookies set with path: "/admin"
+  cookieStore.delete({ name: ADMIN_COOKIE, path: "/" });
+  cookieStore.delete({ name: ADMIN_COOKIE, path: "/admin" });
 }
