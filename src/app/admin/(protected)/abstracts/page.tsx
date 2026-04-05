@@ -1,12 +1,30 @@
 import { connectDB } from "@/lib/mongodb";
 import { Abstract } from "@/lib/models/abstract";
 import { Download, ExternalLink } from "lucide-react";
+import { head } from "@vercel/blob";
 
 export const dynamic = "force-dynamic";
+
+async function getSignedUrl(url: string): Promise<string> {
+  try {
+    const { downloadUrl } = await head(url, { token: process.env.BLOB_READ_WRITE_TOKEN });
+    return downloadUrl;
+  } catch {
+    return url;
+  }
+}
 
 export default async function AdminAbstractsPage() {
   await connectDB();
   const abstracts = await Abstract.find().sort({ submittedAt: -1 }).lean();
+
+  // Generate signed download URLs for all private blobs
+  const abstractsWithUrls = await Promise.all(
+    abstracts.map(async (a) => ({
+      ...a,
+      signedPdfUrl: a.pdfFileUrl ? await getSignedUrl(a.pdfFileUrl as string) : null,
+    }))
+  );
 
   return (
     <div>
@@ -23,7 +41,7 @@ export default async function AdminAbstractsPage() {
       </div>
 
       <div className="space-y-4">
-        {abstracts.map((a) => (
+        {abstractsWithUrls.map((a) => (
           <div key={String(a._id)} className="bg-white rounded-xl border border-gray-100 p-6">
             <div className="flex items-start justify-between gap-4">
               <div className="flex-1">
@@ -55,9 +73,9 @@ export default async function AdminAbstractsPage() {
                   ))}
                 </div>
               </div>
-              {a.pdfFileUrl && (
+              {a.signedPdfUrl && (
                 <a
-                  href={a.pdfFileUrl as string}
+                  href={a.signedPdfUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-1 text-sm text-primary hover:underline flex-shrink-0"

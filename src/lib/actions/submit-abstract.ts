@@ -39,7 +39,7 @@ export async function submitAbstractAction(formData: FormData): Promise<ActionRe
         return { success: false, error: "Only PDF files are accepted." };
       }
       const blob = await put(`abstracts/${Date.now()}-${pdfFile.name}`, pdfFile, {
-        access: "public",
+        access: "private",
       });
       pdfFileUrl = blob.url;
     }
