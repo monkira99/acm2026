@@ -11,9 +11,11 @@ function toCSV(headers: string[], rows: string[][]): string {
   ].join("\n");
 }
 
-export async function GET() {
+export async function GET(request: Request) {
   const isAdmin = await verifyAdmin();
   if (!isAdmin) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+
+  const baseUrl = new URL(request.url).origin;
 
   await connectDB();
   const docs = await Abstract.find().sort({ submittedAt: -1 }).lean();
@@ -25,20 +27,26 @@ export async function GET() {
     "Affiliation",
     "Type",
     "Keywords",
-    "PDF URL",
+    "PDF Link",
     "Date",
   ];
-  const rows = docs.map((d) => [
-    d.submissionId ?? "",
-    d.title ?? "",
-    d.authors ?? "",
-    d.correspondingEmail ?? "",
-    d.affiliation ?? "",
-    d.presentationType ?? "",
-    (d.keywords as string[]).join("; "),
-    (d.pdfFileUrl as string) ?? "",
-    new Date(d.submittedAt).toISOString(),
-  ]);
+  const rows = docs.map((d) => {
+    const rawUrl = (d.pdfFileUrl as string) ?? "";
+    const pdfLink = rawUrl
+      ? `${baseUrl}/api/admin/blob?url=${encodeURIComponent(rawUrl)}`
+      : "";
+    return [
+      d.submissionId ?? "",
+      d.title ?? "",
+      d.authors ?? "",
+      d.correspondingEmail ?? "",
+      d.affiliation ?? "",
+      d.presentationType ?? "",
+      (d.keywords as string[]).join("; "),
+      pdfLink,
+      new Date(d.submittedAt).toISOString(),
+    ];
+  });
 
   return new Response(toCSV(headers, rows), {
     headers: {
