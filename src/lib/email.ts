@@ -2,7 +2,7 @@ import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
-const FROM_EMAIL = "ACM23 <noreply@acm23.org>";
+const FROM_EMAIL = "ACM23 <noreply@monkira.tech>";
 
 export async function sendRegistrationConfirmation(
   to: string,
@@ -73,7 +73,7 @@ export async function sendContactNotification(data: {
 }) {
   await resend.emails.send({
     from: FROM_EMAIL,
-    to: "contact@acm23.org",
+    to: "contact@monkira.tech",
     subject: `[ACM23 Contact] ${data.subject}`,
     replyTo: data.email,
     html: `
