@@ -1,30 +1,30 @@
+import Image from "next/image";
 import Link from "next/link";
 import { MobileMenu } from "./mobile-menu";
 
 const navLinks = [
-  { href: "/about", label: "About" },
+  { href: "/about", label: "Welcome" },
   { href: "/program", label: "Program" },
   { href: "/speakers", label: "Speakers" },
-  { href: "/dates", label: "Dates" },
+  { href: "/dates", label: "Registration" },
   { href: "/venue", label: "Venue" },
   { href: "/committees", label: "Committees" },
-  { href: "/sponsors", label: "Sponsors" },
-  { href: "/gallery", label: "Gallery" },
-  { href: "/faq", label: "FAQ" },
-  { href: "/contact", label: "Contact" },
+  { href: "/contact", label: "Contact Us" },
 ];
 
 export function Navbar() {
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100">
-      <nav className="mx-auto grid h-24 w-full max-w-7xl grid-cols-[auto_1fr_auto] items-center gap-4 px-4 sm:px-6 lg:px-8">
-        <Link href="/" className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-full bg-gold flex items-center justify-center">
-            <span className="text-xs font-extrabold text-dark">ACM</span>
-          </div>
-          <span className="font-bold text-dark text-lg hidden sm:block">
-            ACM23
-          </span>
+    <header className="fixed top-0 left-0 right-0 z-50 border-b border-gray-100 bg-white">
+      <nav className="mx-auto grid h-20 w-full max-w-7xl grid-cols-[auto_1fr_auto] items-center gap-4 px-4 sm:px-6 lg:px-8">
+        <Link href="/" className="flex items-center shrink-0">
+          <Image
+            src="/logo_acm23.png"
+            alt="ACM logo"
+            width={1702}
+            height={630}
+            className="h-14 w-auto max-w-none object-contain"
+            priority
+          />
         </Link>
 
         <div className="hidden lg:flex items-center justify-center gap-1">

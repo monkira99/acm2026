@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
@@ -28,10 +29,15 @@ export function VenuePreview() {
               <ArrowRight size={16} aria-hidden="true" />
             </Link>
           </div>
-          <div className="mx-auto flex h-64 w-full max-w-2xl items-center justify-center rounded-2xl bg-gradient-to-br from-secondary to-accent lg:h-80">
-            <span className="text-white/40 text-sm">
-              [ Hanoi photo placeholder ]
-            </span>
+          <div className="relative mx-auto h-64 w-full max-w-2xl overflow-hidden rounded-2xl lg:h-80">
+            <Image
+              src="/images/venue/hoan-kiem-hero.jpg"
+              alt="Hoan Kiem Lake view in Hanoi"
+              fill
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-dark/35 via-transparent to-white/10" />
           </div>
         </div>
       </div>

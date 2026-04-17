@@ -16,7 +16,7 @@ export async function sendRegistrationConfirmation(
       <div style="font-family:sans-serif;max-width:600px;margin:0 auto;">
         <div style="background:linear-gradient(135deg,#0D7377,#1A2332);padding:32px;border-radius:12px 12px 0 0;">
           <h1 style="color:#fff;margin:0;font-size:24px;">ACM23 Registration Confirmed</h1>
-          <p style="color:#C8A951;margin:8px 0 0;font-size:14px;">Hanoi, Vietnam · October 2026</p>
+          <p style="color:#C8A951;margin:8px 0 0;font-size:14px;">Hanoi, Vietnam · November 16-17, 2026</p>
         </div>
         <div style="padding:32px;border:1px solid #eee;border-top:none;border-radius:0 0 12px 12px;">
           <p>Dear ${data.fullName},</p>
@@ -73,7 +73,7 @@ export async function sendContactNotification(data: {
 }) {
   await resend.emails.send({
     from: FROM_EMAIL,
-    to: "contact@monkira.tech",
+    to: "acm23@vnu.edu.vn",
     subject: `[ACM23 Contact] ${data.subject}`,
     replyTo: data.email,
     html: `

@@ -17,12 +17,6 @@ export default function CommitteesPage() {
                 <div key={i} className="p-4 rounded-xl border border-gray-100">
                   <div className="font-semibold text-dark">{member.name}</div>
                   <div className="text-sm text-gray-500">{member.affiliation}</div>
-                  <div className="text-xs text-gray-400 mt-1">{member.country}</div>
-                  {member.role && (
-                    <span className="text-xs bg-gold/10 text-gold font-semibold px-2 py-0.5 rounded mt-2 inline-block">
-                      {member.role}
-                    </span>
-                  )}
                 </div>
               ))}
             </div>

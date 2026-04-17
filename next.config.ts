@@ -6,6 +6,15 @@ const nextConfig: NextConfig = {
       bodySizeLimit: "11mb",
     },
   },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "www.acm-mrc.asia",
+        pathname: "/images/**",
+      },
+    ],
+  },
 };
 
 export default nextConfig;

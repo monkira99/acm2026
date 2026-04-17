@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { PageHeader } from "@/components/ui/page-header";
 import { MapPin, Plane, Hotel, Utensils } from "lucide-react";
 
@@ -9,6 +10,24 @@ const travelInfo = [
   { icon: Hotel, title: "Accommodation", description: "A range of hotels near the conference venue will be recommended. Special rates may be available for ACM23 participants." },
   { icon: Utensils, title: "Dining", description: "Hanoi is famous for its cuisine — from phở and bún chả to egg coffee. The Old Quarter offers endless culinary adventures." },
   { icon: MapPin, title: "Local Attractions", description: "Visit the Temple of Literature, Hoan Kiem Lake, Ho Chi Minh Mausoleum, and the vibrant Old Quarter during your stay." },
+];
+
+const hanoiGallery = [
+  {
+    src: "/images/venue/one-pillar-pagoda.jpg",
+    alt: "One Pillar Pagoda in Hanoi",
+    title: "One Pillar Pagoda",
+  },
+  {
+    src: "/images/venue/old-quarter-basket.jpg",
+    alt: "Street vendor carrying a flower basket in Hanoi's Old Quarter",
+    title: "Old Quarter",
+  },
+  {
+    src: "/images/venue/hoan-kiem-lake.jpg",
+    alt: "Hoan Kiem Lake in Hanoi",
+    title: "Hoàn Kiếm Lake",
+  },
 ];
 
 export default function VenuePage() {
@@ -23,6 +42,27 @@ export default function VenuePage() {
               The exact venue will be announced soon. ACM23 will be held at a prestigious
               location in Hanoi, easily accessible from major hotels and transportation hubs.
             </p>
+          </div>
+          <div className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-3">
+            {hanoiGallery.map((item) => (
+              <figure
+                key={item.title}
+                className="overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm"
+              >
+                <div className="relative aspect-[4/3]">
+                  <Image
+                    src={item.src}
+                    alt={item.alt}
+                    fill
+                    sizes="(min-width: 768px) 33vw, 100vw"
+                    className="object-cover"
+                  />
+                </div>
+                <figcaption className="px-4 py-3 text-sm font-semibold text-dark">
+                  {item.title}
+                </figcaption>
+              </figure>
+            ))}
           </div>
         </section>
 

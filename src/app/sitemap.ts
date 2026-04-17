@@ -12,9 +12,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/dates",
     "/committees",
     "/venue",
-    "/sponsors",
-    "/gallery",
-    "/faq",
     "/contact",
   ];
 

@@ -4,16 +4,16 @@ import { Mail, MapPin } from "lucide-react";
 
 const footerLinks = {
   conference: [
-    { href: "/about", label: "About ACM" },
+    { href: "/about", label: "Welcome" },
     { href: "/program", label: "Scientific Program" },
     { href: "/speakers", label: "Keynote Speakers" },
-    { href: "/dates", label: "Important Dates" },
+    { href: "/dates", label: "Registration" },
   ],
   participate: [
     { href: "/registration", label: "Registration" },
     { href: "/abstract", label: "Submit Abstract" },
     { href: "/venue", label: "Venue & Travel" },
-    { href: "/faq", label: "FAQ" },
+    { href: "/contact", label: "Contact Us" },
   ],
 };
 
@@ -29,7 +29,7 @@ export function Footer() {
               </div>
               <div>
                 <div className="font-bold text-white text-lg">ACM23</div>
-                <div className="text-xs text-gray-400">Hanoi, Vietnam · October 2026</div>
+                <div className="text-xs text-gray-400">Hanoi, Vietnam · November 16-17, 2026</div>
               </div>
             </div>
             <p className="text-sm text-gray-400 leading-relaxed max-w-md">
@@ -41,7 +41,7 @@ export function Footer() {
                 <MapPin size={14} aria-hidden="true" /> Hanoi, Vietnam
               </span>
               <span className="flex items-center gap-1.5">
-                <Mail size={14} aria-hidden="true" /> contact@acm23.org
+                <Mail size={14} aria-hidden="true" /> acm23@vnu.edu.vn
               </span>
             </div>
           </div>
@@ -91,12 +91,12 @@ export function Footer() {
             </span>
           </div>
           <Link
-            href="https://www.acm-mrc.asia"
+            href="http://imbt.vnu.edu.vn/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-xs text-gray-500 hover:text-gold transition-colors"
           >
-            acm-mrc.asia
+            IMBT
           </Link>
         </div>
       </div>

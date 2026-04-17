@@ -4,7 +4,6 @@ import {
   Highlights,
   DatesPreview,
   VenuePreview,
-  SponsorsStrip,
 } from "@/components/home";
 
 export default function HomePage() {
@@ -15,7 +14,6 @@ export default function HomePage() {
       <Highlights />
       <DatesPreview />
       <VenuePreview />
-      <SponsorsStrip />
     </>
   );
 }

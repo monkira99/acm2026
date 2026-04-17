@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { PageHeader } from "@/components/ui/page-header";
 import { Mail, MapPin, Globe } from "lucide-react";
 import { ContactForm } from "@/components/forms/contact-form";
@@ -14,7 +15,7 @@ export default function ContactPage() {
           <div className="p-6 rounded-xl border border-gray-100 text-center">
             <Mail size={28} className="text-primary mx-auto mb-3" aria-hidden="true" />
             <h3 className="font-semibold text-dark">Email</h3>
-            <p className="text-sm text-gray-500 mt-1">contact@acm23.org</p>
+            <p className="text-sm text-gray-500 mt-1">acm23@vnu.edu.vn</p>
           </div>
           <div className="p-6 rounded-xl border border-gray-100 text-center">
             <MapPin size={28} className="text-primary mx-auto mb-3" aria-hidden="true" />
@@ -23,8 +24,15 @@ export default function ContactPage() {
           </div>
           <div className="p-6 rounded-xl border border-gray-100 text-center">
             <Globe size={28} className="text-primary mx-auto mb-3" aria-hidden="true" />
-            <h3 className="font-semibold text-dark">ACM Website</h3>
-            <p className="text-sm text-gray-500 mt-1">acm-mrc.asia</p>
+            <h3 className="font-semibold text-dark">IMBT Website</h3>
+            <Link
+              href="http://imbt.vnu.edu.vn/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-sm text-primary hover:text-primary/80 mt-1 inline-block"
+            >
+              http://imbt.vnu.edu.vn/
+            </Link>
           </div>
         </div>
         <ContactForm />

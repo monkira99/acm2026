@@ -9,11 +9,11 @@ const inter = Inter({ subsets: ["latin", "vietnamese"] });
 export const metadata: Metadata = {
   metadataBase: new URL("https://acm23.org"),
   title: {
-    default: "ACM23 — Hanoi, Vietnam | October 2026",
+    default: "ACM23 — Hanoi, Vietnam | November 16-17, 2026",
     template: "%s | ACM23 Hanoi",
   },
   description:
-    "The 23rd Annual Meeting of ACM — Asian Consortium for the Conservation and Sustainable Use of Microbial Resources. Hanoi, Vietnam, October 2026.",
+    "The 23rd Annual Meeting of ACM — Asian Consortium for the Conservation and Sustainable Use of Microbial Resources. Hanoi, Vietnam, November 16-17, 2026.",
   keywords: [
     "ACM23",
     "microbial resources",
@@ -31,8 +31,8 @@ const jsonLd = {
   name: "ACM23 — The 23rd Annual Meeting",
   description:
     "Asian Consortium for the Conservation and Sustainable Use of Microbial Resources",
-  startDate: "2026-10-15",
-  endDate: "2026-10-16",
+  startDate: "2026-11-16",
+  endDate: "2026-11-17",
   eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
   eventStatus: "https://schema.org/EventScheduled",
   location: {
@@ -47,7 +47,7 @@ const jsonLd = {
   organizer: {
     "@type": "Organization",
     name: "ACM — Asian Consortium for the Conservation and Sustainable Use of Microbial Resources",
-    url: "https://www.acm-mrc.asia",
+    url: "https://imbt.vnu.edu.vn",
   },
 };
 
@@ -60,7 +60,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <Navbar />
-        <main className="pt-16">{children}</main>
+        <main className="pt-20">{children}</main>
         <Footer />
       </body>
     </html>

@@ -3,12 +3,12 @@ import { PageHeader } from "@/components/ui/page-header";
 import { importantDates } from "@/data/dates";
 import { Check, Clock } from "lucide-react";
 
-export const metadata: Metadata = { title: "Important Dates" };
+export const metadata: Metadata = { title: "Registration" };
 
 export default function DatesPage() {
   return (
     <>
-      <PageHeader title="Important Dates" subtitle="Key milestones for ACM23" />
+      <PageHeader title="Registration" subtitle="Registration timeline and abstract submission" />
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="space-y-6">
           {importantDates.map((item, i) => (

@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function RegistrationPage() {
   return (
     <>
-      <PageHeader title="Registration" subtitle="Register for ACM23 — Hanoi, October 2026" />
+      <PageHeader title="Registration" subtitle="Register for ACM23 — Hanoi, November 16-17, 2026" />
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <RegistrationForm />
       </div>

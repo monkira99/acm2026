@@ -1,23 +1,13 @@
 const milestones = [
   {
-    date: "July 15, 2026",
-    label: "Abstract Submission Deadline",
+    date: "To be update",
+    label: "Registration",
     dotClass: "bg-gold",
   },
   {
-    date: "August 31, 2026",
-    label: "Early Bird Registration",
+    date: "To be update",
+    label: "Abstract Submission",
     dotClass: "bg-secondary",
-  },
-  {
-    date: "September 15, 2026",
-    label: "Acceptance Notification",
-    dotClass: "bg-accent",
-  },
-  {
-    date: "October 2026",
-    label: "Conference in Hanoi",
-    dotClass: "bg-primary",
   },
 ];
 
@@ -25,8 +15,8 @@ export function DatesPreview() {
   return (
     <section className="py-20 bg-light">
       <div className="mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8">
-        <h2 className="text-3xl font-bold text-dark text-center mb-12">
-          Important Dates
+        <h2 className="mb-12 text-center text-3xl font-bold text-dark">
+          Registration
         </h2>
         <div className="mx-auto grid max-w-4xl grid-cols-1 gap-6 md:grid-cols-2">
           {milestones.map((item) => (
