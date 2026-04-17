@@ -4,9 +4,9 @@ import { ArrowRight } from "lucide-react";
 export function VenuePreview() {
   return (
     <section className="bg-gradient-to-r from-dark to-primary">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <div className="mx-auto w-full max-w-6xl px-4 py-20 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div>
+          <div className="mx-auto max-w-xl text-center lg:mx-0 lg:text-left">
             <span className="text-xs tracking-[0.2em] text-gold font-semibold uppercase">
               Discover Hanoi
             </span>
@@ -15,20 +15,20 @@ export function VenuePreview() {
               <br />
               Ascending Dragon
             </h2>
-            <p className="text-base text-white/70 leading-relaxed max-w-md">
+            <p className="mx-auto max-w-md text-base leading-relaxed text-white/70 lg:mx-0">
               A thousand years of history, culture, and cuisine await you in
               Vietnam&apos;s capital city. From the ancient Temple of Literature to
               the vibrant Old Quarter, Hanoi offers an unforgettable experience.
             </p>
             <Link
               href="/venue"
-              className="inline-flex items-center gap-2 mt-8 text-white border border-white/20 px-6 py-3 rounded-lg hover:bg-white/10 transition-colors"
+              className="mt-8 inline-flex items-center gap-2 rounded-lg border border-white/20 px-6 py-3 text-white transition-colors hover:bg-white/10"
             >
               Explore Venue
               <ArrowRight size={16} aria-hidden="true" />
             </Link>
           </div>
-          <div className="w-full h-64 lg:h-80 rounded-2xl bg-gradient-to-br from-secondary to-accent flex items-center justify-center">
+          <div className="mx-auto flex h-64 w-full max-w-2xl items-center justify-center rounded-2xl bg-gradient-to-br from-secondary to-accent lg:h-80">
             <span className="text-white/40 text-sm">
               [ Hanoi photo placeholder ]
             </span>
