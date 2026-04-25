@@ -26,7 +26,7 @@ const hanoiGallery = [
   {
     src: "/images/venue/hoan-kiem-lake.jpg",
     alt: "Hoan Kiem Lake in Hanoi",
-    title: "Hoàn Kiếm Lake",
+    title: "Hoan Kiem Lake",
   },
 ];
 
