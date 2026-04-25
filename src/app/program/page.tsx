@@ -26,7 +26,7 @@ export default function ProgramPage() {
             <p className="text-sm text-primary font-semibold mb-6">{day.date}</p>
             {day.sessions.length === 0 ? (
               <div className="rounded-xl border border-dashed border-gray-200 bg-gray-50 px-6 py-8 text-gray-500">
-                To be update
+                To be updated
               </div>
             ) : (
               <div className="space-y-3">

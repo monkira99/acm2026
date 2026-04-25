@@ -1,11 +1,11 @@
 const milestones = [
   {
-    date: "To be update",
+    date: "To be updated",
     label: "Registration",
     dotClass: "bg-gold",
   },
   {
-    date: "To be update",
+    date: "To be updated",
     label: "Abstract Submission",
     dotClass: "bg-secondary",
   },
