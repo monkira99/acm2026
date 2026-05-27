@@ -4,7 +4,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://acm23.org";
   const pages = [
     "",
-    "/about",
+    "/welcome",
     "/program",
     "/speakers",
     "/registration",

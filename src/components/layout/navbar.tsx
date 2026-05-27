@@ -3,7 +3,7 @@ import Link from "next/link";
 import { MobileMenu } from "./mobile-menu";
 
 const navLinks = [
-  { href: "/about", label: "Welcome" },
+  { href: "/welcome", label: "Welcome" },
   { href: "/program", label: "Program" },
   { href: "/speakers", label: "Speakers" },
   { href: "/dates", label: "Registration" },

@@ -4,7 +4,7 @@ import { Mail, MapPin } from "lucide-react";
 
 const footerLinks = {
   conference: [
-    { href: "/about", label: "Welcome" },
+    { href: "/welcome", label: "Welcome" },
     { href: "/program", label: "Scientific Program" },
     { href: "/speakers", label: "Keynote Speakers" },
     { href: "/dates", label: "Registration" },
