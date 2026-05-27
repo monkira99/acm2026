@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { PageHeader } from "@/components/ui/page-header";
-import { MapPin, Plane, Hotel, Utensils } from "lucide-react";
+import { Hotel, MapPin, Plane, Utensils } from "lucide-react";
 
 export const metadata: Metadata = { title: "Venue & Travel" };
 
@@ -32,22 +31,86 @@ const hanoiGallery = [
 
 export default function VenuePage() {
   return (
-    <>
-      <PageHeader title="Venue & Travel" subtitle="Everything you need to know about visiting Hanoi" />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <section className="mb-16">
-          <h2 className="text-2xl font-bold text-dark mb-6">Conference Venue</h2>
-          <div className="rounded-2xl bg-light p-8 border border-gray-100">
-            <p className="text-gray-600 leading-relaxed">
-              The exact venue will be announced soon. ACM23 will be held at a prestigious
-              location in Hanoi, easily accessible from major hotels and transportation hubs.
+    <div className="bg-[#EAF2FB]">
+      <section className="bg-[linear-gradient(135deg,#2260AD_0%,#2D78D4_58%,#143D78_100%)]">
+        <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-16 lg:px-8">
+          <div className="mb-5 flex items-center gap-3">
+            <span className="h-1.5 w-14 rounded-full bg-white" />
+            <span className="h-1.5 w-6 rounded-full bg-[#80AF41]" />
+          </div>
+          <p className="mb-3 text-sm font-bold uppercase tracking-[0.18em] text-white/80">
+            ACM23 Hanoi
+          </p>
+          <h1 className="max-w-4xl text-4xl font-black leading-tight text-white sm:text-5xl">
+            Venue & Travel
+          </h1>
+        </div>
+      </section>
+
+      <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+        <section>
+          <div className="mb-5 flex flex-col gap-1 border-b border-[#2260AD]/20 pb-4 sm:flex-row sm:items-end sm:justify-between">
+            <h2 className="text-2xl font-black text-[#2260AD]">
+              Conference Venue
+            </h2>
+            <p className="text-sm font-bold uppercase tracking-[0.14em] text-[#263D5C]">
+              Hanoi, Vietnam
             </p>
           </div>
-          <div className="mt-8 grid grid-cols-1 gap-5 md:grid-cols-3">
+          <div className="border-l-4 border-[#2260AD] bg-white/80 px-5 py-4 shadow-sm shadow-[#2260AD]/5">
+            <p className="text-base leading-8 text-[#263D5C]">
+              The exact venue will be announced soon. ACM23 will be held at a
+              prestigious location in Hanoi, easily accessible from major hotels
+              and transportation hubs.
+            </p>
+          </div>
+        </section>
+
+        <section className="mt-12">
+          <div className="mb-5 flex flex-col gap-1 border-b border-[#2260AD]/20 pb-4 sm:flex-row sm:items-end sm:justify-between">
+            <h2 className="text-2xl font-black text-[#2260AD]">
+              Travel Information
+            </h2>
+            <p className="text-sm font-bold uppercase tracking-[0.14em] text-[#263D5C]">
+              Visitor guide
+            </p>
+          </div>
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+            {travelInfo.map((item) => (
+              <div
+                key={item.title}
+                className="bg-white/75 px-5 py-5 shadow-sm shadow-[#2260AD]/5"
+              >
+                <item.icon
+                  size={24}
+                  className="mb-4 text-[#2260AD]"
+                  aria-hidden="true"
+                />
+                <h3 className="mb-2 text-lg font-bold text-[#143D78]">
+                  {item.title}
+                </h3>
+                <p className="text-sm leading-6 text-[#263D5C]">
+                  {item.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="mt-12">
+          <div className="mb-5 flex flex-col gap-1 border-b border-[#2260AD]/20 pb-4 sm:flex-row sm:items-end sm:justify-between">
+            <h2 className="text-2xl font-black text-[#2260AD]">
+              Hanoi Highlights
+            </h2>
+            <p className="text-sm font-bold uppercase tracking-[0.14em] text-[#263D5C]">
+              Around the city
+            </p>
+          </div>
+          <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
             {hanoiGallery.map((item) => (
               <figure
                 key={item.title}
-                className="overflow-hidden rounded-2xl border border-gray-100 bg-white shadow-sm"
+                className="overflow-hidden bg-white/80 shadow-sm shadow-[#2260AD]/5"
               >
                 <div className="relative aspect-[4/3]">
                   <Image
@@ -58,27 +121,14 @@ export default function VenuePage() {
                     className="object-cover"
                   />
                 </div>
-                <figcaption className="px-4 py-3 text-sm font-semibold text-dark">
+                <figcaption className="border-t border-[#2260AD]/10 px-4 py-3 text-sm font-semibold text-[#143D78]">
                   {item.title}
                 </figcaption>
               </figure>
             ))}
           </div>
         </section>
-
-        <section>
-          <h2 className="text-2xl font-bold text-dark mb-6">Travel Information</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {travelInfo.map((item) => (
-              <div key={item.title} className="p-6 rounded-2xl border border-gray-100 hover:shadow-md transition-shadow">
-                <item.icon size={28} className="text-primary mb-4" aria-hidden="true" />
-                <h3 className="font-bold text-dark text-lg mb-2">{item.title}</h3>
-                <p className="text-sm text-gray-500 leading-relaxed">{item.description}</p>
-              </div>
-            ))}
-          </div>
-        </section>
       </div>
-    </>
+    </div>
   );
 }
