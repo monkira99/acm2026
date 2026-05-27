@@ -2,6 +2,7 @@ import Link from "next/link";
 import { MobileMenu } from "./mobile-menu";
 
 const navLinks = [
+  { href: "/", label: "Home" },
   { href: "/welcome", label: "Welcome" },
   { href: "/program", label: "Program" },
   { href: "/speakers", label: "Speakers" },
@@ -15,7 +16,7 @@ export function Navbar() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-gray-100 bg-white">
       <nav className="relative mx-auto flex h-20 w-full max-w-[1640px] items-center justify-end px-4 sm:px-6 lg:px-8">
-        <div className="absolute left-1/2 hidden w-[760px] -translate-x-1/2 items-center justify-between lg:flex xl:w-[860px]">
+        <div className="absolute inset-y-0 left-4 right-44 hidden items-center justify-center gap-1 lg:flex xl:right-52">
           {navLinks.map((link) => (
             <Link
               key={link.href}
@@ -26,6 +27,13 @@ export function Navbar() {
             </Link>
           ))}
         </div>
+
+        <Link
+          href="/registration"
+          className="hidden whitespace-nowrap rounded-md bg-primary px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-secondary lg:inline-flex"
+        >
+          Register Now
+        </Link>
 
         <MobileMenu links={navLinks} />
       </nav>

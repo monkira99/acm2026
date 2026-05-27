@@ -17,17 +17,17 @@ const letterParagraphs = [
 
 export default function WelcomePage() {
   return (
-    <div className="bg-white">
-      <section className="border-b border-[#2260AD]/10 bg-[#F6F9FD]">
+    <div className="bg-[#EAF2FB]">
+      <section className="bg-[linear-gradient(135deg,#2260AD_0%,#2D78D4_58%,#143D78_100%)]">
         <div className="mx-auto max-w-5xl px-4 py-14 sm:px-6 sm:py-16 lg:px-8">
           <div className="mb-5 flex items-center gap-3">
-            <span className="h-1.5 w-12 rounded-full bg-[#80AF41]" />
-            <span className="h-1.5 w-6 rounded-full bg-[#C8A951]" />
+            <span className="h-1.5 w-14 rounded-full bg-white" />
+            <span className="h-1.5 w-6 rounded-full bg-[#80AF41]" />
           </div>
-          <p className="mb-3 text-sm font-bold uppercase tracking-[0.18em] text-[#80AF41]">
+          <p className="mb-3 text-sm font-bold uppercase tracking-[0.18em] text-white/80">
             ACM23 Hanoi
           </p>
-          <h1 className="max-w-3xl text-4xl font-black leading-tight text-[#143D78] sm:text-5xl">
+          <h1 className="max-w-3xl text-4xl font-black leading-tight text-white sm:text-5xl">
             Welcome letter
           </h1>
 
@@ -35,33 +35,33 @@ export default function WelcomePage() {
       </section>
 
       <article className="mx-auto max-w-4xl px-4 py-14 sm:px-6 sm:py-20 lg:px-8">
-        <div className="mb-10 flex items-center gap-3 text-[#C8A951]">
-          <LotusDecor color="#C8A951" size={28} />
-          <span className="h-px flex-1 bg-[#C8A951]/40" />
+        <div className="mb-10 flex items-center gap-3 text-[#2260AD]">
+          <LotusDecor color="#2260AD" size={28} />
+          <span className="h-px flex-1 bg-[#2260AD]/25" />
         </div>
 
-        <p className="mb-8 text-xl font-semibold text-[#143D78]">
+        <p className="mb-8 text-xl font-semibold text-[#2260AD]">
           Dear colleagues and friends,
         </p>
 
         <div className="space-y-7">
-          <p className="border-l-4 border-[#80AF41] pl-6 text-xl leading-9 text-[#143D78] sm:text-2xl sm:leading-10">
+          <p className="text-base leading-8 text-[#263D5C] sm:text-lg sm:leading-9">
             {letterParagraphs[0]}
           </p>
 
           {letterParagraphs.slice(1).map((paragraph) => (
             <p
               key={paragraph}
-              className="text-base leading-8 text-slate-700 sm:text-lg sm:leading-9"
+              className="text-base leading-8 text-[#263D5C] sm:text-lg sm:leading-9"
             >
               {paragraph}
             </p>
           ))}
         </div>
 
-        <footer className="mt-12 border-l-4 border-[#C8A951] bg-[#F6F9FD] px-6 py-6">
+        <footer className="mt-12 border-l-4 border-[#2260AD] bg-[#F3F7FC] px-6 py-6">
           <p className="text-base leading-7 text-slate-700">Best regards,</p>
-          <p className="mt-4 text-xl font-bold text-[#143D78]">Trung</p>
+          <p className="mt-4 text-xl font-bold text-[#2260AD]">Trung</p>
           <p className="mt-1 text-sm font-semibold uppercase tracking-[0.14em] text-[#80AF41]">
             Chair of the Organizing Committee
           </p>
