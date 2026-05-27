@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { Inter } from "next/font/google";
-import { Navbar, Footer } from "@/components/layout";
+import { Navbar, PageFooter } from "@/components/layout";
 import "@/styles/globals.css";
 
 const inter = Inter({ subsets: ["latin", "vietnamese"] });
@@ -9,11 +9,11 @@ const inter = Inter({ subsets: ["latin", "vietnamese"] });
 export const metadata: Metadata = {
   metadataBase: new URL("https://acm23.org"),
   title: {
-    default: "ACM23 — Hanoi, Vietnam | November 16-17, 2026",
+    default: "ACM23 — Hanoi, Vietnam | November 16-18, 2026",
     template: "%s | ACM23 Hanoi",
   },
   description:
-    "The 23rd Annual Meeting of ACM — Asian Consortium for the Conservation and Sustainable Use of Microbial Resources. Hanoi, Vietnam, November 16-17, 2026.",
+    "The 23rd Annual Meeting of ACM — Asian Consortium for the Conservation and Sustainable Use of Microbial Resources. Hanoi, Vietnam, November 16-18, 2026.",
   keywords: [
     "ACM23",
     "microbial resources",
@@ -32,7 +32,7 @@ const jsonLd = {
   description:
     "Asian Consortium for the Conservation and Sustainable Use of Microbial Resources",
   startDate: "2026-11-16",
-  endDate: "2026-11-17",
+  endDate: "2026-11-18",
   eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
   eventStatus: "https://schema.org/EventScheduled",
   location: {
@@ -61,7 +61,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         />
         <Navbar />
         <main className="pt-20">{children}</main>
-        <Footer />
+        <PageFooter />
       </body>
     </html>
   );

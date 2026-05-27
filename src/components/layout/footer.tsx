@@ -26,7 +26,7 @@ export function Footer() {
             <div className="mb-4">
               <div>
                 <div className="font-bold text-white text-lg">ACM23</div>
-                <div className="text-xs text-gray-400">Hanoi, Vietnam · November 16-17, 2026</div>
+                <div className="text-xs text-gray-400">Hanoi, Vietnam · November 16-18, 2026</div>
               </div>
             </div>
             <p className="text-sm text-gray-400 leading-relaxed max-w-md">

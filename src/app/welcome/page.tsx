@@ -28,11 +28,9 @@ export default function WelcomePage() {
             ACM23 Hanoi
           </p>
           <h1 className="max-w-3xl text-4xl font-black leading-tight text-[#143D78] sm:text-5xl">
-            Welcome
+            Welcome letter
           </h1>
-          <p className="mt-4 max-w-2xl text-lg leading-8 text-slate-600">
-            A message from the ACM23 Organizing Committee
-          </p>
+
         </div>
       </section>
 

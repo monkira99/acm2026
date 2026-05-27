@@ -4,7 +4,7 @@ import { program } from "@/data/program";
 
 export const metadata: Metadata = {
   title: "Scientific Program",
-  description: "ACM23 scientific program for November 16-17, 2026.",
+  description: "ACM23 scientific program for November 16-18, 2026.",
 };
 
 const typeColors: Record<string, string> = {
@@ -18,7 +18,7 @@ const typeColors: Record<string, string> = {
 export default function ProgramPage() {
   return (
     <>
-      <PageHeader title="Scientific Program" subtitle="November 16-17, 2026" />
+      <PageHeader title="Scientific Program" subtitle="November 16-18, 2026" />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {program.map((day) => (
           <div key={day.id} className="mb-12">
