@@ -47,7 +47,7 @@ export function MobileMenu({ links }: MobileMenuProps) {
             <Link
               href="/registration"
               onClick={() => setIsOpen(false)}
-              className="block px-4 py-3 bg-primary text-white rounded-lg text-center font-semibold mt-2"
+              className="mt-2 block rounded-lg bg-[#80AF41] px-4 py-3 text-center text-sm font-bold text-white transition-colors hover:bg-[#739D3B]"
             >
               Register Now
             </Link>

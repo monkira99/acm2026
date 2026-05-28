@@ -15,27 +15,38 @@ const navLinks = [
 export function Navbar() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-gray-100 bg-white">
-      <nav className="relative mx-auto flex h-20 w-full max-w-[1640px] items-center justify-end px-4 sm:px-6 lg:px-8">
-        <div className="absolute inset-y-0 left-4 right-44 hidden items-center justify-center gap-1 lg:flex xl:right-52">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="whitespace-nowrap rounded-md px-2 py-2 text-sm font-semibold text-gray-600 transition-colors hover:bg-gray-50 hover:text-primary"
-            >
-              {link.label}
-            </Link>
-          ))}
-        </div>
-
+      <nav className="mx-auto grid h-20 w-full max-w-[1640px] grid-cols-[auto_1fr_auto] items-center gap-4 px-4 sm:px-6 lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] lg:px-8">
         <Link
-          href="/registration"
-          className="hidden whitespace-nowrap rounded-md bg-primary px-5 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-secondary lg:inline-flex"
+          href="/"
+          className="text-lg font-black tracking-tight text-[#2260AD] sm:text-xl"
         >
-          Register Now
+          ACM23
         </Link>
 
-        <MobileMenu links={navLinks} />
+        <div className="hidden items-center justify-center lg:flex">
+          <ul className="flex items-center gap-x-1 xl:gap-x-3 2xl:gap-x-5">
+            {navLinks.map((link) => (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className="whitespace-nowrap rounded-md px-2.5 py-2 text-sm font-semibold text-gray-600 transition-colors hover:bg-[#EAF2FB] hover:text-[#2260AD] xl:px-3.5"
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div className="flex items-center justify-end gap-3">
+          <Link
+            href="/registration"
+            className="hidden whitespace-nowrap rounded-md bg-[#80AF41] px-5 py-2.5 text-sm font-bold text-white transition-colors hover:bg-[#739D3B] lg:inline-flex"
+          >
+            Register Now
+          </Link>
+          <MobileMenu links={navLinks} />
+        </div>
       </nav>
     </header>
   );

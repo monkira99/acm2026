@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { Inter } from "next/font/google";
-import { Navbar, PageFooter } from "@/components/layout";
+import { SiteChrome } from "@/components/layout/site-chrome";
 import "@/styles/globals.css";
 
 const inter = Inter({ subsets: ["latin", "vietnamese"] });
@@ -59,9 +59,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        <Navbar />
-        <main className="pt-20">{children}</main>
-        <PageFooter />
+        <SiteChrome>{children}</SiteChrome>
       </body>
     </html>
   );

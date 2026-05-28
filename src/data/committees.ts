@@ -27,11 +27,10 @@ export const committees: Committee[] = [
       {
         name: "Dr. Hailei Wei",
         titleLines: [
-          "Director of Agricultural Culture Collection of China",
-          "Director of National Microbial Resource Center",
-          "Institute of Agricultural Resources and Regional Planning",
-          "Chinese Academy of Agricultural Sciences",
+          "Director"
         ],
+        affiliation:
+          "Agricultural Culture Collection of China, Institute of Agricultural Resources and Regional Planning, Chinese Academy of Agricultural Sciences\nNational Microbial Resource Center",
         image: "/images/committees/DR_HAILEI_WEI.png",
       },
       {

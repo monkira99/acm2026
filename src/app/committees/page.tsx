@@ -65,7 +65,7 @@ export default function CommitteesPage() {
                     ))}
                   </div>
                   {member.affiliation && (
-                    <p className="mt-4 border-t border-[#2260AD]/10 pt-4 text-sm leading-6 text-slate-600">
+                    <p className="mt-4 border-t border-[#2260AD]/10 pt-4 text-sm leading-6 text-slate-600 whitespace-pre-line">
                       {member.affiliation}
                     </p>
                   )}

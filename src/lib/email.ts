@@ -1,4 +1,5 @@
 import { Resend } from "resend";
+import { formatAbstractTopic } from "@/lib/abstract-topics";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
@@ -37,7 +38,7 @@ export async function sendRegistrationConfirmation(
 
 export async function sendAbstractConfirmation(
   to: string,
-  data: { title: string; submissionId: string; presentationType: string }
+  data: { title: string; submissionId: string; presentationType: string; topic: string }
 ) {
   await resend.emails.send({
     from: FROM_EMAIL,
@@ -56,6 +57,7 @@ export async function sendAbstractConfirmation(
             <tr><td style="padding:8px 0;color:#888;font-size:14px;">Submission ID</td><td style="padding:8px 0;font-weight:bold;color:#0D7377;">${data.submissionId}</td></tr>
             <tr><td style="padding:8px 0;color:#888;font-size:14px;">Title</td><td style="padding:8px 0;">${data.title}</td></tr>
             <tr><td style="padding:8px 0;color:#888;font-size:14px;">Type</td><td style="padding:8px 0;">${data.presentationType}</td></tr>
+            <tr><td style="padding:8px 0;color:#888;font-size:14px;">Topic</td><td style="padding:8px 0;">${formatAbstractTopic(data.topic)}</td></tr>
           </table>
           <p>You will be notified of the review outcome by August 15, 2026.</p>
           <p style="color:#888;font-size:12px;margin-top:32px;">— ACM23 Scientific Committee</p>

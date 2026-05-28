@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { ABSTRACT_TOPIC_VALUES } from "@/lib/abstract-topics";
 
 export const registrationSchema = z.object({
   fullName: z.string().min(2, "Full name is required").max(200),
@@ -14,11 +15,25 @@ export const registrationSchema = z.object({
 
 export type RegistrationInput = z.infer<typeof registrationSchema>;
 
+const presentingAuthorSchema = z.object({
+  name: z.string().min(2, "Presenting Author is required").max(200),
+  affiliation: z.string().min(2, "Affiliation is required").max(300),
+  email: z.string().email("Invalid email address"),
+});
+
+const coAuthorSchema = z.object({
+  name: z.string().min(2, "Co-Author name is required").max(200),
+  affiliation: z.string().min(2, "Co-Author affiliation is required").max(300),
+});
+
+const abstractTopicSchema = z.enum(ABSTRACT_TOPIC_VALUES, {
+  message: "Please select topic",
+});
+
 export const abstractSchema = z.object({
   title: z.string().min(5, "Title must be at least 5 characters").max(300),
-  authors: z.string().min(2, "Authors are required").max(500),
-  correspondingEmail: z.string().email("Invalid email address"),
-  affiliation: z.string().min(2, "Affiliation is required").max(300),
+  presentingAuthor: presentingAuthorSchema,
+  coAuthors: z.array(coAuthorSchema).max(20, "Please limit co-authors to 20"),
   abstractText: z
     .string()
     .min(50, "Abstract must be at least 50 characters")
@@ -36,7 +51,19 @@ export const abstractSchema = z.object({
   presentationType: z.enum(["oral", "poster"], {
     message: "Please select presentation type",
   }),
-});
+  topic: abstractTopicSchema,
+}).transform(({ presentingAuthor, coAuthors, ...data }) => ({
+  ...data,
+  authors: [
+    { role: "presenting" as const, ...presentingAuthor },
+    ...coAuthors.map((author) => ({
+      role: "co" as const,
+      ...author,
+    })),
+  ],
+  correspondingEmail: presentingAuthor.email,
+  affiliation: presentingAuthor.affiliation,
+}));
 
 export type AbstractInput = z.infer<typeof abstractSchema>;
 

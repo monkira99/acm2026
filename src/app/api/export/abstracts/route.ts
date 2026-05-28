@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { connectDB } from "@/lib/mongodb";
 import { Abstract } from "@/lib/models/abstract";
 import { verifyAdmin } from "@/lib/admin-session";
+import { formatAbstractTopic } from "@/lib/abstract-topics";
 
 function toCSV(headers: string[], rows: string[][]): string {
   const escape = (val: string) => `"${String(val).replace(/"/g, '""')}"`;
@@ -11,11 +12,24 @@ function toCSV(headers: string[], rows: string[][]): string {
   ].join("\n");
 }
 
-export async function GET(request: Request) {
+function formatAuthors(authors: unknown): string {
+  if (Array.isArray(authors)) {
+    return authors
+      .map((author) => {
+        const label =
+          author?.role === "presenting" ? "Presenting Author" : "Co-Author";
+        const email = author?.email ? ` <${author.email}>` : "";
+        return `${author?.name ?? ""} (${label}) - ${author?.affiliation ?? ""}${email}`;
+      })
+      .join("; ");
+  }
+
+  return String(authors ?? "");
+}
+
+export async function GET() {
   const isAdmin = await verifyAdmin();
   if (!isAdmin) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-
-  const baseUrl = new URL(request.url).origin;
 
   await connectDB();
   const docs = await Abstract.find().sort({ submittedAt: -1 }).lean();
@@ -26,27 +40,23 @@ export async function GET(request: Request) {
     "Email",
     "Affiliation",
     "Type",
+    "Topic",
     "Keywords",
-    "PDF Link",
+    "Abstract Text",
     "Date",
   ];
-  const rows = docs.map((d) => {
-    const rawUrl = (d.pdfFileUrl as string) ?? "";
-    const pdfLink = rawUrl
-      ? `${baseUrl}/api/admin/blob?url=${encodeURIComponent(rawUrl)}`
-      : "";
-    return [
-      d.submissionId ?? "",
-      d.title ?? "",
-      d.authors ?? "",
-      d.correspondingEmail ?? "",
-      d.affiliation ?? "",
-      d.presentationType ?? "",
-      (d.keywords as string[]).join("; "),
-      pdfLink,
-      new Date(d.submittedAt).toISOString(),
-    ];
-  });
+  const rows = docs.map((d) => [
+    d.submissionId ?? "",
+    d.title ?? "",
+    formatAuthors(d.authors),
+    d.correspondingEmail ?? "",
+    d.affiliation ?? "",
+    d.presentationType ?? "",
+    formatAbstractTopic(d.topic),
+    (d.keywords as string[]).join("; "),
+    d.abstractText ?? "",
+    new Date(d.submittedAt).toISOString(),
+  ]);
 
   return new Response(toCSV(headers, rows), {
     headers: {

@@ -32,9 +32,9 @@ export function HeroBanner() {
               and Sustainable Use of Microbial Resources
             </p>
             <p className="text-sm font-medium leading-snug text-white/80 sm:text-base lg:text-lg">
-              Microbial Resources: From Single Cells to Microbiomes
+              Harnessing Microbial Resources: From Single Cells to Microbiomes
               <br className="hidden sm:block" />
-              for Sustainable Bioeconomy
+              for a Sustainable Bioeconomy
             </p>
           </div>
 

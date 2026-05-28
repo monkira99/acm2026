@@ -1,6 +1,5 @@
 "use server";
 
-import { put } from "@vercel/blob";
 import { connectDB } from "@/lib/mongodb";
 import { Abstract } from "@/lib/models/abstract";
 import { abstractSchema } from "@/lib/validators";
@@ -13,14 +12,27 @@ interface ActionResult {
 }
 
 export async function submitAbstractAction(formData: FormData): Promise<ActionResult> {
+  const coAuthorNames = formData.getAll("coAuthorName").map(String);
+  const coAuthorAffiliations = formData.getAll("coAuthorAffiliation").map(String);
+  const coAuthors = coAuthorNames
+    .map((name, index) => ({
+      name,
+      affiliation: coAuthorAffiliations[index] ?? "",
+    }))
+    .filter((author) => author.name.trim() || author.affiliation.trim());
+
   const rawData = {
     title: formData.get("title") as string,
-    authors: formData.get("authors") as string,
-    correspondingEmail: formData.get("correspondingEmail") as string,
-    affiliation: formData.get("affiliation") as string,
+    presentingAuthor: {
+      name: formData.get("presentingAuthorName") as string,
+      affiliation: formData.get("presentingAuthorAffiliation") as string,
+      email: formData.get("presentingAuthorEmail") as string,
+    },
+    coAuthors,
     abstractText: formData.get("abstractText") as string,
     keywords: formData.get("keywords") as string,
     presentationType: formData.get("presentationType") as string,
+    topic: formData.get("topic") as string,
   };
 
   const parsed = abstractSchema.safeParse(rawData);
@@ -29,21 +41,6 @@ export async function submitAbstractAction(formData: FormData): Promise<ActionRe
   }
 
   try {
-    let pdfFileUrl: string | undefined;
-    const pdfFile = formData.get("pdfFile") as File | null;
-    if (pdfFile && pdfFile.size > 0) {
-      if (pdfFile.size > 10 * 1024 * 1024) {
-        return { success: false, error: "PDF file must be under 10MB." };
-      }
-      if (pdfFile.type !== "application/pdf") {
-        return { success: false, error: "Only PDF files are accepted." };
-      }
-      const blob = await put(`abstracts/${Date.now()}-${pdfFile.name}`, pdfFile, {
-        access: "private",
-      });
-      pdfFileUrl = blob.url;
-    }
-
     await connectDB();
 
     const count = await Abstract.countDocuments();
@@ -51,7 +48,6 @@ export async function submitAbstractAction(formData: FormData): Promise<ActionRe
 
     const abstract = new Abstract({
       ...parsed.data,
-      pdfFileUrl,
       submissionId,
     });
     await abstract.save();
@@ -60,6 +56,7 @@ export async function submitAbstractAction(formData: FormData): Promise<ActionRe
       title: parsed.data.title,
       submissionId,
       presentationType: parsed.data.presentationType,
+      topic: parsed.data.topic,
     });
 
     return { success: true, submissionId };
