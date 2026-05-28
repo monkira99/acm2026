@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { Hotel, MapPin, Plane, Utensils } from "lucide-react";
+import { SectionHero } from "@/components/ui/section-hero";
 
 export const metadata: Metadata = { title: "Venue & Travel" };
 
 const travelInfo = [
   { icon: Plane, title: "Getting to Hanoi", description: "Noi Bai International Airport (HAN) is served by major airlines across Asia. The airport is approximately 30km from the city center." },
-  { icon: Hotel, title: "Accommodation", description: "A range of hotels near the conference venue will be recommended. Special rates may be available for ACM23 participants." },
+  { icon: Hotel, title: "Accommodation", description: "ACM23 will be held at Legend Westlake Hotel. Accommodation guidance and special rates may be shared with participants when available." },
   { icon: Utensils, title: "Dining", description: "Hanoi is famous for its cuisine — from phở and bún chả to egg coffee. The Old Quarter offers endless culinary adventures." },
   { icon: MapPin, title: "Local Attractions", description: "Visit the Temple of Literature, Hoan Kiem Lake, Ho Chi Minh Mausoleum, and the vibrant Old Quarter during your stay." },
 ];
@@ -32,20 +33,7 @@ const hanoiGallery = [
 export default function VenuePage() {
   return (
     <div className="bg-[#EAF2FB]">
-      <section className="bg-[linear-gradient(135deg,#2260AD_0%,#2D78D4_58%,#143D78_100%)]">
-        <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-16 lg:px-8">
-          <div className="mb-5 flex items-center gap-3">
-            <span className="h-1.5 w-14 rounded-full bg-white" />
-            <span className="h-1.5 w-6 rounded-full bg-[#80AF41]" />
-          </div>
-          <p className="mb-3 text-sm font-bold uppercase tracking-[0.18em] text-white/80">
-            ACM23 Hanoi
-          </p>
-          <h1 className="max-w-4xl text-4xl font-black leading-tight text-white sm:text-5xl">
-            Venue & Travel
-          </h1>
-        </div>
-      </section>
+      <SectionHero title="Venue & Travel" />
 
       <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
         <section>
@@ -54,14 +42,15 @@ export default function VenuePage() {
               Conference Venue
             </h2>
             <p className="text-sm font-bold uppercase tracking-[0.14em] text-[#263D5C]">
-              Hanoi, Vietnam
+              Yen Phu 1, Hanoi
             </p>
           </div>
           <div className="border-l-4 border-[#2260AD] bg-white/80 px-5 py-4 shadow-sm shadow-[#2260AD]/5">
-            <p className="text-base leading-8 text-[#263D5C]">
-              The exact venue will be announced soon. ACM23 will be held at a
-              prestigious location in Hanoi, easily accessible from major hotels
-              and transportation hubs.
+            <p className="text-xl font-black text-[#143D78]">
+              Legend Westlake Hotel
+            </p>
+            <p className="mt-1 text-sm font-bold uppercase tracking-[0.14em] text-[#2260AD]">
+              Yen Phu 1, Hanoi, Vietnam
             </p>
           </div>
         </section>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
-import { PageHeader } from "@/components/ui/page-header";
 import { RegistrationForm } from "@/components/forms/registration-form";
+import { SectionHero } from "@/components/ui/section-hero";
+import { CalendarDays, MapPin, UserCheck } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Registration",
@@ -9,11 +10,68 @@ export const metadata: Metadata = {
 
 export default function RegistrationPage() {
   return (
-    <>
-      <PageHeader title="Registration" subtitle="Register for ACM23 — Hanoi, November 16-18, 2026" />
-      <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <RegistrationForm />
+    <div className="bg-[#EAF2FB]">
+      <SectionHero title="Registration" />
+
+      <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+        <div className="mb-8 flex flex-col gap-1 border-b border-[#2260AD]/20 pb-4 sm:flex-row sm:items-end sm:justify-between">
+          <h2 className="text-2xl font-black text-[#2260AD]">
+            Register for ACM23
+          </h2>
+          <p className="text-sm font-bold uppercase tracking-[0.14em] text-[#263D5C]">
+            November 16-18, 2026
+          </p>
+        </div>
+
+        <div className="grid gap-5 lg:grid-cols-[1fr_2fr]">
+          <aside className="space-y-3">
+            <div className="flex items-start gap-3 bg-white/75 px-5 py-4 shadow-sm shadow-[#2260AD]/5">
+              <CalendarDays
+                className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#2260AD]"
+                aria-hidden="true"
+              />
+              <div>
+                <p className="text-xs font-bold uppercase tracking-[0.14em] text-[#2260AD]">
+                  Dates
+                </p>
+                <p className="mt-1 text-sm font-semibold text-[#263D5C]">
+                  November 16-18, 2026
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-start gap-3 bg-white/75 px-5 py-4 shadow-sm shadow-[#2260AD]/5">
+              <MapPin
+                className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#2260AD]"
+                aria-hidden="true"
+              />
+              <div>
+                <p className="text-xs font-bold uppercase tracking-[0.14em] text-[#2260AD]">
+                  Location
+                </p>
+                <p className="mt-1 text-sm font-semibold text-[#263D5C]">
+                  Hanoi, Vietnam
+                </p>
+              </div>
+            </div>
+
+            <div className="border-l-4 border-[#80AF41] bg-white/80 px-5 py-4 shadow-sm shadow-[#2260AD]/5">
+              <UserCheck
+                className="mb-3 h-5 w-5 text-[#2260AD]"
+                aria-hidden="true"
+              />
+              <p className="text-sm leading-6 text-[#263D5C]">
+                Complete the form to register your attendance for the 23rd
+                Annual Meeting in Hanoi.
+              </p>
+            </div>
+          </aside>
+
+          <section className="bg-white/85 px-5 py-6 shadow-sm shadow-[#2260AD]/5 sm:px-7">
+            <RegistrationForm />
+          </section>
+        </div>
       </div>
-    </>
+    </div>
   );
 }

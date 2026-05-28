@@ -6,6 +6,16 @@ export interface ImportantDate {
 }
 
 export const importantDates: ImportantDate[] = [
-  { date: "To be updated", label: "Registration", description: "To be updated", passed: false },
-  { date: "To be updated", label: "Abstract Submission", description: "To be updated", passed: false },
+  {
+    date: "September 30, 2026",
+    label: "Abstract Submission",
+    description: "Abstract submission deadline",
+    passed: false,
+  },
+  {
+    date: "October 31, 2026",
+    label: "Registration",
+    description: "Registration deadline",
+    passed: false,
+  },
 ];

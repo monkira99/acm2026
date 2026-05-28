@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { SectionHero } from "@/components/ui/section-hero";
 import { speakers } from "@/data/speakers";
 import { User } from "lucide-react";
 
@@ -10,20 +11,7 @@ export const metadata: Metadata = {
 export default function SpeakersPage() {
   return (
     <div className="bg-[#EAF2FB]">
-      <section className="bg-[linear-gradient(135deg,#2260AD_0%,#2D78D4_58%,#143D78_100%)]">
-        <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-16 lg:px-8">
-          <div className="mb-5 flex items-center gap-3">
-            <span className="h-1.5 w-14 rounded-full bg-white" />
-            <span className="h-1.5 w-6 rounded-full bg-[#80AF41]" />
-          </div>
-          <p className="mb-3 text-sm font-bold uppercase tracking-[0.18em] text-white/80">
-            ACM23 Hanoi
-          </p>
-          <h1 className="max-w-4xl text-4xl font-black leading-tight text-white sm:text-5xl">
-            Keynote Speakers
-          </h1>
-        </div>
-      </section>
+      <SectionHero title="Keynote Speakers" />
 
       <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
         <div className="mb-8 flex flex-col gap-1 border-b border-[#2260AD]/20 pb-4 sm:flex-row sm:items-end sm:justify-between">

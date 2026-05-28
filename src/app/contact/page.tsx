@@ -1,42 +1,77 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { PageHeader } from "@/components/ui/page-header";
 import { Mail, MapPin, Globe } from "lucide-react";
 import { ContactForm } from "@/components/forms/contact-form";
+import { SectionHero } from "@/components/ui/section-hero";
 
 export const metadata: Metadata = { title: "Contact" };
 
 export default function ContactPage() {
+  const contactCards = [
+    {
+      icon: Mail,
+      title: "Email",
+      body: "acm23@vnu.edu.vn",
+    },
+    {
+      icon: MapPin,
+      title: "Location",
+      body: "Hanoi, Vietnam",
+    },
+  ];
+
   return (
-    <>
-      <PageHeader title="Contact Us" subtitle="Get in touch with the ACM23 organizing team" />
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-          <div className="p-6 rounded-xl border border-gray-100 text-center">
-            <Mail size={28} className="text-primary mx-auto mb-3" aria-hidden="true" />
-            <h3 className="font-semibold text-dark">Email</h3>
-            <p className="text-sm text-gray-500 mt-1">acm23@vnu.edu.vn</p>
-          </div>
-          <div className="p-6 rounded-xl border border-gray-100 text-center">
-            <MapPin size={28} className="text-primary mx-auto mb-3" aria-hidden="true" />
-            <h3 className="font-semibold text-dark">Location</h3>
-            <p className="text-sm text-gray-500 mt-1">Hanoi, Vietnam</p>
-          </div>
-          <div className="p-6 rounded-xl border border-gray-100 text-center">
-            <Globe size={28} className="text-primary mx-auto mb-3" aria-hidden="true" />
-            <h3 className="font-semibold text-dark">IMBT Website</h3>
+    <div className="bg-[#EAF2FB]">
+      <SectionHero title="Contact Us" />
+
+      <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+        <div className="mb-8 flex flex-col gap-1 border-b border-[#2260AD]/20 pb-4 sm:flex-row sm:items-end sm:justify-between">
+          <h2 className="text-2xl font-black text-[#2260AD]">
+            Organizing Team
+          </h2>
+          <p className="text-sm font-bold uppercase tracking-[0.14em] text-[#263D5C]">
+            Get in touch
+          </p>
+        </div>
+
+        <div className="mb-8 grid grid-cols-1 gap-4 md:grid-cols-3">
+          {contactCards.map((item) => (
+            <div
+              key={item.title}
+              className="bg-white/75 px-5 py-5 shadow-sm shadow-[#2260AD]/5"
+            >
+              <item.icon
+                size={24}
+                className="mb-4 text-[#2260AD]"
+                aria-hidden="true"
+              />
+              <h3 className="text-lg font-bold text-[#143D78]">
+                {item.title}
+              </h3>
+              <p className="mt-2 text-sm leading-6 text-[#263D5C]">
+                {item.body}
+              </p>
+            </div>
+          ))}
+
+          <div className="border-l-4 border-[#80AF41] bg-white/80 px-5 py-5 shadow-sm shadow-[#2260AD]/5">
+            <Globe size={24} className="mb-4 text-[#2260AD]" aria-hidden="true" />
+            <h3 className="text-lg font-bold text-[#143D78]">IMBT Website</h3>
             <Link
               href="http://imbt.vnu.edu.vn/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-sm text-primary hover:text-primary/80 mt-1 inline-block"
+              className="mt-2 inline-block text-sm font-semibold text-[#2260AD] transition-colors hover:text-[#143D78]"
             >
               http://imbt.vnu.edu.vn/
             </Link>
           </div>
         </div>
-        <ContactForm />
+
+        <div className="bg-white/85 px-5 py-6 shadow-sm shadow-[#2260AD]/5 sm:px-7">
+          <ContactForm />
+        </div>
       </div>
-    </>
+    </div>
   );
 }
