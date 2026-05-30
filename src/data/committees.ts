@@ -22,7 +22,7 @@ export const committees: Committee[] = [
         titleLines: ["Senior Chief, CBD Administration Division"],
         affiliation:
           "Biological Resource Center (NBRC), National Institute of Technology and Evaluation (NITE)",
-        image: "/images/committees/MS_FUNABIKI_RIE.png",
+        image: "/images/committees/MS_FUNABIKI_RIE.jpeg",
       },
       {
         name: "Dr. Hailei Wei",
