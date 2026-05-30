@@ -13,7 +13,7 @@ export interface Committee {
 
 export const committees: Committee[] = [
   {
-    name: "Scientific Committee",
+    name: "Scientific committee",
     description:
       "Scientific leaders supporting ACM23's program direction and technical review.",
     members: [
@@ -69,13 +69,12 @@ export const committees: Committee[] = [
     ],
   },
   {
-    name: "Organizing Committee",
+    name: "Organizing committee",
     description: "ACM23 organizing committee members.",
     members: [
       { name: "Dr. Trinh Thanh Trung", titleLines: [] },
       { name: "Assoc. Prof. Dr. Dinh Thuy Hang", titleLines: [] },
       { name: "Assoc. Prof. Dr. Vo Thuong Lan", titleLines: [] },
-      { name: "Assoc. Prof. Dr. Duong Van Hop", titleLines: [] },
       { name: "Dr. Hoang Thi Lan Anh", titleLines: [] },
       { name: "Dr. Hoang Van Vinh", titleLines: [] },
       { name: "Dr. Nguyen Thi Hai", titleLines: [] },
@@ -84,10 +83,8 @@ export const committees: Committee[] = [
       { name: "Dr. Le Thi Hoa", titleLines: [] },
       { name: "Dr. Nguyen Thi Tinh", titleLines: [] },
       { name: "MSc. Bui Nguyen Hai Linh", titleLines: [] },
-      { name: "MSc. Nguyen Thi Van", titleLines: [] },
       { name: "MSc. Nguyen Viet Ha", titleLines: [] },
       { name: "MSc. Doan Thi Nhung", titleLines: [] },
-      { name: "BSc. Hoang Thu Ha", titleLines: [] },
     ],
   },
 ];

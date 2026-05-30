@@ -32,14 +32,14 @@ export function MobileMenu({ links }: MobileMenuProps) {
       </button>
 
       {isOpen && (
-        <div className="absolute left-0 right-0 top-20 bg-white border-b border-gray-100 shadow-lg">
-          <div className="mx-auto w-full max-w-7xl px-4 py-4 sm:px-6 lg:px-8 space-y-1">
+        <div className="absolute left-0 right-0 top-20 max-h-[calc(100svh-5rem)] overflow-y-auto border-b border-gray-100 bg-white shadow-lg">
+          <div className="mx-auto grid w-full max-w-7xl gap-1 px-4 py-4 sm:grid-cols-2 sm:px-6 lg:px-8">
             {links.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setIsOpen(false)}
-                className="block px-4 py-3 text-gray-600 hover:text-primary hover:bg-gray-50 rounded-lg transition-colors"
+                className="block rounded-lg px-4 py-2.5 text-gray-600 transition-colors hover:bg-gray-50 hover:text-primary"
               >
                 {link.label}
               </Link>
@@ -47,7 +47,7 @@ export function MobileMenu({ links }: MobileMenuProps) {
             <Link
               href="/registration"
               onClick={() => setIsOpen(false)}
-              className="mt-2 block rounded-lg bg-[#80AF41] px-4 py-3 text-center text-sm font-bold text-white transition-colors hover:bg-[#739D3B]"
+              className="mt-1 block rounded-lg bg-[#80AF41] px-4 py-3 text-center text-sm font-bold text-white transition-colors hover:bg-[#739D3B] sm:col-span-2"
             >
               Register Now
             </Link>

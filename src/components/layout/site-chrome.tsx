@@ -16,10 +16,8 @@ export function SiteChrome({ children }: { children: ReactNode }) {
   return (
     <div className="flex min-h-screen flex-col">
       <Navbar />
-      <main className="flex flex-1 flex-col pt-20 [&>*]:flex-1">
-        {children}
-      </main>
-      <PageFooter />
+      <main className="flex-1 bg-[#EAF2FB] pt-20">{children}</main>
+      {pathname !== "/" && <PageFooter />}
     </div>
   );
 }
