@@ -20,7 +20,6 @@ export function Navbar() {
           href="/"
           className="text-lg font-black tracking-tight text-[#2260AD] sm:text-xl"
         >
-          ACM23
         </Link>
 
         <div className="hidden items-center justify-center lg:flex">

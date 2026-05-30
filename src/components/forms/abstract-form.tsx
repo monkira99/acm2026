@@ -1,302 +1,179 @@
 "use client";
 
-import { useState, useTransition } from "react";
-import { useRouter } from "next/navigation";
-import { submitAbstractAction } from "@/lib/actions/submit-abstract";
-import { ABSTRACT_TOPIC_OPTIONS } from "@/lib/abstract-topics";
-import { Loader2, Plus, Trash2 } from "lucide-react";
+import { useState, type ChangeEvent, type FormEvent } from "react";
+import {
+  ABSTRACT_SESSION_OPTIONS,
+  SCIENTIST_CATEGORY_OPTIONS,
+} from "@/lib/abstract-topics";
+import { CheckCircle2, FileText, UploadCloud } from "lucide-react";
 
-interface CoAuthorField {
-  id: number;
-}
-
-const MAX_WORDS = 300;
-
-function countWords(text: string): number {
-  return text.trim() === "" ? 0 : text.trim().split(/\s+/).length;
-}
+const MAX_FILE_SIZE = 10 * 1024 * 1024;
+const ACCEPTED_EXTENSIONS = [".pdf", ".doc", ".docx"];
+const ACCEPTED_FILE_TYPES = new Set([
+  "application/pdf",
+  "application/msword",
+  "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+]);
 
 const fieldClassName =
-  "w-full rounded-md border border-gray-300 bg-white px-4 py-2.5 text-[#143D78] placeholder:text-gray-400 outline-none transition focus:border-[#2260AD] focus:ring-2 focus:ring-[#2260AD]/15";
+  "w-full min-w-0 rounded-lg border border-[#2260AD]/15 bg-white px-4 py-3 text-[#143D78] outline-none transition focus:border-[#2260AD] focus:ring-2 focus:ring-[#2260AD]/20";
 
-const labelClassName = "block text-sm font-bold text-[#143D78] mb-1.5";
+const labelClassName = "block text-sm font-bold text-[#143D78] mb-2";
 
-const subLabelClassName = "block text-sm font-semibold text-[#143D78] mb-1.5";
+function formatFileSize(size: number): string {
+  if (size < 1024 * 1024) return `${Math.ceil(size / 1024)} KB`;
+  return `${(size / (1024 * 1024)).toFixed(1)} MB`;
+}
+
+function getFileError(file: File | null): string | null {
+  if (!file) return "Please upload your abstract file.";
+  if (file.size > MAX_FILE_SIZE) return "Abstract file must be under 10MB.";
+
+  const lowerName = file.name.toLowerCase();
+  const hasAcceptedExtension = ACCEPTED_EXTENSIONS.some((extension) =>
+    lowerName.endsWith(extension),
+  );
+
+  if (!ACCEPTED_FILE_TYPES.has(file.type) && !hasAcceptedExtension) {
+    return "Only PDF, DOC, or DOCX files are accepted.";
+  }
+
+  return null;
+}
 
 export function AbstractForm() {
-  const router = useRouter();
-  const [isPending, startTransition] = useTransition();
-  const [serverError, setServerError] = useState<string | null>(null);
-  const [coAuthors, setCoAuthors] = useState<CoAuthorField[]>([]);
-  const [nextCoAuthorId, setNextCoAuthorId] = useState(1);
-  const [abstractText, setAbstractText] = useState("");
+  const [file, setFile] = useState<File | null>(null);
+  const [fileError, setFileError] = useState<string | null>(null);
+  const [submitNotice, setSubmitNotice] = useState<string | null>(null);
 
-  const wordCount = countWords(abstractText);
-  const isOverLimit = wordCount > MAX_WORDS;
-
-  function addCoAuthor() {
-    setCoAuthors((c) => [...c, { id: nextCoAuthorId }]);
-    setNextCoAuthorId((c) => c + 1);
+  function onFileChange(event: ChangeEvent<HTMLInputElement>) {
+    const nextFile = event.target.files?.[0] ?? null;
+    setFile(nextFile);
+    setFileError(getFileError(nextFile));
+    setSubmitNotice(null);
   }
 
-  function removeCoAuthor(id: number) {
-    setCoAuthors((c) => c.filter((a) => a.id !== id));
-  }
+  function onSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
 
-  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    if (isOverLimit) return;
-    setServerError(null);
-    const formData = new FormData(e.currentTarget);
-    startTransition(async () => {
-      const result = await submitAbstractAction(formData);
-      if (result.success) {
-        router.push(`/abstract/success?id=${result.submissionId}`);
-      } else {
-        setServerError(result.error ?? "Submission failed.");
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      }
-    });
+    const nextFileError = getFileError(file);
+    setFileError(nextFileError);
+    setSubmitNotice(null);
+
+    if (!event.currentTarget.reportValidity() || nextFileError) return;
+
+    setSubmitNotice(
+      "The abstract submission form is ready. Data storage will be connected in the MongoDB step.",
+    );
   }
 
   return (
-    <form onSubmit={onSubmit} className="space-y-6">
-      {serverError && (
+    <form onSubmit={onSubmit} className="min-w-0 space-y-7">
+      {submitNotice && (
         <div
-          className="rounded-md border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700"
-          role="alert"
+          className="flex items-start gap-3 rounded-lg border border-[#80AF41]/25 bg-[#EEF7E2] px-4 py-3 text-sm font-semibold text-[#486724]"
+          role="status"
         >
-          {serverError}
+          <CheckCircle2
+            className="mt-0.5 h-5 w-5 flex-shrink-0"
+            aria-hidden="true"
+          />
+          <span>{submitNotice}</span>
         </div>
       )}
 
       <div>
-        <label className={labelClassName} htmlFor="title">
-          Title <span className="text-red-500">*</span>
+        <label className={labelClassName} htmlFor="abstractFile">
+          Abstract file <span className="text-red-500">*</span>
         </label>
-        <input
-          id="title"
-          name="title"
-          type="text"
-          required
-          className={fieldClassName}
-        />
-      </div>
-
-      <div>
-        <label className={labelClassName}>
-          Authors <span className="text-red-500">*</span>
-        </label>
-
-        <div className="rounded-md border border-[#2260AD]/20 bg-[#EAF2FB] p-4">
-          <p className="mb-3 text-xs font-bold uppercase tracking-[0.12em] text-[#2260AD]">
-            Presenting Author
-          </p>
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
-            <div>
-              <label className={subLabelClassName} htmlFor="presentingAuthorName">
-                Name <span className="text-red-500">*</span>
-              </label>
-              <input
-                id="presentingAuthorName"
-                name="presentingAuthorName"
-                type="text"
-                required
-                className={fieldClassName}
-              />
-            </div>
-            <div>
-              <label
-                className={subLabelClassName}
-                htmlFor="presentingAuthorAffiliation"
-              >
-                Affiliation <span className="text-red-500">*</span>
-              </label>
-              <input
-                id="presentingAuthorAffiliation"
-                name="presentingAuthorAffiliation"
-                type="text"
-                required
-                className={fieldClassName}
-              />
-            </div>
-            <div>
-              <label
-                className={subLabelClassName}
-                htmlFor="presentingAuthorEmail"
-              >
-                Email <span className="text-red-500">*</span>
-              </label>
-              <input
-                id="presentingAuthorEmail"
-                name="presentingAuthorEmail"
-                type="email"
-                required
-                className={fieldClassName}
-              />
-            </div>
-          </div>
-        </div>
-
-        {coAuthors.map((author, index) => (
-          <div
-            key={author.id}
-            className="mt-3 rounded-md border border-[#2260AD]/20 bg-[#EAF2FB] p-4"
-          >
-            <div className="mb-3 flex items-center justify-between">
-              <p className="text-xs font-bold uppercase tracking-[0.12em] text-[#2260AD]">
-                Co-Author {index + 1}
-              </p>
-              <button
-                type="button"
-                onClick={() => removeCoAuthor(author.id)}
-                aria-label={`Remove co-author ${index + 1}`}
-                className="inline-flex items-center gap-1 text-xs font-semibold text-red-600 transition-colors hover:text-red-700"
-              >
-                <Trash2 size={13} aria-hidden="true" />
-                Remove
-              </button>
-            </div>
-            <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-              <div>
-                <label
-                  className={subLabelClassName}
-                  htmlFor={`coAuthorName-${author.id}`}
-                >
-                  Name <span className="text-red-500">*</span>
-                </label>
-                <input
-                  id={`coAuthorName-${author.id}`}
-                  name="coAuthorName"
-                  type="text"
-                  required
-                  className={fieldClassName}
-                />
-              </div>
-              <div>
-                <label
-                  className={subLabelClassName}
-                  htmlFor={`coAuthorAffiliation-${author.id}`}
-                >
-                  Affiliation <span className="text-red-500">*</span>
-                </label>
-                <input
-                  id={`coAuthorAffiliation-${author.id}`}
-                  name="coAuthorAffiliation"
-                  type="text"
-                  required
-                  className={fieldClassName}
-                />
-              </div>
-            </div>
-          </div>
-        ))}
-
-        <button
-          type="button"
-          onClick={addCoAuthor}
-          className="mt-3 inline-flex items-center gap-2 rounded-md border border-dashed border-[#2260AD]/30 bg-[#EAF2FB] px-4 py-2 text-sm font-semibold text-[#2260AD] transition-colors hover:border-[#2260AD] hover:bg-[#E8F1FA]/80"
+        <label
+          htmlFor="abstractFile"
+          className="flex cursor-pointer flex-col items-center justify-center gap-3 rounded-lg border-2 border-dashed border-[#2260AD]/25 bg-[#F4F8FD] px-5 py-8 text-center transition hover:border-[#2260AD] hover:bg-[#E8F1FA]"
         >
-          <Plus size={15} aria-hidden="true" />
-          Add Co-Author
-        </button>
-      </div>
-
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-        <div>
-          <label className={labelClassName} htmlFor="presentationType">
-            Presentation Type <span className="text-red-500">*</span>
-          </label>
-          <select
-            id="presentationType"
-            name="presentationType"
-            required
-            defaultValue=""
-            className={fieldClassName}
-          >
-            <option value="" disabled>
-              Select type
-            </option>
-            <option value="oral">Oral Presentation</option>
-            <option value="poster">Poster Presentation</option>
-          </select>
-        </div>
-        <div>
-          <label className={labelClassName} htmlFor="topic">
-            Topic <span className="text-red-500">*</span>
-          </label>
-          <select
-            id="topic"
-            name="topic"
-            required
-            defaultValue=""
-            className={fieldClassName}
-          >
-            <option value="" disabled>
-              Select topic
-            </option>
-            {ABSTRACT_TOPIC_OPTIONS.map((t) => (
-              <option key={t.value} value={t.value}>
-                {t.label}
-              </option>
-            ))}
-          </select>
-        </div>
-      </div>
-
-      <div>
-        <div className="mb-1.5 flex items-baseline justify-between">
-          <label className={`${labelClassName} mb-0`} htmlFor="abstractText">
-            Abstract Text <span className="text-red-500">*</span>{" "}
-            <span className="font-normal text-gray-500">(max 300 words)</span>
-          </label>
-          <span
-            className={`text-xs tabular-nums ${
-              isOverLimit ? "text-red-600" : "text-gray-500"
-            }`}
-          >
-            {wordCount} / {MAX_WORDS}
+          <span className="flex h-12 w-12 items-center justify-center rounded-full bg-white text-[#2260AD] shadow-sm shadow-[#2260AD]/10">
+            <UploadCloud className="h-6 w-6" aria-hidden="true" />
           </span>
-        </div>
-        <textarea
-          id="abstractText"
-          name="abstractText"
-          required
-          rows={10}
-          value={abstractText}
-          onChange={(e) => setAbstractText(e.target.value)}
-          className={`${fieldClassName} resize-y leading-7 ${
-            isOverLimit ? "border-red-400 focus:border-red-500" : ""
-          }`}
-        />
-      </div>
-
-      <div>
-        <label className={labelClassName} htmlFor="keywords">
-          Keywords <span className="text-red-500">*</span>{" "}
-          <span className="font-normal text-gray-500">
-            (3-5, comma-separated)
+          <span className="max-w-full break-words text-sm font-bold text-[#143D78]">
+            {file ? file.name : "Choose abstract file"}
           </span>
+          <span className="text-xs font-medium text-[#263D5C]/65">
+            PDF, DOC, or DOCX. Maximum 10MB.
+          </span>
+          {file && (
+            <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#2260AD]">
+              <FileText className="h-3.5 w-3.5" aria-hidden="true" />
+              {formatFileSize(file.size)}
+            </span>
+          )}
         </label>
         <input
-          id="keywords"
-          name="keywords"
-          type="text"
-          required
-          placeholder="e.g. microbial diversity, conservation, biotechnology"
-          className={fieldClassName}
+          id="abstractFile"
+          name="abstractFile"
+          type="file"
+          accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+          className="sr-only"
+          onChange={onFileChange}
         />
+        {fileError && (
+          <p className="mt-2 text-sm font-semibold text-red-600" role="alert">
+            {fileError}
+          </p>
+        )}
+      </div>
+
+      <fieldset>
+        <legend className={labelClassName}>
+          Scientist <span className="text-red-500">*</span>
+        </legend>
+        <div className="grid gap-3">
+          {SCIENTIST_CATEGORY_OPTIONS.map((option) => (
+            <label
+              key={option.value}
+              className="flex min-w-0 cursor-pointer items-start gap-3 rounded-lg border border-[#2260AD]/15 bg-white px-4 py-3 transition hover:border-[#2260AD]/40 hover:bg-[#F4F8FD] has-[:checked]:border-[#2260AD] has-[:checked]:bg-[#E8F1FA]"
+            >
+              <input
+                type="radio"
+                name="scientistCategory"
+                value={option.value}
+                required
+                className="mt-1 h-4 w-4 accent-[#2260AD]"
+              />
+              <span className="min-w-0 break-words text-sm font-semibold leading-6 text-[#263D5C]">
+                {option.label}
+              </span>
+            </label>
+          ))}
+        </div>
+      </fieldset>
+
+      <div>
+        <label className={labelClassName} htmlFor="sessionPreference">
+          Which session would you prefer to present?{" "}
+          <span className="text-red-500">*</span>
+        </label>
+        <select
+          id="sessionPreference"
+          name="sessionPreference"
+          required
+          defaultValue=""
+          className={fieldClassName}
+        >
+          <option value="" disabled>
+            Select preferred session
+          </option>
+          {ABSTRACT_SESSION_OPTIONS.map((session) => (
+            <option key={session.value} value={session.value}>
+              {session.label}
+            </option>
+          ))}
+        </select>
       </div>
 
       <button
         type="submit"
-        disabled={isPending || isOverLimit}
-        className="flex w-full items-center justify-center gap-2 rounded-md bg-[#2260AD] py-3 text-base font-bold text-white transition-colors hover:bg-[#143D78] disabled:cursor-not-allowed disabled:opacity-50"
+        className="flex w-full items-center justify-center rounded-lg bg-[#2260AD] py-3.5 text-base font-bold text-white transition-colors hover:bg-[#143D78]"
       >
-        {isPending && (
-          <Loader2 size={18} className="animate-spin" aria-hidden="true" />
-        )}
-        {isPending ? "Submitting…" : "Submit Abstract"}
+        Submit abstract
       </button>
     </form>
   );

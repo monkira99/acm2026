@@ -32,14 +32,16 @@ export function SectionHero({
           {eyebrow}
         </p>
         <h1
-          className={`max-w-4xl font-black leading-tight text-white ${
+          className={`max-w-4xl break-words font-black leading-tight text-white ${
             compact ? "text-3xl sm:text-4xl" : "text-4xl sm:text-5xl"
           }`}
         >
           {title}
         </h1>
         {subtitle && (
-          <p className="mt-3 max-w-2xl text-lg text-white/75">{subtitle}</p>
+          <p className="mt-3 max-w-2xl break-words text-lg text-white/75">
+            {subtitle}
+          </p>
         )}
       </div>
     </section>
