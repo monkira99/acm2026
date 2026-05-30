@@ -76,6 +76,7 @@ export const program: ProgramDay[] = [
           "Presentation 3",
           "Presentation 4",
           "Presentation 5",
+          "Presentation 6",
         ],
       },
       {
@@ -93,6 +94,7 @@ export const program: ProgramDay[] = [
           "Presentation 3",
           "Presentation 4",
           "Presentation 5",
+          "Presentation 6",
         ],
       },
       {
@@ -110,6 +112,7 @@ export const program: ProgramDay[] = [
           "Presentation 3",
           "Presentation 4",
           "Presentation 5",
+          "Presentation 6",
         ],
       },
       {
@@ -131,7 +134,7 @@ export const program: ProgramDay[] = [
     sessions: [
       {
         time: "8:30 - 12:30",
-        title: "General Assembly of ACM23, Member report, T/F Report",
+        title: "General Assembly of ACM23, T/F Report",
         type: "assembly",
       },
       {
@@ -149,6 +152,7 @@ export const program: ProgramDay[] = [
           "Presentation 3",
           "Presentation 4",
           "Presentation 5",
+          "Presentation 6",
         ],
       },
       {
@@ -166,6 +170,7 @@ export const program: ProgramDay[] = [
           "Presentation 3",
           "Presentation 4",
           "Presentation 5",
+          "Presentation 6",
         ],
       },
       {

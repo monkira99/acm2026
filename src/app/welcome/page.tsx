@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { LotusDecor } from "@/components/cultural";
 import { SectionHero } from "@/components/ui/section-hero";
 
@@ -16,43 +17,46 @@ const letterParagraphs = [
   "We sincerely thank all members of the Scientific Committee, invited speakers, sponsors, partners, and participants for their valuable support and contributions. We look forward to welcoming you to Hanoi for a fruitful and inspiring ACM23 meeting.",
 ];
 
+const letterTextClass =
+  "text-base leading-8 text-[#263D5C] sm:text-lg sm:leading-9";
+
 export default function WelcomePage() {
   return (
     <div className="bg-[#EAF2FB]">
       <SectionHero title="Welcome letter" />
 
       <article className="mx-auto max-w-4xl px-4 py-14 sm:px-6 sm:py-20 lg:px-8">
-        <div className="mb-10 flex items-center gap-3 text-[#2260AD]">
-          <LotusDecor color="#2260AD" size={28} />
-          <span className="h-px flex-1 bg-[#2260AD]/25" />
+
+        <div className="mb-8 flex justify-start">
+          <div className="relative h-28 w-28 overflow-hidden rounded-full border-4 border-white bg-[#F3F7FC] shadow-lg shadow-[#2260AD]/15 ring-1 ring-[#2260AD]/15 sm:h-32 sm:w-32">
+            <Image
+              src="/images/welcome/Dr.Trinh_Thanh_Trung.webp"
+              alt="Dr. Trinh Thanh Trung"
+              fill
+              sizes="(min-width: 640px) 128px, 112px"
+              unoptimized
+              className="object-cover"
+            />
+          </div>
         </div>
 
-        <p className="mb-8 text-xl font-semibold text-[#2260AD]">
-          Dear colleagues and friends,
-        </p>
-
         <div className="space-y-7">
-          <p className="text-base leading-8 text-[#263D5C] sm:text-lg sm:leading-9">
-            {letterParagraphs[0]}
-          </p>
+          <p className={letterTextClass}>Dear colleagues and friends,</p>
 
-          {letterParagraphs.slice(1).map((paragraph) => (
-            <p
-              key={paragraph}
-              className="text-base leading-8 text-[#263D5C] sm:text-lg sm:leading-9"
-            >
+          {letterParagraphs.map((paragraph) => (
+            <p key={paragraph} className={letterTextClass}>
               {paragraph}
             </p>
           ))}
-        </div>
 
-        <footer className="mt-12 border-l-4 border-[#2260AD] bg-[#F3F7FC] px-6 py-6">
-          <p className="text-base leading-7 text-slate-700">Best regards,</p>
-          <p className="mt-4 text-xl font-bold text-[#2260AD]">Trung</p>
-          <p className="mt-1 text-sm font-semibold uppercase tracking-[0.14em] text-[#80AF41]">
-            Chair of the Organizing Committee
-          </p>
-        </footer>
+          <div className="space-y-0 pt-5">
+            <p className={letterTextClass}>Best regards,</p>
+            <p className={letterTextClass}>Trinh Thanh Trung</p>
+            <p className={letterTextClass}>
+              Chair of the Organizing Committee
+            </p>
+          </div>
+        </div>
       </article>
     </div>
   );
