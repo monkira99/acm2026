@@ -14,11 +14,8 @@ export default function DatesPage() {
         <section>
           <div className="mb-5 flex flex-col gap-1 border-b border-[#2260AD]/20 pb-4 sm:flex-row sm:items-end sm:justify-between">
             <h2 className="text-2xl font-black text-[#2260AD]">
-              Important Dates
+              Important dates
             </h2>
-            <p className="text-sm font-bold uppercase tracking-[0.14em] text-[#263D5C]">
-              Submission & registration
-            </p>
           </div>
 
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">

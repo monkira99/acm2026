@@ -14,10 +14,12 @@ export function SiteChrome({ children }: { children: ReactNode }) {
   }
 
   return (
-    <>
+    <div className="flex min-h-screen flex-col">
       <Navbar />
-      <main className="pt-20">{children}</main>
+      <main className="flex flex-1 flex-col pt-20 [&>*]:flex-1">
+        {children}
+      </main>
       <PageFooter />
-    </>
+    </div>
   );
 }

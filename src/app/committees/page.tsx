@@ -10,10 +10,10 @@ export const metadata: Metadata = {
 
 export default function CommitteesPage() {
   const scientificCommittee = committees.find(
-    (committee) => committee.name === "Scientific Committee",
+    (committee) => committee.name === "Scientific committee",
   );
   const organizingCommittee = committees.find(
-    (committee) => committee.name === "Organizing Committee",
+    (committee) => committee.name === "Organizing committee",
   );
 
   return (
