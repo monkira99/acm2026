@@ -18,9 +18,6 @@ export default function RegistrationPage() {
           <h2 className="text-2xl font-black text-[#2260AD]">
             Register for ACM23
           </h2>
-          <p className="text-sm font-bold uppercase tracking-[0.14em] text-[#263D5C]">
-            November 16-18, 2026
-          </p>
         </div>
 
         <div className="grid gap-5 lg:grid-cols-[1fr_2fr]">

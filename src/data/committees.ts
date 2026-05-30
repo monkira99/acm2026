@@ -18,10 +18,10 @@ export const committees: Committee[] = [
       "Scientific leaders supporting ACM23's program direction and technical review.",
     members: [
       {
-        name: "Ms. FUNABIKI Rie",
-        titleLines: ["Senior Chief, CBD Administration Division"],
+        name: "Ms. Funabiki Rie",
+        titleLines: [""],
         affiliation:
-          "Biological Resource Center (NBRC), National Institute of Technology and Evaluation (NITE)",
+          "Senior Chief, CBD Administration Division of Biological Resource Center (NBRC), National Institute of Technology and Evaluation (NITE)",
         image: "/images/committees/MS_FUNABIKI_RIE.jpeg",
       },
       {
@@ -30,33 +30,64 @@ export const committees: Committee[] = [
           "Director"
         ],
         affiliation:
-          "Agricultural Culture Collection of China, Institute of Agricultural Resources and Regional Planning, Chinese Academy of Agricultural Sciences\nNational Microbial Resource Center",
+          "Director of Agricultural Culture Collection of China, Institute of Agricultural Resources and Regional Planning, Chinese Academy of Agricultural Sciences\nDirector of National Microbial Resource Center",
         image: "/images/committees/DR_HAILEI_WEI.png",
       },
       {
-        name: "Dr. Ju Huck Lee",
-        titleLines: ["Director"],
-        affiliation: "Korean Collection for Type Cultures (KCTC)",
-        image: "/images/committees/DR_JU_HUCK_LEE.png",
-      },
-      {
-        name: "Dr. KINOSHITA Hiroshi",
+        name: "Dr. Hsiu-Jung Lo",
         titleLines: [
           "Director for Biodiversity Policy Planning and Coordination/Bio-manufacturing Planning and Coordination",
         ],
         affiliation:
-          "Biological Resource Center (NBRC), National Institute of Technology and Evaluation (NITE)",
+          "Director of The Institute of Bioscience, Universiti Putra Malaysia",
+        image: "/images/committees/DR_HSIU_JUNG_LO.png",
+      },
+      {
+        name: "Dr. Ju Huck Lee",
+        titleLines: ["Director"],
+        affiliation: "Director of Korean Collection for Type Cultures (KCTC)",
+        image: "/images/committees/DR_JU_HUCK_LEE.png",
+      },
+      {
+        name: "Dr. Kinoshita Hiroshi",
+        titleLines: [
+          "Director for Biodiversity Policy Planning and Coordination/Bio-manufacturing Planning and Coordination",
+        ],
+        affiliation:
+          "Director for Biodiversity Policy Planning and Coordination / Bio-manufacturing Planning and Coordination of Biological Resource Center (NBRC), National Institute of Technology and Evaluation (NITE)",
         image: "/images/committees/DR_KINOSHITA_HIROSHI.png",
+      },
+      {
+        name: "Prof. Dr. Zunita Zakaria",
+        titleLines: [
+          "Director for Biodiversity Policy Planning and Coordination/Bio-manufacturing Planning and Coordination",
+        ],
+        affiliation:
+          "Director of The Institute of Bioscience, Universiti Putra Malaysia",
+        image: "/images/committees/PROFESSOR_DR_ ZUNITA_ZAKARIA.png",
       },
     ],
   },
   {
     name: "Organizing Committee",
-    description: "Organizing committee members will be announced later.",
+    description: "ACM23 organizing committee members.",
     members: [
-      { name: "TBA", titleLines: ["To be announced"] },
-      { name: "TBA", titleLines: ["To be announced"] },
-      { name: "TBA", titleLines: ["To be announced"] },
+      { name: "Dr. Trinh Thanh Trung", titleLines: [] },
+      { name: "Assoc. Prof. Dr. Dinh Thuy Hang", titleLines: [] },
+      { name: "Assoc. Prof. Dr. Vo Thuong Lan", titleLines: [] },
+      { name: "Assoc. Prof. Dr. Duong Van Hop", titleLines: [] },
+      { name: "Dr. Hoang Thi Lan Anh", titleLines: [] },
+      { name: "Dr. Hoang Van Vinh", titleLines: [] },
+      { name: "Dr. Nguyen Thi Hai", titleLines: [] },
+      { name: "Dr. Pham Thi Thuy Van", titleLines: [] },
+      { name: "Dr. Do Thi Ly", titleLines: [] },
+      { name: "Dr. Le Thi Hoa", titleLines: [] },
+      { name: "Dr. Nguyen Thi Tinh", titleLines: [] },
+      { name: "MSc. Bui Nguyen Hai Linh", titleLines: [] },
+      { name: "MSc. Nguyen Thi Van", titleLines: [] },
+      { name: "MSc. Nguyen Viet Ha", titleLines: [] },
+      { name: "MSc. Doan Thi Nhung", titleLines: [] },
+      { name: "BSc. Hoang Thu Ha", titleLines: [] },
     ],
   },
 ];
