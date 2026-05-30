@@ -1,4 +1,5 @@
 import Link from "next/link";
+import type { CSSProperties } from "react";
 import { MobileMenu } from "./mobile-menu";
 
 const navLinks = [
@@ -12,12 +13,20 @@ const navLinks = [
   { href: "/contact", label: "Contact Us" },
 ];
 
+const desktopNavStyle = {
+  "--desktop-nav-start": "max(2rem, calc((100vw - 72rem) / 2))",
+  "--desktop-cta-reserve": "13rem",
+} as CSSProperties;
+
 export function Navbar() {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 border-b border-gray-100 bg-white">
-      <nav className="mx-auto flex h-20 w-full max-w-6xl items-center px-4 sm:px-6 lg:px-8">
-        <div className="hidden w-full items-center gap-3 lg:flex xl:gap-5">
-          <ul className="-mx-2 flex min-w-0 flex-1 items-center justify-between gap-x-1 xl:-mx-2.5 xl:gap-x-2 min-[1480px]:-mx-3.5">
+      <nav
+        className="flex h-20 w-full items-center px-4 sm:px-6 lg:px-0"
+        style={desktopNavStyle}
+      >
+        <div className="hidden w-full items-center lg:flex">
+          <ul className="ml-[var(--desktop-nav-start)] flex w-[min(72rem,calc(100vw-var(--desktop-nav-start)-var(--desktop-cta-reserve)))] min-w-0 items-center justify-between gap-x-1 xl:gap-x-2">
             {navLinks.map((link) => (
               <li key={link.href}>
                 <Link
@@ -29,12 +38,6 @@ export function Navbar() {
               </li>
             ))}
           </ul>
-          <Link
-            href="/registration"
-            className="hidden shrink-0 whitespace-nowrap rounded-md bg-[#80AF41] px-4 py-2.5 text-sm font-bold text-white transition-colors hover:bg-[#739D3B] max-[1479px]:inline-flex"
-          >
-            Register Now
-          </Link>
         </div>
 
         <div className="ml-auto flex items-center justify-end lg:hidden">
@@ -43,7 +46,7 @@ export function Navbar() {
       </nav>
       <Link
         href="/registration"
-        className="absolute right-8 top-1/2 hidden -translate-y-1/2 whitespace-nowrap rounded-md bg-[#80AF41] px-5 py-2.5 text-sm font-bold text-white transition-colors hover:bg-[#739D3B] min-[1480px]:inline-flex"
+        className="absolute right-4 top-1/2 hidden -translate-y-1/2 whitespace-nowrap rounded-md bg-[#80AF41] px-5 py-2.5 text-sm font-bold text-white transition-colors hover:bg-[#739D3B] sm:right-6 lg:right-8 lg:inline-flex"
       >
         Register Now
       </Link>
