@@ -16,7 +16,7 @@ const footerLinks = [
 export function Footer() {
   return (
     <footer className="bg-dark text-gray-300">
-      <div className="mx-auto max-w-6xl px-4 py-5 sm:px-6 sm:py-6 lg:px-8">
+      <div className="content-rail py-5 sm:py-6">
         <div className="grid gap-5 md:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] md:items-start">
           <div className="min-w-0">
             <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
@@ -41,7 +41,7 @@ export function Footer() {
 
           <nav
             aria-label="Footer navigation"
-            className="grid grid-cols-2 gap-x-5 gap-y-2 text-xs sm:grid-cols-4 md:justify-items-end"
+            className="grid grid-cols-2 justify-items-center gap-x-5 gap-y-2 text-center text-xs sm:grid-cols-4"
           >
             {footerLinks.map((link) => (
               <Link

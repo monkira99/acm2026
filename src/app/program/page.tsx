@@ -11,9 +11,9 @@ export const metadata: Metadata = {
 export default function ProgramPage() {
   return (
     <div className="bg-[#EAF2FB]">
-      <SectionHero title="Scientific Program" />
+      <SectionHero title="Scientific program" />
 
-      <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+      <div className="content-rail py-12 sm:py-16">
         <div className="space-y-10">
           {program.map((day) => (
             <section key={day.id}>

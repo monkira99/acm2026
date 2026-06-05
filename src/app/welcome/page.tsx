@@ -23,7 +23,7 @@ const letterTextClass =
 export default function WelcomePage() {
   return (
     <div className="bg-[#EAF2FB]">
-      <SectionHero title="Welcome Letter" />
+      <SectionHero title="Welcome letter" />
 
       <article className="mx-auto max-w-4xl px-4 py-14 sm:px-6 sm:py-20 lg:px-8">
 

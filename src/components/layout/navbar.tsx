@@ -10,7 +10,7 @@ const navLinks = [
   { href: "/dates", label: "Registration" },
   { href: "/venue", label: "Venue" },
   { href: "/committees", label: "Committees" },
-  { href: "/contact", label: "Contact Us" },
+  { href: "/contact", label: "Contact us" },
 ];
 
 const desktopNavStyle = {
@@ -48,7 +48,7 @@ export function Navbar() {
         href="/registration"
         className="absolute right-4 top-1/2 hidden -translate-y-1/2 whitespace-nowrap rounded-md bg-[#80AF41] px-5 py-2.5 text-sm font-bold text-white transition-colors hover:bg-[#739D3B] sm:right-6 lg:right-8 lg:inline-flex"
       >
-        Register Now
+        Register now
       </Link>
     </header>
   );

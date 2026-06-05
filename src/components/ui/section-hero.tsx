@@ -14,8 +14,8 @@ export function SectionHero({
   return (
     <section className="bg-[linear-gradient(135deg,#2260AD_0%,#2D78D4_58%,#143D78_100%)]">
       <div
-        className={`mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 ${
-          compact ? "py-8 sm:py-10" : "py-14 sm:py-16"
+        className={`content-rail ${
+          compact ? "py-6 sm:py-8" : "py-14 sm:py-16"
         }`}
       >
         <div

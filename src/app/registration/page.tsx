@@ -13,7 +13,7 @@ export default function RegistrationPage() {
     <div className="bg-[#EAF2FB]">
       <SectionHero title="Registration" />
 
-      <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+      <div className="content-rail py-12 sm:py-16">
         <div className="mb-8 flex flex-col gap-1 border-b border-[#2260AD]/20 pb-4 sm:flex-row sm:items-end sm:justify-between">
           <h2 className="text-2xl font-black text-[#2260AD]">
             Register for ACM23

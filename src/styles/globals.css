@@ -17,3 +17,47 @@
     @apply bg-white text-dark antialiased;
   }
 }
+
+@layer components {
+  .content-rail {
+    width: 100%;
+    max-width: 72rem;
+    margin-inline: auto;
+    padding-inline: 1rem;
+  }
+
+  @media (min-width: 640px) {
+    .content-rail {
+      padding-inline: 1.5rem;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .content-rail {
+      --content-nav-start: max(2rem, calc((100vw - 72rem) / 2));
+      --content-nav-reserve: 13rem;
+      --content-nav-link-pad: 0.5rem;
+
+      width: calc(
+        min(72rem, calc(100vw - var(--content-nav-start) - var(--content-nav-reserve))) -
+          (var(--content-nav-link-pad) * 2)
+      );
+      max-width: none;
+      margin-left: calc(var(--content-nav-start) + var(--content-nav-link-pad));
+      margin-right: 0;
+      padding-inline: 0;
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .content-rail {
+      --content-nav-link-pad: 0.625rem;
+    }
+  }
+
+  @media (min-width: 1480px) {
+    .content-rail {
+      --content-nav-link-pad: 0.875rem;
+    }
+  }
+}
