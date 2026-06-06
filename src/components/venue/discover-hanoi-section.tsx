@@ -6,7 +6,7 @@ const landmarks = [
     title: "Ho Chi Minh Mausoleum",
     category: "Historical",
     description: "The historic and political heart of Vietnam",
-    image: "/images/venue/ho-chi-minh-mausoleum.jpg",
+    image: "/images/venue/hoan-kiem-feature.webp",
     imageAlt: "Ho Chi Minh Mausoleum and Ba Dinh Square",
     mapUrl:
       "https://www.google.com/maps/place/L%C4%83ng+Ch%E1%BB%A7+t%E1%BB%8Bch+H%E1%BB%93+Ch%C3%AD+Minh/@21.0368973,105.8346667,17z/data=!3m1!4b1!4m6!3m5!1s0x3135aba15ec15d17:0x620e85c2cfe14d4c!8m2!3d21.0368973!4d105.8346667!16s%2Fm%2F02xbhg7",
@@ -16,7 +16,7 @@ const landmarks = [
     title: "Imperial Citadel of Thang Long",
     category: "UNESCO Site",
     description: "1,300 years of royal history",
-    image: "/images/venue/imperial-citadel.jpg",
+    image: "/images/venue/old-quarter.jpg",
     imageAlt: "Imperial Citadel of Thang Long",
     mapUrl:
       "https://www.google.com/maps/place/Ho%C3%A0ng+Th%C3%A0nh+Th%C4%83ng+Long/@21.0352231,105.8402594,16z/data=!3m1!4b1!4m6!3m5!1s0x3135aba3381d7c49:0xb521a7d98f582937!8m2!3d21.0352231!4d105.8402594!16s%2Fm%2F05zw9vk",
@@ -26,7 +26,7 @@ const landmarks = [
     title: "Temple of Literature",
     category: "Historical",
     description: "Vietnam's first national university",
-    image: "/images/venue/temple-of-literature.jpg",
+    image: "/images/venue/one-pillar-pagoda.jpg",
     imageAlt: "Temple of Literature",
     mapUrl:
       "https://www.google.com/maps/place/V%C4%83n+Mi%C3%AA%CC%81u+%E2%80%93+Qu%C3%B4%CC%81c+T%C6%B0%CC%89+Gia%CC%81m/@21.0281225,105.8330889,17z/data=!3m1!4b1!4m6!3m5!1s0x3135ab9926e7bd67:0x580e078874d5df1e!8m2!3d21.0281175!4d105.8356692!16zL20vMGI5aGp6",
@@ -39,7 +39,7 @@ const experiences = [
     title: "Train Street (Phung Hung)",
     category: "Experience",
     description: "Watch trains pass inches away from local cafes",
-    image: "/images/venue/train-street.jpg",
+    image: "/images/venue/old-quarter-basket.jpg",
     imageAlt: "Hanoi Train Street",
     info: null,
     mapUrl:
@@ -50,7 +50,7 @@ const experiences = [
     title: "Water Puppet Theatre",
     category: "Culture",
     description: "1,000-year-old art form on water stage",
-    image: "/images/venue/water-puppet.jpg",
+    image: "/images/venue/hoan-kiem-hero.jpg",
     imageAlt: "Thang Long Water Puppet Show",
     info: "Daily: 15:00, 16:10, 17:20, 18:30, 20:00",
     mapUrl:
@@ -61,7 +61,7 @@ const experiences = [
     title: "Cyclo Tour",
     category: "Experience",
     description: "Relaxing bicycle tour through Old Quarter streets",
-    image: "/images/venue/cyclo-tour.jpg",
+    image: "/images/venue/hoan-kiem-lake.jpg",
     imageAlt: "Traditional Cyclo Tour",
     info: "~150,000-200,000 VND/hour",
     mapUrl: null,
@@ -71,7 +71,7 @@ const experiences = [
     title: "Hanoi City Tour Bus",
     category: "Tour",
     description: "Hop-on hop-off at all major landmarks",
-    image: "/images/venue/city-tour-bus.jpg",
+    image: "/images/venue/hanoi-skyline.jpg",
     imageAlt: "Hanoi City Tour Bus",
     info: "Every 30 min | 08:30-22:00 weekdays",
     mapUrl:

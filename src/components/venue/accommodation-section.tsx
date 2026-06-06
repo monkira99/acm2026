@@ -35,7 +35,7 @@ const hotels = [
     bookingUrl: "https://hanoi.intercontinental.com/?updatelang=yes",
     mapUrl:
       "https://www.google.com/maps/place/InterContinental+H%C3%A0+N%E1%BB%99i+Westlake/@21.058365,105.8315408,17z/data=!3m1!4b1!4m9!3m8!1s0x3135aa5504cf4f8d:0x38355eb7fe4e696d!5m2!4m1!1i2!8m2!3d21.058365!4d105.8315408!16s%2Fg%2F11cjk0swfk",
-    image: "/images/venue/intercontinental.jpg",
+    image: "/images/venue/hoan-kiem-bridge.jpg",
     imageAlt: "InterContinental Hanoi Westlake resort",
   },
   {
