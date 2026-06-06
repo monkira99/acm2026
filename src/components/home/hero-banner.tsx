@@ -54,13 +54,13 @@ export function HeroBanner() {
               href="/registration"
               className="rounded-lg bg-[#80AF41] px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-[#739D3B] sm:px-8 sm:py-3.5 sm:text-base"
             >
-              Register Now
+              Register now
             </Link>
             <Link
               href="/abstract"
               className="rounded-lg border-2 border-white/40 px-6 py-3 text-sm font-semibold text-white transition-colors hover:bg-white/10 sm:px-8 sm:py-3.5 sm:text-base"
             >
-              Submit Abstract
+              Submit abstract
             </Link>
           </div>
         </div>

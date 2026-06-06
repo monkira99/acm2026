@@ -75,7 +75,7 @@ export function ContactForm() {
       <button type="submit" disabled={isPending}
         className="flex items-center gap-2 rounded-lg bg-[#2260AD] px-8 py-3.5 font-bold text-white transition-colors hover:bg-[#143D78] disabled:opacity-50">
         {isPending && <Loader2 size={18} className="animate-spin" aria-hidden="true" />}
-        {isPending ? "Sending..." : "Send Message"}
+        {isPending ? "Sending..." : "Send message"}
       </button>
     </form>
   );

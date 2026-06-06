@@ -22,7 +22,7 @@ export default function AbstractPage() {
   return (
     <div className="min-h-screen overflow-x-hidden bg-[#EAF2FB]">
       <SectionHero
-        title="Abstract Submission"
+        title="Abstract submission"
         subtitle=""
       />
 

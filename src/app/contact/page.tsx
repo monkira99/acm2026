@@ -27,11 +27,8 @@ export default function ContactPage() {
       <div className="content-rail pb-12 pt-8 sm:pb-16 sm:pt-12">
         <div className="mb-8 flex flex-col gap-1 border-b border-[#2260AD]/20 pb-4 sm:flex-row sm:items-end sm:justify-between">
           <h2 className="text-2xl font-black text-[#2260AD]">
-            Organizing Team
+            Organizing team
           </h2>
-          <p className="text-sm font-bold uppercase tracking-[0.14em] text-[#263D5C]">
-            Get in touch
-          </p>
         </div>
 
         <div className="mb-8 grid grid-cols-1 gap-4 md:grid-cols-3">

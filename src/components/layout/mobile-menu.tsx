@@ -49,7 +49,7 @@ export function MobileMenu({ links }: MobileMenuProps) {
               onClick={() => setIsOpen(false)}
               className="mt-1 block rounded-lg bg-[#80AF41] px-4 py-3 text-center text-sm font-bold text-white transition-colors hover:bg-[#739D3B] sm:col-span-2"
             >
-              Register Now
+              Register now
             </Link>
           </div>
         </div>

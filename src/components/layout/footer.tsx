@@ -8,9 +8,9 @@ const footerLinks = [
   { href: "/speakers", label: "Speakers" },
   { href: "/dates", label: "Dates" },
   { href: "/registration", label: "Registration" },
-  { href: "/abstract", label: "Submit Abstract" },
+  { href: "/abstract", label: "Submit abstract" },
   { href: "/venue", label: "Venue" },
-  { href: "/contact", label: "Contact Us" },
+  { href: "/contact", label: "Contact us" },
 ];
 
 export function Footer() {

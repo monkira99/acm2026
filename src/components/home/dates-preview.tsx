@@ -1,7 +1,7 @@
 const milestones = [
   {
     date: "September 30, 2026",
-    label: "Abstract Submission",
+    label: "Abstract submission",
     dotClass: "bg-[#2260AD]",
   },
   {
