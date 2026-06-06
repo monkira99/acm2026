@@ -1,5 +1,5 @@
-import Image from "next/image";
 import { MapPin, Utensils } from "lucide-react";
+import { VenueDetailRow } from "./venue-detail-row";
 
 const dishes = [
   {
@@ -43,74 +43,61 @@ export function TasteOfHanoiSection() {
       </div>
 
       <p className="mb-6 text-sm leading-6 text-[#263D5C]">
-        Explore Hanoi's world-famous cuisine - from traditional phở to the
+        Explore Hanoi&apos;s world-famous cuisine - from traditional phở to the
         unique egg coffee experience.
       </p>
 
-      <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
-        {dishes.map((dish) => (
-          <div
+      <div className="space-y-6">
+        {dishes.map((dish, index) => (
+          <VenueDetailRow
             key={dish.name}
-            className="group overflow-hidden bg-white/80 shadow-sm shadow-[#2260AD]/5 transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
+            image={dish.image}
+            imageAlt={dish.imageAlt}
+            aspect="food"
+            reversed={index % 2 === 1}
           >
-            {/* Image */}
-            <div className="relative aspect-square overflow-hidden">
-              <Image
-                src={dish.image}
-                alt={dish.imageAlt}
-                fill
-                sizes="(min-width: 768px) 33vw, 100vw"
-                className="object-cover transition-transform duration-300 group-hover:scale-105"
+            <h3 className="mb-2 text-xl font-black text-[#143D78] sm:text-2xl">
+              {dish.name}
+            </h3>
+            <p className="mb-5 text-sm leading-6 text-[#263D5C]">
+              {dish.description}
+            </p>
+
+            <div className="mb-4 flex items-start gap-2">
+              <Utensils
+                size={16}
+                className="mt-0.5 shrink-0 text-[#2260AD]"
+                aria-hidden="true"
               />
-            </div>
-
-            {/* Content */}
-            <div className="p-5">
-              <h3 className="mb-2 text-lg font-bold text-[#143D78]">
-                {dish.name}
-              </h3>
-              <p className="mb-4 text-sm leading-relaxed text-[#263D5C]">
-                {dish.description}
-              </p>
-
-              {/* Restaurant info */}
-              <div className="mb-3 flex items-start gap-2">
-                <Utensils
-                  size={14}
-                  className="mt-0.5 shrink-0 text-[#2260AD]"
-                />
-                <div className="text-xs">
-                  <p className="font-semibold text-[#2260AD]">
-                    {dish.restaurant}
-                  </p>
-                  <p className="text-[#263D5C]">{dish.address}</p>
-                </div>
+              <div className="text-sm">
+                <p className="font-semibold text-[#2260AD]">
+                  {dish.restaurant}
+                </p>
+                <p className="text-[#263D5C]">{dish.address}</p>
               </div>
-
-              {/* Map link */}
-              <a
-                href={dish.mapUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-xs font-medium text-[#2260AD] transition-colors hover:text-[#143D78]"
-              >
-                <MapPin size={12} />
-                View on Map
-              </a>
             </div>
-          </div>
+
+            <a
+              href={dish.mapUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex w-fit items-center gap-1.5 rounded-sm text-sm font-medium text-[#2260AD] transition-colors hover:text-[#143D78] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2260AD]"
+            >
+              <MapPin size={14} aria-hidden="true" />
+              View on Map
+            </a>
+          </VenueDetailRow>
         ))}
       </div>
 
-      {/* Additional note about craft beer */}
       <div className="mt-6 rounded-lg bg-white/60 px-5 py-4">
         <p className="text-sm text-[#263D5C]">
           <span className="font-semibold text-[#143D78]">
             West Lake Craft Beer Scene:
           </span>{" "}
           Around Legend Westlake Hotel (Xuan Dieu & To Ngoc Van streets),
-          you'll find Hanoi's best craft beer taprooms and cocktail bars with
-          stunning sunset views.
+          you&apos;ll find Hanoi&apos;s best craft beer taprooms and cocktail
+          bars with stunning sunset views.
         </p>
       </div>
     </section>
