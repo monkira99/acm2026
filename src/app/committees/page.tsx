@@ -20,7 +20,7 @@ export default function CommitteesPage() {
     <div className="bg-[#EAF2FB]">
       <SectionHero title="Committees" />
 
-      <div className="content-rail py-12 sm:py-16">
+      <div className="content-rail pb-12 pt-8 sm:pb-16 sm:pt-12">
         {scientificCommittee && (
           <section>
             <ScientificCommitteeCarousel

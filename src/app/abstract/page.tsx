@@ -26,7 +26,7 @@ export default function AbstractPage() {
         subtitle=""
       />
 
-      <div className="content-rail py-12 sm:py-16">
+      <div className="content-rail pb-12 pt-8 sm:pb-16 sm:pt-12">
         <div className="grid min-w-0 gap-6 lg:grid-cols-[0.95fr_1.35fr]">
           <aside className="min-w-0 space-y-5">
             <section className="min-w-0 bg-white/85 px-5 py-6 shadow-sm shadow-[#2260AD]/5 sm:px-6">

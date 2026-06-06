@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import { LotusDecor } from "@/components/cultural";
 import { SectionHero } from "@/components/ui/section-hero";
 
 export const metadata: Metadata = {
@@ -25,8 +24,7 @@ export default function WelcomePage() {
     <div className="bg-[#EAF2FB]">
       <SectionHero title="Welcome letter" />
 
-      <article className="mx-auto max-w-4xl px-4 py-14 sm:px-6 sm:py-20 lg:px-8">
-
+      <article className="mx-auto max-w-4xl px-4 pb-14 pt-8 sm:px-6 sm:pb-20 sm:pt-12 lg:px-8">
         <div className="mb-8 flex justify-start">
           <div className="relative h-28 w-28 overflow-hidden rounded-full border-4 border-white bg-[#F3F7FC] shadow-lg shadow-[#2260AD]/15 ring-1 ring-[#2260AD]/15 sm:h-32 sm:w-32">
             <Image

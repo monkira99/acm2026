@@ -18,12 +18,6 @@ export function SectionHero({
           compact ? "py-6 sm:py-8" : "py-14 sm:py-16"
         }`}
       >
-        <div
-          className={`flex items-center gap-3 ${compact ? "mb-3" : "mb-5"}`}
-        >
-          <span className="h-1.5 w-14 rounded-full bg-white" />
-          <span className="h-1.5 w-6 rounded-full bg-[#80AF41]" />
-        </div>
         <p
           className={`text-sm font-bold uppercase tracking-[0.18em] text-white/80 ${
             compact ? "mb-2" : "mb-3"
@@ -43,6 +37,14 @@ export function SectionHero({
             {subtitle}
           </p>
         )}
+        <div
+          className={`flex items-center gap-2 ${compact ? "mt-3" : "mt-5"}`}
+        >
+          <span className="h-1.5 w-14 rounded-full bg-[#80AF41]" />
+          <span className="h-1.5 w-14 rounded-full bg-[#CC212A]" />
+          <span className="h-1.5 w-14 rounded-full bg-[#B0ABAC]" />
+          <span className="h-1.5 w-14 rounded-full bg-[#2260AD]" />
+        </div>
       </div>
     </section>
   );

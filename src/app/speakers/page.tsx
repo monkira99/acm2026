@@ -13,7 +13,7 @@ export default function SpeakersPage() {
     <div className="bg-[#EAF2FB]">
       <SectionHero title="Keynote speakers" />
 
-      <div className="content-rail py-12 sm:py-16">
+      <div className="content-rail pb-12 pt-8 sm:pb-16 sm:pt-12">
         <div className="mb-8 flex flex-col gap-1 border-b border-[#2260AD]/20 pb-4 sm:flex-row sm:items-end sm:justify-between">
           <h2 className="text-2xl font-black text-[#2260AD]">
             Featured talks

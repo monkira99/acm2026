@@ -18,7 +18,7 @@ export default async function AbstractSuccessPage({
         subtitle="Thank you for contributing to ACM23 Hanoi 2026."
       />
 
-      <div className="mx-auto max-w-3xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+      <div className="mx-auto max-w-3xl px-4 pb-12 pt-8 sm:px-6 sm:pb-16 sm:pt-12 lg:px-8">
         <div className="bg-white/85 px-6 py-10 text-center shadow-sm shadow-[#2260AD]/5 sm:px-10">
           <div className="mx-auto mb-6 inline-flex h-16 w-16 items-center justify-center rounded-full bg-[#80AF41]/15">
             <CheckCircle2

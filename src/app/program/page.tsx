@@ -13,7 +13,7 @@ export default function ProgramPage() {
     <div className="bg-[#EAF2FB]">
       <SectionHero title="Scientific program" />
 
-      <div className="content-rail py-12 sm:py-16">
+      <div className="content-rail pb-12 pt-8 sm:pb-16 sm:pt-12">
         <div className="space-y-10">
           {program.map((day) => (
             <section key={day.id}>
