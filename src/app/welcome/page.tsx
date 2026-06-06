@@ -18,6 +18,7 @@ const letterParagraphs = [
 
 const letterTextClass =
   "text-base leading-8 text-[#263D5C] sm:text-lg sm:leading-9";
+const letterBodyTextClass = `${letterTextClass} indent-13`;
 
 export default function WelcomePage() {
   return (
@@ -42,7 +43,7 @@ export default function WelcomePage() {
           <p className={letterTextClass}>Dear colleagues and friends,</p>
 
           {letterParagraphs.map((paragraph) => (
-            <p key={paragraph} className={letterTextClass}>
+            <p key={paragraph} className={letterBodyTextClass}>
               {paragraph}
             </p>
           ))}

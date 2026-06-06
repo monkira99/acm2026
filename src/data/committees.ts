@@ -27,7 +27,7 @@ export const committees: Committee[] = [
       {
         name: "Dr. Hailei Wei",
         titleLines: [
-          "Director"
+          ""
         ],
         affiliation:
           "Director of Agricultural Culture Collection of China, Institute of Agricultural Resources and Regional Planning, Chinese Academy of Agricultural Sciences\nDirector of National Microbial Resource Center",
@@ -36,7 +36,7 @@ export const committees: Committee[] = [
       {
         name: "Dr. Hsiu-Jung Lo",
         titleLines: [
-          "Director for Biodiversity Policy Planning and Coordination/Bio-manufacturing Planning and Coordination",
+          "",
         ],
         affiliation:
           "Director of The Institute of Bioscience, Universiti Putra Malaysia",
@@ -44,14 +44,14 @@ export const committees: Committee[] = [
       },
       {
         name: "Dr. Ju Huck Lee",
-        titleLines: ["Director"],
+        titleLines: [""],
         affiliation: "Director of Korean Collection for Type Cultures (KCTC)",
         image: "/images/committees/DR_JU_HUCK_LEE.png",
       },
       {
         name: "Dr. Kinoshita Hiroshi",
         titleLines: [
-          "Director for Biodiversity Policy Planning and Coordination/Bio-manufacturing Planning and Coordination",
+          "",
         ],
         affiliation:
           "Director for Biodiversity Policy Planning and Coordination / Bio-manufacturing Planning and Coordination of Biological Resource Center (NBRC), National Institute of Technology and Evaluation (NITE)",
@@ -60,11 +60,47 @@ export const committees: Committee[] = [
       {
         name: "Prof. Dr. Zunita Zakaria",
         titleLines: [
-          "Director for Biodiversity Policy Planning and Coordination/Bio-manufacturing Planning and Coordination",
+          "",
         ],
         affiliation:
           "Director of The Institute of Bioscience, Universiti Putra Malaysia",
         image: "/images/committees/PROFESSOR_DR_ ZUNITA_ZAKARIA.png",
+      },
+      {
+        name: "Dr. Trinh Thanh Trung",
+        titleLines: [
+          "",
+        ],
+        affiliation:
+          "Director of the Institute of Microbiology and Biotechnology (IMBT), Vietnam National University",
+        image: "/images/welcome/Dr.Trinh_Thanh_Trung.webp",
+      },
+      {
+        name: "Dr. Hoang Thi Lan Anh",
+        titleLines: [
+          "",
+        ],
+        affiliation:
+          "Head of Vietnam Type Culture Collection, Institute of Microbiology and Biotechnology (IMBT), Vietnam National University",
+        image: "/images/committees/DR_HOANG_THI_LAN_ANH.png",
+      },
+      {
+        name: "Dr. Seung Beom Hong",
+        titleLines: [
+          "",
+        ],
+        affiliation:
+          "Director of Korean Agricultural Culture Collection (KACC), Rural Development Administration (RDA)",
+        image: "/images/committees/DR_SEUNG_BEOM_HONG.jpeg",
+      },
+      {
+        name: "Assoc. Prof. Dr. Dinh Thuy Hang",
+        titleLines: [
+          "",
+        ],
+        affiliation:
+          "",
+        image: "",
       },
     ],
   },
@@ -81,7 +117,6 @@ export const committees: Committee[] = [
       { name: "Dr. Pham Thi Thuy Van", titleLines: [] },
       { name: "Dr. Do Thi Ly", titleLines: [] },
       { name: "Dr. Le Thi Hoa", titleLines: [] },
-      { name: "Dr. Nguyen Thi Tinh", titleLines: [] },
       { name: "MSc. Bui Nguyen Hai Linh", titleLines: [] },
       { name: "MSc. Nguyen Viet Ha", titleLines: [] },
       { name: "MSc. Doan Thi Nhung", titleLines: [] },
