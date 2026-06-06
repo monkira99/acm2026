@@ -16,7 +16,7 @@ const landmarks = [
     title: "Imperial Citadel of Thang Long",
     category: "UNESCO Site",
     description: "1,300 years of royal history",
-    image: "/images/venue/old-quarter.jpg",
+    image: "/images/venue/imperial-citadel-hanoi.jpg",
     imageAlt: "Imperial Citadel of Thang Long",
     mapUrl:
       "https://www.google.com/maps/place/Ho%C3%A0ng+Th%C3%A0nh+Th%C4%83ng+Long/@21.0352231,105.8402594,16z/data=!3m1!4b1!4m6!3m5!1s0x3135aba3381d7c49:0xb521a7d98f582937!8m2!3d21.0352231!4d105.8402594!16s%2Fm%2F05zw9vk",
@@ -26,7 +26,7 @@ const landmarks = [
     title: "Temple of Literature",
     category: "Historical",
     description: "Vietnam's first national university",
-    image: "/images/venue/one-pillar-pagoda.jpg",
+    image: "/images/venue/temple-literature.jpg",
     imageAlt: "Temple of Literature",
     mapUrl:
       "https://www.google.com/maps/place/V%C4%83n+Mi%C3%AA%CC%81u+%E2%80%93+Qu%C3%B4%CC%81c+T%C6%B0%CC%89+Gia%CC%81m/@21.0281225,105.8330889,17z/data=!3m1!4b1!4m6!3m5!1s0x3135ab9926e7bd67:0x580e078874d5df1e!8m2!3d21.0281175!4d105.8356692!16zL20vMGI5aGp6",
@@ -39,7 +39,7 @@ const experiences = [
     title: "Train Street (Phung Hung)",
     category: "Experience",
     description: "Watch trains pass inches away from local cafes",
-    image: "/images/venue/old-quarter-basket.jpg",
+    image: "/images/venue/train-street-hanoi.jpg",
     imageAlt: "Hanoi Train Street",
     info: null,
     mapUrl:
@@ -50,7 +50,7 @@ const experiences = [
     title: "Water Puppet Theatre",
     category: "Culture",
     description: "1,000-year-old art form on water stage",
-    image: "/images/venue/hoan-kiem-hero.jpg",
+    image: "/images/venue/water-puppet-show.jpg",
     imageAlt: "Thang Long Water Puppet Show",
     info: "Daily: 15:00, 16:10, 17:20, 18:30, 20:00",
     mapUrl:
@@ -61,7 +61,7 @@ const experiences = [
     title: "Cyclo Tour",
     category: "Experience",
     description: "Relaxing bicycle tour through Old Quarter streets",
-    image: "/images/venue/hoan-kiem-lake.jpg",
+    image: "/images/venue/cyclo-hanoi.jpg",
     imageAlt: "Traditional Cyclo Tour",
     info: "~150,000-200,000 VND/hour",
     mapUrl: null,
