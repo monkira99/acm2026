@@ -1,6 +1,3 @@
-"use client";
-
-import { motion, useReducedMotion } from "framer-motion";
 import Image from "next/image";
 import { MapPin, ExternalLink } from "lucide-react";
 
@@ -22,7 +19,7 @@ const hotels = [
     bookingUrl: "https://www.legendwestlake.com/",
     mapUrl:
       "https://www.google.com/maps/place/Legend+Westlake+Hotel/@21.050502,105.8394434,17z/data=!3m1!4b1!4m9!3m8!1s0x3135abadea7f3b8b:0xc4995ff3342e85c7!5m2!4m1!1i2!8m2!3d21.050502!4d105.8394434!16s%2Fg%2F11y3ncghh1",
-    image: "/images/venue/hoan-kiem-lake.jpg",
+    image: "/images/venue/legend-hotel-1.jpg",
     imageAlt: "Legend Westlake Hotel lakeside view",
   },
   {
@@ -38,7 +35,7 @@ const hotels = [
     bookingUrl: "https://hanoi.intercontinental.com/?updatelang=yes",
     mapUrl:
       "https://www.google.com/maps/place/InterContinental+H%C3%A0+N%E1%BB%99i+Westlake/@21.058365,105.8315408,17z/data=!3m1!4b1!4m9!3m8!1s0x3135aa5504cf4f8d:0x38355eb7fe4e696d!5m2!4m1!1i2!8m2!3d21.058365!4d105.8315408!16s%2Fg%2F11cjk0swfk",
-    image: "/images/venue/hoan-kiem-bridge.jpg",
+    image: "/images/venue/intercontinental.jpg",
     imageAlt: "InterContinental Hanoi Westlake resort",
   },
   {
@@ -60,8 +57,6 @@ const hotels = [
 ];
 
 export function AccommodationSection() {
-  const shouldReduceMotion = useReducedMotion();
-
   return (
     <section className="mt-12">
       <div className="mb-5 flex flex-col gap-1 border-b border-[#2260AD]/20 pb-4 sm:flex-row sm:items-end sm:justify-between">
@@ -69,17 +64,9 @@ export function AccommodationSection() {
       </div>
 
       <div className="grid grid-cols-1 gap-5 md:grid-cols-3">
-        {hotels.map((hotel, index) => (
-          <motion.div
+        {hotels.map((hotel) => (
+          <div
             key={hotel.name}
-            initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{
-              duration: 0.6,
-              delay: index * 0.15,
-              ease: [0.16, 1, 0.3, 1],
-            }}
             className={`group overflow-hidden bg-white/80 shadow-sm shadow-[#2260AD]/5 transition-all duration-400 hover:-translate-y-1 hover:shadow-lg ${
               hotel.featured
                 ? "border-l-4 border-[#2260AD] hover:shadow-[#2260AD]/10 md:col-span-2"
@@ -162,7 +149,7 @@ export function AccommodationSection() {
                 </a>
               </div>
             </div>
-          </motion.div>
+          </div>
         ))}
       </div>
     </section>

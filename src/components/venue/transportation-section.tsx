@@ -1,6 +1,3 @@
-"use client";
-
-import { motion, useReducedMotion } from "framer-motion";
 import { Car, Bus, MapPin } from "lucide-react";
 
 const transportOptions = [
@@ -33,8 +30,6 @@ const arrivalTips = [
 ];
 
 export function TransportationSection() {
-  const shouldReduceMotion = useReducedMotion();
-
   return (
     <section className="mt-12">
       <div className="mb-5 flex flex-col gap-1 border-b border-[#2260AD]/20 pb-4 sm:flex-row sm:items-end sm:justify-between">
@@ -49,17 +44,9 @@ export function TransportationSection() {
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-5">
         {/* Left column - 2 transport options */}
         <div className="space-y-4 lg:col-span-3">
-          {transportOptions.map((option, index) => (
-            <motion.div
+          {transportOptions.map((option) => (
+            <div
               key={option.title}
-              initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{
-                duration: 0.6,
-                delay: index * 0.1,
-                ease: [0.16, 1, 0.3, 1],
-              }}
               className="border border-transparent bg-white/75 px-5 py-5 shadow-sm shadow-[#2260AD]/5 transition-all duration-300 hover:-translate-y-0.5 hover:border-[#2260AD]/20 hover:shadow-md"
             >
               <option.icon
@@ -92,20 +79,12 @@ export function TransportationSection() {
               >
                 {option.ctaText}
               </a>
-            </motion.div>
+            </div>
           ))}
         </div>
 
         {/* Right column - Arrival tips */}
-        <motion.div
-          initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{
-            duration: 0.6,
-            delay: 0.2,
-            ease: [0.16, 1, 0.3, 1],
-          }}
+        <div
           className="border border-transparent bg-white/75 px-5 py-5 shadow-sm shadow-[#2260AD]/5 transition-all duration-300 hover:-translate-y-0.5 hover:border-[#2260AD]/20 hover:shadow-md lg:col-span-2"
         >
           <MapPin
@@ -124,7 +103,7 @@ export function TransportationSection() {
               </li>
             ))}
           </ul>
-        </motion.div>
+        </div>
       </div>
     </section>
   );
