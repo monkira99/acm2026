@@ -3,8 +3,8 @@ import { VenueDetailRow } from "./venue-detail-row";
 
 const dishes = [
   {
-    name: "Phở",
-    description: "Vietnam's national dish - aromatic broth with rice noodles",
+    name: "Pho",
+    description: "Vietnam's national dish. A aromatic broth with tender beef or chicken and fresh rice noodles.",
     restaurant: "Phở Lý Quốc Sư",
     address: "10 Ly Quoc Su St.",
     mapUrl:
@@ -13,9 +13,9 @@ const dishes = [
     imageAlt: "Vietnamese Phở",
   },
   {
-    name: "Bún Chả",
+    name: "Bun Cha",
     description:
-      "Charcoal-grilled pork with vermicelli - President Obama's choice",
+      "Famous worldwide (especially after President Obama tried it). Features flavorful charcoal-grilled pork patties in a warm, sweet-savory broth, served with herbs and rice vermicelli.",
     restaurant: "Bún Chả Hương Liên",
     address: "24 Le Van Huu St.",
     mapUrl:
@@ -24,8 +24,8 @@ const dishes = [
     imageAlt: "Bún Chả - Grilled pork with vermicelli",
   },
   {
-    name: "Egg Coffee (Cà Phê Trứng)",
-    description: "Creamy custard-like meringue over rich Vietnamese coffee",
+    name: "Egg Coffee",
+    description: "A unique Hanoi specialty. A creamy, custard-like meringue whipped from egg yolk and condensed milk, poured over rich Vietnamese robusta coffee.",
     restaurant: "Café Giảng",
     address: "39 Nguyen Huu Huan St. - The Original",
     mapUrl:
@@ -33,19 +33,24 @@ const dishes = [
     image: "/images/venue/egg-coffee.webp",
     imageAlt: "Hanoi Egg Coffee",
   },
+    {
+    name: "Banh Mi",
+    description: "A crispy, airy baguette packed with pate, local ham, cucumber, fresh herbs, and a drizzle of chili sauce. A perfect, quick street-food experience.",
+    restaurant: "Bánh Mì 25",
+    address: "25 Hang Ca St",
+    mapUrl:
+      "https://www.google.com/maps/place/Banh+Mi+25/@21.0348121,105.8426825,15z/data=!4m6!3m5!1s0x3135ab74bb3716b5:0xebfbc0d84354deb3!8m2!3d21.036113!4d105.848577!16s%2Fg%2F11tw_4rt41?entry=ttu&g_ep=EgoyMDI2MDYwMi4wIKXMDSoASAFQAw%3D%3D",
+    image: "/images/venue/top-1-mon-sandwich-ngon-nhat-the-gioi-goi-ten-banh-my-viet-nam1710498007-182420240316092132.jpg",
+    imageAlt: "Vietnamese Banh Mi Sandwich",
+  },
 ];
 
 export function TasteOfHanoiSection() {
   return (
     <section className="mt-12">
       <div className="mb-5 flex flex-col gap-1 border-b border-[#2260AD]/20 pb-4 sm:flex-row sm:items-end sm:justify-between">
-        <h2 className="text-2xl font-black text-[#2260AD]">Taste of Hanoi</h2>
+        <h2 className="text-2xl font-black text-[#2260AD]">Cuisine</h2>
       </div>
-
-      <p className="mb-6 text-sm leading-6 text-[#263D5C]">
-        Explore Hanoi&apos;s world-famous cuisine - from traditional phở to the
-        unique egg coffee experience.
-      </p>
 
       <div className="space-y-6">
         {dishes.map((dish, index) => (
@@ -88,17 +93,6 @@ export function TasteOfHanoiSection() {
             </a>
           </VenueDetailRow>
         ))}
-      </div>
-
-      <div className="mt-6 rounded-lg bg-white/60 px-5 py-4">
-        <p className="text-sm text-[#263D5C]">
-          <span className="font-semibold text-[#143D78]">
-            West Lake Craft Beer Scene:
-          </span>{" "}
-          Around Legend Westlake Hotel (Xuan Dieu & To Ngoc Van streets),
-          you&apos;ll find Hanoi&apos;s best craft beer taprooms and cocktail
-          bars with stunning sunset views.
-        </p>
       </div>
     </section>
   );

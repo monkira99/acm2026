@@ -20,44 +20,14 @@ const hotels = [
       "https://www.google.com/maps/place/Legend+Westlake+Hotel/@21.050502,105.8394434,17z/data=!3m1!4b1!4m9!3m8!1s0x3135abadea7f3b8b:0xc4995ff3342e85c7!5m2!4m1!1i2!8m2!3d21.050502!4d105.8394434!16s%2Fg%2F11y3ncghh1",
     image: "/images/venue/legend-westlake-hotel.webp",
     imageAlt: "Legend Westlake Hotel lakeside view",
-  },
-  {
-    name: "InterContinental Hanoi Westlake",
-    badge: "5-Star Lakeside",
-    starRating: null,
-    description:
-      "Luxurious lakeside resort built over West Lake waters.",
-    location: "1A Nghi Tam, West Lake, Hanoi",
-    distance: "5 min to venue",
-    features: ["Overwater luxury resort", "Award-winning dining"],
-    bookingUrl: "https://hanoi.intercontinental.com/?updatelang=yes",
-    mapUrl:
-      "https://www.google.com/maps/place/InterContinental+H%C3%A0+N%E1%BB%99i+Westlake/@21.058365,105.8315408,17z/data=!3m1!4b1!4m9!3m8!1s0x3135aa5504cf4f8d:0x38355eb7fe4e696d!5m2!4m1!1i2!8m2!3d21.058365!4d105.8315408!16s%2Fg%2F11cjk0swfk",
-    image: "/images/venue/intercontinental-hanoi-westlake.webp",
-    imageAlt: "InterContinental Hanoi Westlake resort",
-  },
-  {
-    name: "Elegant Suites Westlake",
-    badge: "Serviced Apartments",
-    starRating: null,
-    description:
-      "Spacious luxury apartments offering a cozy stay on West Lake.",
-    location: "To Ngoc Van, West Lake, Hanoi",
-    distance: "10 min to venue",
-    features: ["Full kitchen & living space", "Perfect for extended stays"],
-    bookingUrl: "https://www.elegantsuites.com/group/contact-us.htm",
-    mapUrl:
-      "https://www.google.com/maps/place/Elegant+Suites+Westlake+Serviced+Residences/@21.0543314,105.8271846,15z/data=!4m20!1m10!3m9!1s0x3135aafea34cb56d:0x44f078835258c48f!2sElegant+Suites+Westlake+Serviced+Residences!5m2!4m1!1i2!8m2!3d21.062033!4d105.8247673!16s%2Fg%2F11b6dd88l7!3m8!1s0x3135aafea34cb56d:0x44f078835258c48f!5m2!4m1!1i2!8m2!3d21.062033!4d105.8247673!16s%2Fg%2F11b6dd88l7",
-    image: "/images/venue/elegant-suites-westlake.webp",
-    imageAlt: "Elegant Suites Westlake apartments",
-  },
+  }
 ];
 
 export function AccommodationSection() {
   return (
     <section className="mt-12">
       <div className="mb-5 flex flex-col gap-1 border-b border-[#2260AD]/20 pb-4 sm:flex-row sm:items-end sm:justify-between">
-        <h2 className="text-2xl font-black text-[#2260AD]">Where to Stay</h2>
+        <h2 className="text-2xl font-black text-[#2260AD]">Accommodation</h2>
       </div>
 
       <div className="space-y-6">

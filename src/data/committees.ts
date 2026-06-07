@@ -72,7 +72,7 @@ export const committees: Committee[] = [
           "",
         ],
         affiliation:
-          "Director of the Institute of Microbiology and Biotechnology (IMBT), Vietnam National University",
+          "Director of The Institute of Microbiology and Biotechnology (IMBT), Vietnam National University",
         image: "/images/welcome/Dr.Trinh_Thanh_Trung.webp",
       },
       {

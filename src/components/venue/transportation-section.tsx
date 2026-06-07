@@ -7,20 +7,10 @@ const transportOptions = [
     details: "GrabCar or official airport taxis (Mai Linh, Taxi Group)",
     price: "250,000 - 350,000 VND",
     priceSubtitle: "~$10-15 USD",
-    duration: "~30 minutes to city center",
+    duration: "~30 minutes to Legend Westlake Hotel",
     ctaText: "Download Grab",
     ctaUrl: "https://www.grab.com/vn/download/",
-  },
-  {
-    icon: Bus,
-    title: "Airport Bus 86",
-    details: "High-quality, air-conditioned bus directly to city center",
-    price: "45,000 VND/person",
-    priceSubtitle: null,
-    duration: "~45 minutes",
-    ctaText: "View Route",
-    ctaUrl: "#",
-  },
+  }
 ];
 
 const arrivalTips = [
@@ -33,12 +23,12 @@ export function TransportationSection() {
   return (
     <section className="mt-12">
       <div className="mb-5 flex flex-col gap-1 border-b border-[#2260AD]/20 pb-4 sm:flex-row sm:items-end sm:justify-between">
-        <h2 className="text-2xl font-black text-[#2260AD]">Getting to Hanoi</h2>
+        <h2 className="text-2xl font-black text-[#2260AD]">Arrival information</h2>
       </div>
 
       <p className="mb-6 text-sm leading-6 text-[#263D5C]">
         Noi Bai International Airport (HAN) is approximately 30km from the city
-        center, with multiple convenient transportation options.
+        center.
       </p>
 
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-5">
@@ -81,28 +71,6 @@ export function TransportationSection() {
               </a>
             </div>
           ))}
-        </div>
-
-        {/* Right column - Arrival tips */}
-        <div
-          className="border border-transparent bg-white/75 px-5 py-5 shadow-sm shadow-[#2260AD]/5 transition-all duration-300 hover:-translate-y-0.5 hover:border-[#2260AD]/20 hover:shadow-md lg:col-span-2"
-        >
-          <MapPin
-            size={24}
-            className="mb-4 text-[#2260AD]"
-            aria-hidden="true"
-          />
-          <h3 className="mb-4 text-lg font-bold text-[#143D78]">
-            Arrival Tips
-          </h3>
-          <ul className="space-y-3">
-            {arrivalTips.map((tip) => (
-              <li key={tip} className="flex items-start gap-2 text-sm text-[#263D5C]">
-                <span className="mt-1.5 block h-1.5 w-1.5 shrink-0 rounded-full bg-[#2260AD]" />
-                <span className="leading-6">{tip}</span>
-              </li>
-            ))}
-          </ul>
         </div>
       </div>
     </section>
