@@ -44,11 +44,6 @@ export function VenueDetailRow({
           sizes="(min-width: 720px) 54vw, 100vw"
           className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
         />
-        {badge && (
-          <span className="absolute left-4 top-4 rounded-full bg-[#C8A951]/95 px-3 py-1 text-xs font-semibold text-white shadow-sm backdrop-blur-sm">
-            {badge}
-          </span>
-        )}
       </div>
 
       <div className="flex min-w-0 flex-col justify-center px-5 py-6 sm:px-7 min-[720px]:px-8 min-[720px]:py-9 lg:px-10">

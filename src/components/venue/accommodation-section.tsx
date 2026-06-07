@@ -4,7 +4,6 @@ import { VenueDetailRow } from "./venue-detail-row";
 const hotels = [
   {
     name: "Legend Westlake Hotel",
-    badge: "Main Venue",
     starRating: "Premium Lakeside Hotel",
     description:
       "Our official conference venue. Premium stay located right by scenic West Lake, offering world-class amenities and peaceful lakeside views.",
@@ -38,7 +37,6 @@ export function AccommodationSection() {
             imageAlt={hotel.imageAlt}
             aspect="hotel"
             reversed={index % 2 === 1}
-            badge={hotel.badge}
           >
             <div className="mb-3 flex flex-wrap items-center gap-2">
               {hotel.starRating && (
