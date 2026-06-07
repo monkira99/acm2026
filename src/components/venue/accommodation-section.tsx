@@ -1,14 +1,12 @@
-import { MapPin, ExternalLink } from "lucide-react";
-import { VenueDetailRow } from "./venue-detail-row";
+import Image from "next/image";
+import { CheckCircle2, ExternalLink, MapPin } from "lucide-react";
 
 const hotels = [
   {
     name: "Legend Westlake Hotel",
-    starRating: "Premium Lakeside Hotel",
     description:
       "Our official conference venue. Premium stay located right by scenic West Lake, offering world-class amenities and peaceful lakeside views.",
     location: "Yen Phu 1, West Lake, Hanoi",
-    distance: "At Venue",
     features: [
       "Conference facilities on-site",
       "Lakeside rooms with panoramic views",
@@ -24,82 +22,85 @@ const hotels = [
 
 export function AccommodationSection() {
   return (
-    <section className="mt-12">
-      <div className="mb-5 flex flex-col gap-1 border-b border-[#2260AD]/20 pb-4 sm:flex-row sm:items-end sm:justify-between">
+    <section className="mt-10">
+      <div className="mb-5 flex flex-col gap-2 border-b border-[#2260AD]/20 pb-4 sm:flex-row sm:items-end sm:justify-between">
         <h2 className="text-2xl font-black text-[#2260AD]">Accommodation</h2>
       </div>
 
-      <div className="space-y-6">
-        {hotels.map((hotel, index) => (
-          <VenueDetailRow
-            key={hotel.name}
-            image={hotel.image}
-            imageAlt={hotel.imageAlt}
-            aspect="hotel"
-            reversed={index % 2 === 1}
-          >
-            <div className="mb-3 flex flex-wrap items-center gap-2">
-              {hotel.starRating && (
-                <p className="text-xs font-semibold uppercase tracking-wide text-[#2260AD]">
-                  {hotel.starRating}
-                </p>
-              )}
-              <span className="rounded bg-[#2260AD]/10 px-2 py-1 text-xs font-bold text-[#2260AD]">
-                {hotel.distance}
-              </span>
-            </div>
-
-            <h3 className="mb-2 text-xl font-black text-[#143D78] sm:text-2xl">
-              {hotel.name}
-            </h3>
-            <p className="mb-3 text-sm leading-6 text-[#263D5C]">
-              {hotel.description}
-            </p>
-
-            <div className="mb-4 flex items-start gap-1.5 text-xs text-[#263D5C]">
-              <MapPin
-                size={14}
-                className="mt-0.5 shrink-0"
-                aria-hidden="true"
+      {hotels.map((hotel) => (
+        <article
+          key={hotel.name}
+          className="overflow-hidden border border-[#2260AD]/10 bg-white/85 shadow-sm shadow-[#2260AD]/5"
+        >
+          <div className="grid gap-0 lg:grid-cols-[minmax(16rem,0.82fr)_minmax(0,1.18fr)]">
+            <div className="relative min-h-56 overflow-hidden sm:min-h-64 lg:min-h-full">
+              <Image
+                src={hotel.image}
+                alt={hotel.imageAlt}
+                fill
+                sizes="(min-width: 1024px) 34vw, 100vw"
+                className="object-cover"
               />
-              <span>{hotel.location}</span>
             </div>
 
-            <ul className="mb-5 space-y-1.5">
-              {hotel.features.map((feature) => (
-                <li
-                  key={feature}
-                  className="flex items-start gap-2 text-sm text-[#263D5C]"
+            <div className="px-5 py-5 sm:px-6 sm:py-6">
+
+              <h3 className="text-2xl font-black text-[#143D78]">
+                {hotel.name}
+              </h3>
+              <p className="mt-2 max-w-3xl text-sm leading-6 text-[#263D5C]">
+                {hotel.description}
+              </p>
+
+              <div className="mt-4 flex items-start gap-2 text-sm text-[#263D5C]">
+                <MapPin
+                  size={16}
+                  className="mt-0.5 shrink-0 text-[#2260AD]"
+                  aria-hidden="true"
+                />
+                <span>{hotel.location}</span>
+              </div>
+
+              <ul className="mt-5 grid gap-2 sm:grid-cols-3">
+                {hotel.features.map((feature) => (
+                  <li
+                    key={feature}
+                    className="flex items-start gap-2 bg-[#F7FBFF] px-3 py-2 text-sm text-[#263D5C] ring-1 ring-[#2260AD]/10"
+                  >
+                    <CheckCircle2
+                      size={15}
+                      className="mt-0.5 shrink-0 text-[#80AF41]"
+                      aria-hidden="true"
+                    />
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+
+              <div className="mt-5 flex flex-wrap items-center gap-3">
+                <a
+                  href={hotel.bookingUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded bg-[#2260AD] px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-[#143D78] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2260AD]"
                 >
-                  <span className="mt-1.5 block h-1.5 w-1.5 shrink-0 rounded-full bg-[#2260AD]" />
-                  <span>{feature}</span>
-                </li>
-              ))}
-            </ul>
-
-            <div className="flex flex-wrap items-center gap-3">
-              <a
-                href={hotel.bookingUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded bg-[#2260AD] px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-[#143D78] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2260AD]"
-              >
-                View Details & Book
-                <ExternalLink size={14} aria-hidden="true" />
-              </a>
-              <a
-                href={hotel.mapUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 rounded-sm text-sm font-medium text-[#2260AD] transition-colors hover:text-[#143D78] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2260AD]"
-              >
-                <MapPin size={14} aria-hidden="true" />
-                View on Map
-              </a>
+                  View Details & Book
+                  <ExternalLink size={14} aria-hidden="true" />
+                </a>
+                <a
+                  href={hotel.mapUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 rounded-sm text-sm font-semibold text-[#2260AD] transition-colors hover:text-[#143D78] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2260AD]"
+                >
+                  <MapPin size={14} aria-hidden="true" />
+                  View on Map
+                </a>
+              </div>
             </div>
-          </VenueDetailRow>
-        ))}
-      </div>
+          </div>
+        </article>
+      ))}
     </section>
   );
 }

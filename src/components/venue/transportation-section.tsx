@@ -1,4 +1,4 @@
-import { Car, Bus, MapPin } from "lucide-react";
+import { Car, ExternalLink, Plane } from "lucide-react";
 
 const transportOptions = [
   {
@@ -13,64 +13,80 @@ const transportOptions = [
   }
 ];
 
-const arrivalTips = [
-  "Taxis available right outside arrival terminal",
-  "Bus stop located at Terminal 1 & 2",
-  "Hotel pickup available (contact your hotel)",
-];
-
 export function TransportationSection() {
   return (
-    <section className="mt-12">
-      <div className="mb-5 flex flex-col gap-1 border-b border-[#2260AD]/20 pb-4 sm:flex-row sm:items-end sm:justify-between">
-        <h2 className="text-2xl font-black text-[#2260AD]">Arrival information</h2>
-      </div>
-
-      <p className="mb-6 text-sm leading-6 text-[#263D5C]">
-        Noi Bai International Airport (HAN) is approximately 30km from the city
-        center.
-      </p>
-
-      <div className="grid grid-cols-1 gap-4 lg:grid-cols-5">
-        {/* Left column - 2 transport options */}
-        <div className="space-y-4 lg:col-span-3">
-          {transportOptions.map((option) => (
-            <div
-              key={option.title}
-              className="border border-transparent bg-white/75 px-5 py-5 shadow-sm shadow-[#2260AD]/5 transition-all duration-300 hover:-translate-y-0.5 hover:border-[#2260AD]/20 hover:shadow-md"
-            >
-              <option.icon
-                size={24}
-                className="mb-4 text-[#2260AD]"
-                aria-hidden="true"
-              />
-              <h3 className="mb-2 text-lg font-bold text-[#143D78]">
-                {option.title}
-              </h3>
-              <p className="mb-3 text-sm leading-6 text-[#263D5C]">
-                {option.details}
-              </p>
-              <div className="mb-2 inline-block rounded bg-[#2260AD]/10 px-3 py-1">
-                <p className="text-sm font-bold text-[#2260AD]">
-                  {option.price}
+    <section className="mt-10">
+      <div className="overflow-hidden border border-[#2260AD]/10 bg-white/85 shadow-sm shadow-[#2260AD]/5">
+        <div className="px-5 py-5 sm:px-6 sm:py-6">
+            <div className="mb-4 flex items-start gap-3">
+              <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#2260AD]/10 text-[#2260AD]">
+                <Plane size={22} aria-hidden="true" />
+              </span>
+              <div>
+                <h2 className="text-2xl font-black text-[#2260AD]">
+                  Arrival information
+                </h2>
+                <p className="mt-1 text-sm leading-6 text-[#263D5C]">
+                  Noi Bai International Airport (HAN) is approximately 30km from
+                  the city center.
                 </p>
-                {option.priceSubtitle && (
-                  <p className="text-xs text-[#2260AD]/70">
-                    {option.priceSubtitle}
-                  </p>
-                )}
               </div>
-              <p className="mb-4 text-xs text-[#263D5C]">{option.duration}</p>
-              <a
-                href={option.ctaUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block rounded bg-[#2260AD] px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-[#143D78]"
-              >
-                {option.ctaText}
-              </a>
             </div>
-          ))}
+
+            {transportOptions.map((option) => (
+              <article
+                key={option.title}
+                className="border-l-4 border-[#2260AD] bg-[#F7FBFF] px-4 py-4"
+              >
+                <div className="grid gap-4 sm:grid-cols-[1fr_auto] sm:items-start">
+                  <div className="min-w-0">
+                    <div className="mb-2 flex items-center gap-2 text-[#2260AD]">
+                      <option.icon size={18} aria-hidden="true" />
+                      <h3 className="text-lg font-black text-[#143D78]">
+                        {option.title}
+                      </h3>
+                    </div>
+                    <p className="text-sm leading-6 text-[#263D5C]">
+                      {option.details}
+                    </p>
+                  </div>
+
+                  <a
+                    href={option.ctaUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex w-fit items-center gap-2 rounded bg-[#2260AD] px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-[#143D78] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2260AD]"
+                  >
+                    {option.ctaText}
+                    <ExternalLink size={14} aria-hidden="true" />
+                  </a>
+                </div>
+
+                <dl className="mt-4 grid gap-3 sm:grid-cols-3">
+                  <div className="bg-white/80 px-3 py-2 ring-1 ring-[#2260AD]/10">
+                    <dt className="text-xs font-semibold text-[#263D5C]/75">
+                      Estimated fare
+                    </dt>
+                    <dd className="mt-0.5 text-sm font-black text-[#2260AD]">
+                      {option.price}
+                    </dd>
+                    {option.priceSubtitle && (
+                      <dd className="text-xs text-[#263D5C]">
+                        {option.priceSubtitle}
+                      </dd>
+                    )}
+                  </div>
+                  <div className="bg-white/80 px-3 py-2 ring-1 ring-[#2260AD]/10 sm:col-span-2">
+                    <dt className="text-xs font-semibold text-[#263D5C]/75">
+                      Travel time
+                    </dt>
+                    <dd className="mt-0.5 text-sm font-black text-[#143D78]">
+                      {option.duration}
+                    </dd>
+                  </div>
+                </dl>
+              </article>
+            ))}
         </div>
       </div>
     </section>

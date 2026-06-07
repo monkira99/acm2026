@@ -1,11 +1,11 @@
+import Image from "next/image";
 import { ExternalLink, MapPin } from "lucide-react";
-import { VenueDetailRow } from "./venue-detail-row";
 
 const discoverItems = [
   {
     title: "Ho Chi Minh Mausoleum",
-    category: "Historical",
-    description: "The historic and political heart of Vietnam. A solemn, grand complex where Vietnam's greatest leader rests. ",
+    description:
+      "The historic and political heart of Vietnam. A solemn, grand complex where Vietnam's greatest leader rests.",
     image: "/images/venue/ho-chi-minh-mausoleum.webp",
     imageAlt: "Ho Chi Minh Mausoleum and Ba Dinh Square",
     info: null,
@@ -16,7 +16,8 @@ const discoverItems = [
   {
     title: "Imperial Citadel of Thang Long",
     category: "UNESCO Site",
-    description: "A UNESCO World Heritage site with over 1,300 years of history, reflecting the ancient royal culture of Hanoi. ",
+    description:
+      "A UNESCO World Heritage site with over 1,300 years of history, reflecting the ancient royal culture of Hanoi.",
     image: "/images/venue/imperial-citadel-thang-long.webp",
     imageAlt: "Imperial Citadel of Thang Long",
     info: null,
@@ -26,8 +27,8 @@ const discoverItems = [
   },
   {
     title: "Temple of Literature",
-    category: "Historical",
-    description: "Vietnam’s very first national university, famous for its stunning traditional architecture and rich educational history.",
+    description:
+      "Vietnam’s very first national university, famous for its stunning traditional architecture and rich educational history.",
     image: "/images/venue/temple-of-literature.webp",
     imageAlt: "Temple of Literature",
     info: null,
@@ -35,10 +36,10 @@ const discoverItems = [
       "https://www.google.com/maps/place/V%C4%83n+Mi%C3%AA%CC%81u+%E2%80%93+Qu%C3%B4%CC%81c+T%C6%B0%CC%89+Gia%CC%81m/@21.0281225,105.8330889,17z/data=!3m1!4b1!4m6!3m5!1s0x3135ab9926e7bd67:0x580e078874d5df1e!8m2!3d21.0281175!4d105.8356692!16zL20vMGI5aGp6",
     bookingUrl: null,
   },
-    {
+  {
     title: "Hanoi Old Quarter & Hoan Kiem Lake",
-    category: "Experience",
-    description: "The core of old Hanoi. Walk around the lake, visit the red The Huc Bridge, and explore the dense network of 36 traditional trade streets.",
+    description:
+      "The core of old Hanoi. Walk around the lake, visit the red The Huc Bridge, and explore the dense network of 36 traditional trade streets.",
     image: "/images/venue/hoan-kiem-feature.webp",
     imageAlt: "Hanoi Old Quarter & Hoan Kiem Lake",
     info: null,
@@ -48,8 +49,8 @@ const discoverItems = [
   },
   {
     title: "Train Street (Phung Hung)",
-    category: "Experience",
-    description: "Sit at a local cafe right next to the active train tracks and watch the train pass by just inches away. A global tourist favorite. ",
+    description:
+      "Sit at a local cafe right next to the active train tracks and watch the train pass by just inches away. A global tourist favorite.",
     image: "/images/venue/Spots-to-see-Hanoi-Train-Street.jpg",
     imageAlt: "Hanoi Train Street",
     info: null,
@@ -59,8 +60,8 @@ const discoverItems = [
   },
   {
     title: "Thang Long Water Puppet Show",
-    category: "Culture",
-    description: "A unique, 1,000-year-old Vietnamese art form performed entirely on a water stage with live traditional music.",
+    description:
+      "A unique, 1,000-year-old Vietnamese art form performed entirely on a water stage with live traditional music.",
     image: "/images/venue/thang-long-water-puppets.webp",
     imageAlt: "Thang Long Water Puppet Show",
     info: "Daily: 15:00, 16:10, 17:20, 18:30, 20:00",
@@ -71,18 +72,20 @@ const discoverItems = [
   {
     title: "Traditional Cyclo Tour",
     category: "Experience",
-    description: "Relax on a 1-hour traditional three-wheel bicycle ride through the bustling streets of the Old Quarter. Perfect for photography.",
+    description:
+      "Relax on a 1-hour traditional three-wheel bicycle ride through the bustling streets of the Old Quarter. Perfect for photography.",
     image: "/images/venue/vietnamese-cyclo-02_1709108631.webp",
     imageAlt: "Traditional Cyclo Tour",
-    info: "~150,000-200,000 VND/hour (Always agree on the price before hopping on).",
+    info: "~150,000-200,000 VND/hour",
     mapUrl: null,
     bookingUrl: null,
   },
   {
     title: "Hanoi City Tour Bus",
     category: "Tour",
-    description: "The best way to see all landmarks in one go. Hop on and off freely at any famous spot around the city.",
-    image: "/images/venue/hanoi-city-tour-bus.webp",
+    description:
+      "The best way to see all landmarks in one go. Hop on and off freely at any famous spot around the city.",
+    image: "/images/venue/dsc1813.jpeg",
     imageAlt: "Hanoi City Tour Bus",
     info: "Every 30 min | 08:30-22:00 weekdays",
     mapUrl:
@@ -93,60 +96,85 @@ const discoverItems = [
 
 export function DiscoverHanoiSection() {
   return (
-    <section className="mt-12">
-      <div className="mb-5 flex flex-col gap-1 border-b border-[#2260AD]/20 pb-4 sm:flex-row sm:items-end sm:justify-between">
-        <h2 className="text-2xl font-black text-[#2260AD]">Discover Hanoi</h2>
-      </div>
-
-      <div className="space-y-6">
-        {discoverItems.map((item, index) => (
-          <VenueDetailRow
-            key={item.title}
-            image={item.image}
-            imageAlt={item.imageAlt}
-            aspect="place"
-            reversed={index % 2 === 1}
-            badge={item.category}
-          >
-            <h3 className="mb-2 text-xl font-black text-[#143D78] sm:text-2xl">
-              {item.title}
-            </h3>
-            <p className="mb-4 text-sm leading-6 text-[#263D5C]">
-              {item.description}
+    <section className="mt-10">
+      <div className="overflow-hidden border border-[#2260AD]/10 bg-white/85 shadow-sm shadow-[#2260AD]/5">
+        <div className="flex flex-col gap-2 border-b border-[#2260AD]/10 bg-[#F7FBFF] px-5 py-5 sm:flex-row sm:items-end sm:justify-between sm:px-6">
+          <div>
+            <h2 className="text-2xl font-black text-[#2260AD]">
+              Discover Hanoi
+            </h2>
+            <p className="mt-1 text-sm leading-6 text-[#263D5C]">
+              Cultural landmarks and city experiences grouped for quick scanning.
             </p>
+          </div>
+        </div>
 
-            {item.info && (
-              <p className="mb-4 text-xs font-semibold text-[#2260AD]">
-                {item.info}
-              </p>
-            )}
+        <div className="grid gap-px bg-[#2260AD]/10 sm:grid-cols-2 xl:grid-cols-4">
+          {discoverItems.map((item) => (
+            <article
+              key={item.title}
+              className="group flex min-h-full flex-col bg-white transition-colors duration-300 hover:bg-[#F7FBFF]"
+            >
+              <div className="relative aspect-[5/3] overflow-hidden bg-[#EAF2FB]">
+                <Image
+                  src={item.image}
+                  alt={item.imageAlt}
+                  fill
+                  sizes="(min-width: 1280px) 25vw, (min-width: 640px) 50vw, 100vw"
+                  className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+                />
+              </div>
 
-            <div className="flex flex-wrap items-center gap-4 text-sm">
-              {item.bookingUrl && (
-                <a
-                  href={item.bookingUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 rounded-sm font-medium text-[#2260AD] transition-colors hover:text-[#143D78] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2260AD]"
-                >
-                  Book Tickets
-                  <ExternalLink size={14} aria-hidden="true" />
-                </a>
-              )}
-              {item.mapUrl && (
-                <a
-                  href={item.mapUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-1.5 rounded-sm font-medium text-[#2260AD] transition-colors hover:text-[#143D78] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2260AD]"
-                >
-                  <MapPin size={14} aria-hidden="true" />
-                  View Map
-                </a>
-              )}
-            </div>
-          </VenueDetailRow>
-        ))}
+              <div className="flex flex-1 flex-col px-4 py-4">
+                <h3 className="text-lg font-black leading-snug text-[#143D78]">
+                  {item.title}
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-[#263D5C]">
+                  {item.description}
+                </p>
+
+                <div className="mt-auto space-y-4 pt-4">
+                  <div className="min-h-[2.5rem]">
+                    {item.info && (
+                      <p className="border-l-2 border-[#80AF41] pl-3 text-xs font-semibold leading-5 text-[#2260AD]">
+                        {item.info}
+                      </p>
+                    )}
+                  </div>
+
+                  <div className="min-h-[1.5rem]">
+                    {(item.bookingUrl || item.mapUrl) && (
+                      <div className="flex flex-wrap items-center gap-3 text-sm">
+                        {item.bookingUrl && (
+                          <a
+                            href={item.bookingUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1.5 rounded-sm font-semibold text-[#2260AD] transition-colors hover:text-[#143D78] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2260AD]"
+                          >
+                            Book Tickets
+                            <ExternalLink size={14} aria-hidden="true" />
+                          </a>
+                        )}
+                        {item.mapUrl && (
+                          <a
+                            href={item.mapUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-1.5 rounded-sm font-semibold text-[#2260AD] transition-colors hover:text-[#143D78] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2260AD]"
+                          >
+                            <MapPin size={14} aria-hidden="true" />
+                            View Map
+                          </a>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
       </div>
     </section>
   );
