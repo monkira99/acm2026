@@ -46,5 +46,6 @@ test("arrival information omits the separate arrival tips panel", () => {
   assert.doesNotMatch(source, /Arrival tips/);
   assert.doesNotMatch(source, /arrivalTips/);
   assert.match(source, /Estimated fare/);
+  assert.match(source, /~30 minutes to reach Legend Westlake Hotel/);
   assert.doesNotMatch(source, /lg:grid-cols-5/);
 });
