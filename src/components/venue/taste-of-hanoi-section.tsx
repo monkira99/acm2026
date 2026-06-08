@@ -10,7 +10,7 @@ const dishes = [
     address: "10 Ly Quoc Su St",
     mapUrl:
       "https://www.google.com/maps/place/10+P.+L%C3%BD+Qu%E1%BB%91c+S%C6%B0,+Ho%C3%A0n+Ki%E1%BA%BFm,+H%C3%A0+N%E1%BB%99i,+Vi%E1%BB%87t+Nam/@21.0304971,105.8487881,17z/data=!3m1!4b1!4m6!3m5!1s0x3135ab9588ba3bd3:0xfa5d929f5cfb541!8m2!3d21.0304971!4d105.8487881!16s%2Fg%2F11c2226tbq",
-    image: "/images/venue/pho.webp",
+    image: "/images/venue/Northern-Vietnamese-Food_Pho.jpg",
     imageAlt: "Vietnamese Phở",
   },
   {
@@ -21,7 +21,7 @@ const dishes = [
     address: "24 Le Van Huu St",
     mapUrl:
       "https://www.google.com/maps/place/B%C3%BAn+ch%E1%BA%A3+H%C6%B0%C6%A1ng+Li%C3%AAn/@21.0218278,105.8361203,15z/data=!4m6!3m5!1s0x3135abf2a4ba685d:0x7e67963f30fa90e7!8m2!3d21.0181373!4d105.8538926!16s%2Fg%2F1hm5x9fjz",
-    image: "/images/venue/bun-cha.webp",
+    image: "/images/venue/Bún-chả-Hương-Liên-1.jpeg",
     imageAlt: "Bún Chả - Grilled pork with vermicelli",
   },
   {
@@ -43,7 +43,7 @@ const dishes = [
     address: "39 Nguyen Huu Huan St",
     mapUrl:
       "https://www.google.com/maps/place/Cafe+Gi%E1%BA%A3ng/@21.0334664,105.854518,17z/data=!3m1!4b1!4m6!3m5!1s0x3135abc0ee85335d:0xfca3408ac50e7363!8m2!3d21.0334664!4d105.854518!16s%2Fg%2F11bxg4n3g3",
-    image: "/images/venue/egg-coffee.webp",
+    image: "/images/venue/z7000438384707_2ad055f3c1dc35aab70f5101aff90e87.jpg",
     imageAlt: "Hanoi Egg Coffee",
   },
 ];

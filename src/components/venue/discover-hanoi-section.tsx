@@ -29,7 +29,7 @@ const discoverItems = [
     title: "Temple of Literature",
     description:
       "Vietnam’s very first national university, famous for its stunning traditional architecture and rich educational history.",
-    image: "/images/venue/temple-of-literature.webp",
+    image: "/images/venue/van-mieu-quoc-tu-giam-miti.vn6_39499c57a4544631b1e0ea31be8479bd_grande.jpg",
     imageAlt: "Temple of Literature",
     info: null,
     mapUrl:
