@@ -15,8 +15,7 @@ const guidanceItems = [
 ];
 
 const abstractTemplateUrl =
-  process.env.NEXT_PUBLIC_ABSTRACT_TEMPLATE_URL ??
-  "/templates/acm23-abstract-template.docx";
+  "https://docs.google.com/document/d/15Fa2jXTihLB06bUN2qRHzlDZFFQIVf-H/";
 
 export default function AbstractPage() {
   return (
@@ -64,6 +63,8 @@ export default function AbstractPage() {
               </p>
               <a
                 href={abstractTemplateUrl}
+                target="_blank"
+                rel="noreferrer"
                 className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-[#2260AD] px-5 py-3 text-center text-sm font-bold text-white transition-colors hover:bg-[#143D78]"
               >
                 <Download className="h-4 w-4" aria-hidden="true" />
