@@ -9,7 +9,7 @@ export function VenuePreview() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="mx-auto max-w-xl text-center lg:mx-0 lg:text-left">
             <span className="text-xs tracking-[0.2em] text-gold font-semibold uppercase">
-              Discover Hanoi
+              Hanoi Discovery
             </span>
             <h2 className="text-3xl sm:text-4xl font-extrabold text-white mt-3 mb-5">
               The City of the

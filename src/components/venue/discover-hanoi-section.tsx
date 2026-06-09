@@ -101,7 +101,7 @@ export function DiscoverHanoiSection() {
         <div className="flex flex-col gap-2 border-b border-[#2260AD]/10 bg-[#F7FBFF] px-5 py-5 sm:flex-row sm:items-end sm:justify-between sm:px-6">
           <div>
             <h2 className="text-2xl font-black text-[#2260AD]">
-              Discover Hanoi
+              Hanoi Discovery
             </h2>
             <p className="mt-1 text-sm leading-6 text-[#263D5C]">
               Cultural landmarks and city experiences grouped for quick scanning.
