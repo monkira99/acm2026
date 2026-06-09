@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { LotusDecor } from "@/components/cultural";
 import { Mail, MapPin } from "lucide-react";
+import { Ordinal23 } from "@/components/ui/ordinal-23";
 
 const footerLinks = [
   { href: "/welcome", label: "Welcome" },
@@ -26,7 +27,7 @@ export function Footer() {
               </div>
             </div>
             <p className="mt-2 hidden max-w-lg text-xs leading-5 text-gray-400 sm:block">
-              The 23rd Annual Meeting of the Asian Consortium for the
+              The <Ordinal23 /> Annual Meeting of the Asian Consortium for the
               Conservation and Sustainable Use of Microbial Resources.
             </p>
             <div className="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs text-gray-400">

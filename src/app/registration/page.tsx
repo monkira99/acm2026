@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { RegistrationForm } from "@/components/forms/registration-form";
 import { SectionHero } from "@/components/ui/section-hero";
+import { Ordinal23 } from "@/components/ui/ordinal-23";
 import { CalendarDays, MapPin, UserCheck } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -58,8 +59,8 @@ export default function RegistrationPage() {
                 aria-hidden="true"
               />
               <p className="text-sm leading-6 text-[#263D5C]">
-                Complete the form to register your attendance for the 23rd
-                Annual Meeting in Hanoi.
+                Complete the form to register your attendance for the{" "}
+                <Ordinal23 /> Annual Meeting in Hanoi.
               </p>
             </div>
           </aside>

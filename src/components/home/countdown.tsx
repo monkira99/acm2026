@@ -24,11 +24,11 @@ function calcTimeLeft(): TimeLeft {
 
 function TimeUnit({ value, label }: { value: number; label: string }) {
   return (
-    <div className="min-w-10 text-center sm:min-w-20">
-      <div className="text-3xl font-extrabold text-[#2260AD] tabular-nums sm:text-5xl">
+    <div className="min-w-10 text-center sm:min-w-16">
+      <div className="text-2xl font-extrabold leading-none text-[#2260AD] tabular-nums sm:text-3xl lg:text-4xl">
         {String(value).padStart(2, "0")}
       </div>
-      <div className="text-xs text-gray-500 uppercase tracking-widest mt-1">
+      <div className="mt-1 text-[0.625rem] uppercase tracking-widest text-gray-500 sm:text-[0.6875rem]">
         {label}
       </div>
     </div>
@@ -55,9 +55,9 @@ export function Countdown() {
 
   if (!mounted) {
     return (
-      <section className="shrink-0 bg-light px-4 py-5 sm:py-8 lg:py-10" aria-label="Countdown to ACM23">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex items-center justify-center gap-2 sm:gap-6 lg:gap-10">
+      <section className="h-20 shrink-0 bg-light px-4" aria-label="Countdown to ACM23">
+        <div className="mx-auto h-full max-w-7xl px-4">
+          <div className="flex h-full items-center justify-center gap-2 sm:gap-4 lg:gap-6">
             {["Days", "Hours", "Minutes", "Seconds"].map((label) => (
               <TimeUnit key={label} value={0} label={label} />
             ))}
@@ -68,15 +68,15 @@ export function Countdown() {
   }
 
   return (
-    <section className="shrink-0 bg-light px-4 py-5 sm:py-8 lg:py-10" aria-label="Countdown to ACM23">
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="flex items-center justify-center gap-2 sm:gap-6 lg:gap-10">
+    <section className="h-20 shrink-0 bg-light px-4" aria-label="Countdown to ACM23">
+      <div className="mx-auto h-full max-w-7xl px-4">
+        <div className="flex h-full items-center justify-center gap-2 sm:gap-4 lg:gap-6">
           <TimeUnit value={timeLeft.days} label="Days" />
-          <span className="text-2xl text-gray-300 font-light sm:text-3xl" aria-hidden="true">:</span>
+          <span className="text-lg font-light text-gray-300 sm:text-xl lg:text-2xl" aria-hidden="true">:</span>
           <TimeUnit value={timeLeft.hours} label="Hours" />
-          <span className="text-2xl text-gray-300 font-light sm:text-3xl" aria-hidden="true">:</span>
+          <span className="text-lg font-light text-gray-300 sm:text-xl lg:text-2xl" aria-hidden="true">:</span>
           <TimeUnit value={timeLeft.minutes} label="Minutes" />
-          <span className="text-2xl text-gray-300 font-light sm:text-3xl" aria-hidden="true">:</span>
+          <span className="text-lg font-light text-gray-300 sm:text-xl lg:text-2xl" aria-hidden="true">:</span>
           <TimeUnit value={timeLeft.seconds} label="Seconds" />
         </div>
       </div>
