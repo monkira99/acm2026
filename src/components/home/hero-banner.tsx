@@ -24,11 +24,20 @@ const HERO_LOGOS = [
   },
 ] as const;
 
+const HERO_BACKGROUND = [
+  "radial-gradient(ellipse 74% 64% at 44% -2%, rgba(224,244,253,0.98) 0%, rgba(206,236,250,0.94) 20%, rgba(170,219,244,0.76) 42%, rgba(116,188,230,0.42) 66%, rgba(66,154,213,0) 100%)",
+  "radial-gradient(ellipse 86% 72% at 43% 30%, rgba(132,201,236,0.22) 0%, rgba(91,176,224,0.12) 52%, rgba(49,135,199,0) 100%)",
+  "linear-gradient(180deg, #75BDE9 0%, #5EADE0 25%, #3F8FCC 50%, #2172BC 74%, #0753A9 100%)",
+].join(", ");
+
 export function HeroBanner() {
   return (
-    <section className="relative min-h-0 flex-1 overflow-hidden bg-[linear-gradient(180deg,#DDF3FF_0%,#A7D4EF_14%,#4D91CB_30%,#3679BD_50%,#2967AD_72%,#2260AD_100%)]">
+    <section
+      className="relative min-h-0 flex-1 overflow-hidden bg-[#0753A9]"
+      style={{ backgroundImage: HERO_BACKGROUND }}
+    >
       <div className="relative z-10 flex h-full w-full flex-col">
-        <div className="grid w-full gap-3 px-[1cm] pt-4 sm:pt-5 lg:grid-cols-2 lg:pt-6">
+        <div className="grid w-full gap-3 px-4 pt-4 sm:px-[1cm] sm:pt-5 lg:grid-cols-2 lg:px-[1.5cm] lg:pt-6">
           {HERO_LOGOS.map((logo) => (
             <div
               key={logo.src}
@@ -48,12 +57,13 @@ export function HeroBanner() {
 
         <div className="mx-auto flex w-full max-w-7xl flex-1 items-center px-4 py-8 sm:px-6 sm:py-10 lg:px-8 lg:py-14">
           <div className="mx-auto flex max-w-4xl flex-col items-center text-center">
-            <h1 className="mb-3 text-4xl font-black leading-tight text-white drop-shadow-[0_3px_10px_rgba(16,55,104,0.28)] sm:mb-4 sm:text-6xl lg:text-7xl">
+            <h1 className="mb-3 text-4xl font-black leading-tight text-[#2260AD] sm:mb-4 sm:text-6xl lg:text-7xl">
               ACM23
             </h1>
             <div className="mb-2 max-w-4xl space-y-3 text-white drop-shadow-[0_2px_8px_rgba(16,55,104,0.3)]">
               <p className="text-lg leading-snug sm:text-xl lg:text-2xl">
-                The <Ordinal23 /> Meeting of the Asian Consortium for the Conservation
+                The <Ordinal23 /> Meeting of the Asian Consortium for the
+                Conservation
                 <br className="hidden sm:block" />
                 and Sustainable Use of Microbial Resources
               </p>
