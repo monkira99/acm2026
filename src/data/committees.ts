@@ -99,8 +99,8 @@ export const committees: Committee[] = [
           "",
         ],
         affiliation:
-          "",
-        image: "",
+          "Head of the Department of Applied Microbiology and Ecology, Institute of Microbiology and Biotechnology (IMBT), Vietnam National University",
+        image: "/images/committees/ASSOC_PROF_DR_DINH_THUY_HANG.jpg",
       },
     ],
   },
