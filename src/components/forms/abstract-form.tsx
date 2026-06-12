@@ -68,7 +68,7 @@ export function AbstractForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="min-w-0 space-y-7">
+    <form onSubmit={onSubmit} className="min-w-0 space-y-5">
       {submitNotice && (
         <div
           className="flex items-start gap-3 rounded-lg border border-[#80AF41]/25 bg-[#EEF7E2] px-4 py-3 text-sm font-semibold text-[#486724]"
@@ -88,7 +88,7 @@ export function AbstractForm() {
         </label>
         <label
           htmlFor="abstractFile"
-          className="flex cursor-pointer flex-col items-center justify-center gap-3 rounded-lg border-2 border-dashed border-[#2260AD]/25 bg-[#F4F8FD] px-5 py-8 text-center transition hover:border-[#2260AD] hover:bg-[#E8F1FA]"
+          className="flex cursor-pointer flex-col items-center justify-center gap-2 rounded-lg border-2 border-dashed border-[#2260AD]/25 bg-[#F4F8FD] px-5 py-6 text-center transition hover:border-[#2260AD] hover:bg-[#E8F1FA]"
         >
           <span className="flex h-12 w-12 items-center justify-center rounded-full bg-white text-[#2260AD] shadow-sm shadow-[#2260AD]/10">
             <UploadCloud className="h-6 w-6" aria-hidden="true" />
@@ -125,11 +125,11 @@ export function AbstractForm() {
         <legend className={labelClassName}>
           Scientist <span className="text-red-500">*</span>
         </legend>
-        <div className="grid gap-3">
+        <div className="grid gap-2">
           {SCIENTIST_CATEGORY_OPTIONS.map((option) => (
             <label
               key={option.value}
-              className="flex min-w-0 cursor-pointer items-start gap-3 rounded-lg border border-[#2260AD]/15 bg-white px-4 py-3 transition hover:border-[#2260AD]/40 hover:bg-[#F4F8FD] has-[:checked]:border-[#2260AD] has-[:checked]:bg-[#E8F1FA]"
+              className="flex min-w-0 cursor-pointer items-start gap-3 rounded-lg border border-[#2260AD]/15 bg-white px-4 py-2.5 transition hover:border-[#2260AD]/40 hover:bg-[#F4F8FD] has-[:checked]:border-[#2260AD] has-[:checked]:bg-[#E8F1FA]"
             >
               <input
                 type="radio"
@@ -171,7 +171,7 @@ export function AbstractForm() {
 
       <button
         type="submit"
-        className="flex w-full items-center justify-center rounded-lg bg-[#2260AD] py-3.5 text-base font-bold text-white transition-colors hover:bg-[#143D78]"
+        className="flex h-12 w-full items-center justify-center rounded-lg bg-[#2260AD] text-base font-bold text-white transition-colors hover:bg-[#143D78]"
       >
         Submit abstract
       </button>

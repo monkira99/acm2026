@@ -72,7 +72,7 @@ export const committees: Committee[] = [
           "",
         ],
         affiliation:
-          "Director of the Institute of Microbiology and Biotechnology (IMBT), Vietnam National University",
+          "Director of the Institute of Microbiology and Biotechnology (IMBT), Vietnam National University Hanoi",
         image: "/images/welcome/Dr.Trinh_Thanh_Trung.webp",
       },
       {
@@ -81,7 +81,7 @@ export const committees: Committee[] = [
           "",
         ],
         affiliation:
-          "Head of the Vietnam Type Culture Collection, Institute of Microbiology and Biotechnology (IMBT), Vietnam National University",
+          "Head of the Vietnam Type Culture Collection, Institute of Microbiology and Biotechnology (IMBT), Vietnam National University Hanoi",
         image: "/images/committees/DR_HOANG_THI_LAN_ANH.png",
       },
       {
@@ -99,7 +99,7 @@ export const committees: Committee[] = [
           "",
         ],
         affiliation:
-          "Head of the Department of Applied Microbiology and Ecology, Institute of Microbiology and Biotechnology (IMBT), Vietnam National University",
+          "Head of the Department of Applied Microbiology and Ecology, Institute of Microbiology and Biotechnology (IMBT), Vietnam National University Hanoi",
         image: "/images/committees/ASSOC_PROF_DR_DINH_THUY_HANG.jpg",
       },
     ],
