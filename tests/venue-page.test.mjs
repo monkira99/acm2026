@@ -48,10 +48,10 @@ test("accommodation lists all approved hotels and booking channels", async () =>
     assert.match(source, new RegExp(hotel));
   }
 
-  assert.match(source, />Website</);
-  assert.match(source, />Booking\.com</);
-  assert.match(source, />Agoda</);
-  assert.match(source, />View on Map</);
+  assert.match(source, />\s*Website\s*<ExternalLink/);
+  assert.match(source, /Booking\.com\s*<\/a>/);
+  assert.match(source, /Agoda\s*<\/a>/);
+  assert.match(source, /View on Map\s*<\/a>/);
 });
 
 test("accommodation data uses dedicated URLs and matching hotel images", async () => {
@@ -63,4 +63,11 @@ test("accommodation data uses dedicated URLs and matching hotel images", async (
   assert.match(source, /agodaUrl:/);
   assert.match(source, /PanPacificHanoi\.jpg/);
   assert.match(source, /elegant-suites-westlake\.webp/);
+});
+
+test("accommodation eagerly loads only the first hotel image", async () => {
+  const source = await read("src/components/venue/accommodation-section.tsx");
+
+  assert.match(source, /hotels\.map\(\(hotel, index\)/);
+  assert.match(source, /loading=\{index === 0 \? "eager" : "lazy"\}/);
 });
