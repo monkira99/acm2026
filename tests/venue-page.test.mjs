@@ -90,3 +90,20 @@ test("map uses the same secondary button treatment as booking channels", async (
     /href=\{hotel\.mapUrl\}[\s\S]*?className=\{secondaryActionClassName\}/,
   );
 });
+
+test("accommodation actions fill a balanced responsive grid", async () => {
+  const source = await read("src/components/venue/accommodation-section.tsx");
+
+  assert.match(
+    source,
+    /className="mt-5 grid grid-cols-1 gap-2 min-\[360px\]:grid-cols-2 xl:grid-cols-4"/,
+  );
+  assert.match(
+    source,
+    /className="inline-flex min-h-10 w-full items-center justify-center/,
+  );
+  assert.match(
+    source,
+    /"inline-flex min-h-10 w-full items-center justify-center/,
+  );
+});
