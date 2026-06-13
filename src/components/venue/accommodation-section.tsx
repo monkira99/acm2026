@@ -8,7 +8,7 @@ const hotels = [
       "Our official conference venue. Premium stay located right by scenic West Lake, offering world-class amenities and peaceful lakeside views.",
     location: "Yen Phu 1, West Lake, Hanoi",
     websiteUrl: "https://www.legendwestlake.com/",
-    bookingUrl: "https://www.booking.com/hotel/vn/legend-west-lake.vi.html",
+    bookingUrl: "https://www.booking.com/hotel/vn/legend-west-lake.html",
     agodaUrl:
       "https://www.agoda.com/legend-west-lake-hotel/hotel/hanoi-vn.html",
     mapUrl:
@@ -23,7 +23,7 @@ const hotels = [
     location: "05 Tu Hoa, West Lake, Hanoi",
     websiteUrl: "https://hanoi.intercontinental.com/?updatelang=yes",
     bookingUrl:
-      "https://www.booking.com/hotel/vn/intercontinental-westlake.vi.html",
+      "https://www.booking.com/hotel/vn/intercontinental-westlake.html",
     agodaUrl:
       "https://www.agoda.com/intercontinental-hanoi-westlake/hotel/hanoi-vn.html",
     mapUrl:
@@ -50,7 +50,7 @@ const hotels = [
     location: "76 Yen Phu, West Lake, Hanoi",
     websiteUrl: "https://www.thehanoiclub.com/",
     bookingUrl:
-      "https://www.booking.com/hotel/vn/hanoiclub-lake-palais-residences.vi.html",
+      "https://www.booking.com/hotel/vn/hanoiclub-lake-palais-residences.html",
     agodaUrl:
       "https://www.agoda.com/the-hanoi-club-hotel-lake-palais-residences/hotel/hanoi-vn.html",
     mapUrl: "https://maps.app.goo.gl/yFzxFfuK1KEnyCWHA",
