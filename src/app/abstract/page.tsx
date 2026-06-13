@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { AbstractForm } from "@/components/forms/abstract-form";
 import { SectionHero } from "@/components/ui/section-hero";
-import { Download, FileText, Info } from "lucide-react";
+import { importantDates } from "@/data/dates";
+import { CalendarDays, Download, FileText, Info } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Abstract Submission",
@@ -16,6 +17,10 @@ const guidanceItems = [
 
 const abstractTemplateUrl =
   "https://docs.google.com/document/d/15Fa2jXTihLB06bUN2qRHzlDZFFQIVf-H/";
+
+const abstractDeadline = importantDates.find(
+  ({ label }) => label === "Abstract Submission",
+);
 
 export default function AbstractPage() {
   return (
@@ -37,6 +42,24 @@ export default function AbstractPage() {
                   Submission guidance
                 </h2>
               </div>
+
+              {abstractDeadline ? (
+                <div className="mb-5 flex items-start gap-3 border-l-4 border-[#80AF41] bg-[#F4F8FD] px-4 py-3">
+                  <CalendarDays
+                    className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#2260AD]"
+                    aria-hidden="true"
+                  />
+                  <div>
+                    <p className="text-xs font-bold uppercase tracking-[0.14em] text-[#2260AD]">
+                      Submission deadline
+                    </p>
+                    <p className="mt-1 text-sm font-black text-[#143D78]">
+                      {abstractDeadline.date}
+                    </p>
+                  </div>
+                </div>
+              ) : null}
+
               <ul className="space-y-4">
                 {guidanceItems.map((item) => (
                   <li
@@ -73,7 +96,7 @@ export default function AbstractPage() {
             </section>
           </aside>
 
-          <section className="min-w-0 bg-white/85 px-5 py-6 shadow-sm shadow-[#2260AD]/5 sm:px-6">
+          <section className="flex h-full min-w-0 flex-col bg-white/85 px-5 py-6 shadow-sm shadow-[#2260AD]/5 sm:px-6">
             <div className="mb-5 border-b border-[#2260AD]/15 pb-3">
               <h2 className="text-2xl font-black text-[#2260AD]">
                 Abstract submission

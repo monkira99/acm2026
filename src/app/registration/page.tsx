@@ -2,12 +2,17 @@ import type { Metadata } from "next";
 import { RegistrationForm } from "@/components/forms/registration-form";
 import { SectionHero } from "@/components/ui/section-hero";
 import { Ordinal23 } from "@/components/ui/ordinal-23";
-import { CalendarDays, MapPin, UserCheck } from "lucide-react";
+import { importantDates } from "@/data/dates";
+import { CalendarDays, Clock, MapPin, UserCheck } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Registration",
   description: "Register for ACM23 — The 23rd Annual Meeting in Hanoi, Vietnam.",
 };
+
+const registrationDeadline = importantDates.find(
+  ({ label }) => label === "Registration",
+);
 
 export default function RegistrationPage() {
   return (
@@ -53,7 +58,24 @@ export default function RegistrationPage() {
               </div>
             </div>
 
-            <div className="border-l-4 border-[#80AF41] bg-white/80 px-5 py-4 shadow-sm shadow-[#2260AD]/5">
+            {registrationDeadline ? (
+              <div className="flex items-start gap-3 bg-white/75 px-5 py-4 shadow-sm shadow-[#2260AD]/5">
+                <Clock
+                  className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#2260AD]"
+                  aria-hidden="true"
+                />
+                <div>
+                  <p className="text-xs font-bold uppercase tracking-[0.14em] text-[#2260AD]">
+                    Registration deadline
+                  </p>
+                  <p className="mt-1 text-sm font-semibold text-[#263D5C]">
+                    {registrationDeadline.date}
+                  </p>
+                </div>
+              </div>
+            ) : null}
+
+            <div className="bg-white/75 px-5 py-4 shadow-sm shadow-[#2260AD]/5">
               <UserCheck
                 className="mb-3 h-5 w-5 text-[#2260AD]"
                 aria-hidden="true"

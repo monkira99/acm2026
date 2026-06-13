@@ -68,7 +68,7 @@ export function AbstractForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="min-w-0 space-y-5">
+    <form onSubmit={onSubmit} className="flex h-full min-w-0 flex-col gap-5">
       {submitNotice && (
         <div
           className="flex items-start gap-3 rounded-lg border border-[#80AF41]/25 bg-[#EEF7E2] px-4 py-3 text-sm font-semibold text-[#486724]"
@@ -171,7 +171,7 @@ export function AbstractForm() {
 
       <button
         type="submit"
-        className="flex h-12 w-full items-center justify-center rounded-lg bg-[#2260AD] text-base font-bold text-white transition-colors hover:bg-[#143D78]"
+        className="mt-auto flex h-12 w-full items-center justify-center rounded-lg bg-[#2260AD] text-base font-bold text-white transition-colors hover:bg-[#143D78]"
       >
         Submit abstract
       </button>
