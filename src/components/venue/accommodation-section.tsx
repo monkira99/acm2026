@@ -13,35 +13,8 @@ const hotels = [
       "https://www.agoda.com/legend-west-lake-hotel/hotel/hanoi-vn.html",
     mapUrl:
       "https://www.google.com/maps/place/Legend+Westlake+Hotel/@21.050502,105.8394434,17z/data=!3m1!4b1!4m9!3m8!1s0x3135abadea7f3b8b:0xc4995ff3342e85c7!5m2!4m1!1i2!8m2!3d21.050502!4d105.8394434!16s%2Fg%2F11y3ncghh1",
-    image: "/images/venue/Legend_Westlake_Hotel.jpg",
+    image: "/images/venue/khong-gian-hien-dai-va-am-cung-tai-legend-westlake-hotel.png",
     imageAlt: "Legend Westlake Hotel lakeside view",
-  },
-  {
-    name: "InterContinental Hanoi Westlake",
-    description:
-      "A luxurious lakeside resort built entirely over the water of West Lake, just 5 mins away from the venue.",
-    location: "05 Tu Hoa, West Lake, Hanoi",
-    websiteUrl: "https://hanoi.intercontinental.com/?updatelang=yes",
-    bookingUrl:
-      "https://www.booking.com/hotel/vn/intercontinental-westlake.html",
-    agodaUrl:
-      "https://www.agoda.com/intercontinental-hanoi-westlake/hotel/hanoi-vn.html",
-    mapUrl:
-      "https://www.google.com/maps/place/InterContinental+H%C3%A0+N%E1%BB%99i+Westlake/@21.058365,105.8315408,17z/data=!3m1!4b1!4m9!3m8!1s0x3135aa5504cf4f8d:0x38355eb7fe4e696d!5m2!4m1!1i2!8m2!3d21.058365!4d105.8315408!16s%2Fg%2F11cjk0swfk?hl=vi&entry=ttu&g_ep=EgoyMDI2MDYwMi4wIKXMDSoASAFQAw%3D%3D",
-    image: "/images/venue/intercontinental-hanoi-westlake.webp",
-    imageAlt: "InterContinental Hanoi Westlake lakeside view",
-  },
-  {
-    name: "Pan Pacific Hanoi",
-    description:
-      "A 5-star hotel blending contemporary design with Vietnamese culture, located in the heart of Hanoi and just a short drive from the venue.",
-    location: "1 Thanh Nien Road, Ba Dinh Ward, Hanoi",
-    websiteUrl: "https://www.panpacific.com/en/hotels-and-resorts/pp-hanoi.html",
-    bookingUrl: "https://www.booking.com/hotel/vn/pan-pacific-hanoi.html",
-    agodaUrl: "https://www.agoda.com/pan-pacific-hanoi/hotel/hanoi-vn.html",
-    mapUrl: "https://www.google.com/maps/search/?api=1&query=Pan+Pacific+Hanoi",
-    image: "/images/venue/PanPacificHanoi.jpg",
-    imageAlt: "Pan Pacific Hanoi exterior",
   },
   {
     name: "The Hanoi Club Hotel",
@@ -70,6 +43,33 @@ const hotels = [
       "https://www.google.com/maps/place/Elegant+Suites+Westlake+Serviced+Residences/@21.0543314,105.8271846,15z/data=!4m20!1m10!3m9!1s0x3135aafea34cb56d:0x44f078835258c48f!2sElegant+Suites+Westlake+Serviced+Residences!5m2!4m1!1i2!8m2!3d21.062033!4d105.8247673!16s%2Fg%2F11b6dd88l7!3m8!1s0x3135aafea34cb56d:0x44f078835258c48f!5m2!4m1!1i2!8m2!3d21.062033!4d105.8247673!16s%2Fg%2F11b6dd88l7?hl=vi&entry=ttu&g_ep=EgoyMDI2MDYwMi4wIKXMDSoASAFQAw%3D%3D",
     image: "/images/venue/elegant-suites-westlake.webp",
     imageAlt: "Elegant Suites Westlake lakeside view",
+  },
+  {
+    name: "InterContinental Hanoi Westlake",
+    description:
+      "A luxurious lakeside resort built entirely over the water of West Lake, just 5 mins away from the venue.",
+    location: "05 Tu Hoa, West Lake, Hanoi",
+    websiteUrl: "https://hanoi.intercontinental.com/?updatelang=yes",
+    bookingUrl:
+      "https://www.booking.com/hotel/vn/intercontinental-westlake.html",
+    agodaUrl:
+      "https://www.agoda.com/intercontinental-hanoi-westlake/hotel/hanoi-vn.html",
+    mapUrl:
+      "https://www.google.com/maps/place/InterContinental+H%C3%A0+N%E1%BB%99i+Westlake/@21.058365,105.8315408,17z/data=!3m1!4b1!4m9!3m8!1s0x3135aa5504cf4f8d:0x38355eb7fe4e696d!5m2!4m1!1i2!8m2!3d21.058365!4d105.8315408!16s%2Fg%2F11cjk0swfk?hl=vi&entry=ttu&g_ep=EgoyMDI2MDYwMi4wIKXMDSoASAFQAw%3D%3D",
+    image: "/images/venue/intercontinental-hanoi-westlake.webp",
+    imageAlt: "InterContinental Hanoi Westlake lakeside view",
+  },
+  {
+    name: "Pan Pacific Hanoi",
+    description:
+      "A 5-star hotel blending contemporary design with Vietnamese culture, located in the heart of Hanoi and just a short drive from the venue.",
+    location: "1 Thanh Nien Road, Ba Dinh Ward, Hanoi",
+    websiteUrl: "https://www.panpacific.com/en/hotels-and-resorts/pp-hanoi.html",
+    bookingUrl: "https://www.booking.com/hotel/vn/pan-pacific-hanoi.html",
+    agodaUrl: "https://www.agoda.com/pan-pacific-hanoi/hotel/hanoi-vn.html",
+    mapUrl: "https://www.google.com/maps/search/?api=1&query=Pan+Pacific+Hanoi",
+    image: "/images/venue/PanPacificHanoi.jpg",
+    imageAlt: "Pan Pacific Hanoi exterior",
   },
 ];
 
