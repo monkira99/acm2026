@@ -84,17 +84,8 @@ function BookingMark() {
   );
 }
 
-function AgodaMark() {
-  return (
-    <span aria-hidden="true" className="text-[11px] font-black tracking-tight">
-      <span className="text-[#E44746]">A</span>
-      <span className="text-[#F29D38]">g</span>
-      <span className="text-[#6DBE45]">o</span>
-      <span className="text-[#4A90D9]">d</span>
-      <span className="text-[#8D5BB7]">a</span>
-    </span>
-  );
-}
+const secondaryActionClassName =
+  "inline-flex min-h-10 items-center justify-center gap-2 rounded border border-[#D5DCE7] bg-white px-3 py-2 text-sm font-semibold text-[#263D5C] transition-colors hover:border-[#2260AD]/30 hover:bg-[#F7FBFF] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2260AD]";
 
 export function AccommodationSection() {
   return (
@@ -138,7 +129,7 @@ export function AccommodationSection() {
                   <span>{hotel.location}</span>
                 </div>
 
-                <div className="mt-5 flex flex-wrap items-center gap-2.5">
+                <div className="mt-5 flex flex-wrap items-center gap-2">
                   <a
                     href={hotel.websiteUrl}
                     target="_blank"
@@ -152,28 +143,37 @@ export function AccommodationSection() {
                     href={hotel.bookingUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex min-h-10 items-center gap-2 rounded border border-[#003B95]/25 bg-white px-3.5 py-2 text-sm font-semibold text-[#003B95] transition-colors hover:bg-[#F2F7FF] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#003B95]"
+                    className={secondaryActionClassName}
                   >
                     <BookingMark />
-                    Booking.com
+                    <span className="text-[#003B95]">Booking.com</span>
                   </a>
                   <a
                     href={hotel.agodaUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex min-h-10 items-center gap-2 rounded border border-[#D5DCE7] bg-white px-3.5 py-2 text-sm font-semibold text-[#263D5C] transition-colors hover:bg-[#F8FAFD] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2260AD]"
+                    className={secondaryActionClassName}
                   >
-                    <AgodaMark />
-                    Agoda
+                    <Image
+                      src="/images/brands/agoda-logo.png"
+                      alt="Agoda"
+                      width={91}
+                      height={14}
+                      className="h-3.5 w-auto"
+                    />
                   </a>
                   <a
                     href={hotel.mapUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex min-h-10 items-center gap-1.5 rounded-sm px-1 text-sm font-semibold text-[#2260AD] transition-colors hover:text-[#143D78] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2260AD]"
+                    className={secondaryActionClassName}
                   >
-                    <MapPin size={14} aria-hidden="true" />
-                    View on Map
+                    <MapPin
+                      size={14}
+                      className="text-[#2260AD]"
+                      aria-hidden="true"
+                    />
+                    <span className="text-[#2260AD]">View on Map</span>
                   </a>
                 </div>
               </div>

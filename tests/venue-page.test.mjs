@@ -49,9 +49,9 @@ test("accommodation lists all approved hotels and booking channels", async () =>
   }
 
   assert.match(source, />\s*Website\s*<ExternalLink/);
-  assert.match(source, /Booking\.com\s*<\/a>/);
-  assert.match(source, /Agoda\s*<\/a>/);
-  assert.match(source, /View on Map\s*<\/a>/);
+  assert.match(source, />Booking\.com<\/span>/);
+  assert.match(source, /alt="Agoda"/);
+  assert.match(source, />View on Map<\/span>/);
 });
 
 test("accommodation data uses dedicated URLs and matching hotel images", async () => {
@@ -70,4 +70,23 @@ test("accommodation eagerly loads only the first hotel image", async () => {
 
   assert.match(source, /hotels\.map\(\(hotel, index\)/);
   assert.match(source, /loading=\{index === 0 \? "eager" : "lazy"\}/);
+});
+
+test("accommodation uses the official Agoda asset without duplicated text", async () => {
+  const source = await read("src/components/venue/accommodation-section.tsx");
+
+  assert.match(source, /src="\/images\/brands\/agoda-logo\.png"/);
+  assert.match(source, /alt="Agoda"/);
+  assert.doesNotMatch(source, /function AgodaMark/);
+  assert.doesNotMatch(source, /<AgodaMark \/>/);
+});
+
+test("map uses the same secondary button treatment as booking channels", async () => {
+  const source = await read("src/components/venue/accommodation-section.tsx");
+
+  assert.match(source, /const secondaryActionClassName =/);
+  assert.match(
+    source,
+    /href=\{hotel\.mapUrl\}[\s\S]*?className=\{secondaryActionClassName\}/,
+  );
 });
