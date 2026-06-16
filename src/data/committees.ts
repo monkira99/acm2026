@@ -45,7 +45,7 @@ export const committees: Committee[] = [
       {
         name: "Dr. Ju Huck Lee",
         titleLines: [""],
-        affiliation: "Director of the Korean Collection for Type Cultures (KCTC)",
+        affiliation: "Director of the Korean Collection for Type Cultures (KCTC), Korea Research Institute of Bioscience & Biotechnology (KRIBB)",
         image: "/images/committees/DR_JU_HUCK_LEE.png",
       },
       {
@@ -99,7 +99,7 @@ export const committees: Committee[] = [
           "",
         ],
         affiliation:
-          "Head of the Department of Applied Microbiology and Ecology, Institute of Microbiology and Biotechnology (IMBT), Vietnam National University Hanoi",
+          "Head of Laboratory for Applied Microbial Ecology, Institute of Microbiology and Biotechnology (IMBT), Vietnam National University Hanoi",
         image: "/images/committees/ASSOC_PROF_DR_DINH_THUY_HANG.jpg",
       },
     ],

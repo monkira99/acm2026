@@ -3,7 +3,7 @@ import { RegistrationForm } from "@/components/forms/registration-form";
 import { SectionHero } from "@/components/ui/section-hero";
 import { Ordinal23 } from "@/components/ui/ordinal-23";
 import { importantDates } from "@/data/dates";
-import { CalendarDays, Clock, MapPin, UserCheck } from "lucide-react";
+import { Clock, UserCheck } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Registration",
@@ -28,38 +28,8 @@ export default function RegistrationPage() {
 
         <div className="grid gap-5 lg:grid-cols-[1fr_2fr]">
           <aside className="space-y-3">
-            <div className="flex items-start gap-3 bg-white/75 px-5 py-4 shadow-sm shadow-[#2260AD]/5">
-              <CalendarDays
-                className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#2260AD]"
-                aria-hidden="true"
-              />
-              <div>
-                <p className="text-xs font-bold uppercase tracking-[0.14em] text-[#2260AD]">
-                  Dates
-                </p>
-                <p className="mt-1 text-sm font-semibold text-[#263D5C]">
-                  November 16-18, 2026
-                </p>
-              </div>
-            </div>
-
-            <div className="flex items-start gap-3 bg-white/75 px-5 py-4 shadow-sm shadow-[#2260AD]/5">
-              <MapPin
-                className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#2260AD]"
-                aria-hidden="true"
-              />
-              <div>
-                <p className="text-xs font-bold uppercase tracking-[0.14em] text-[#2260AD]">
-                  Location
-                </p>
-                <p className="mt-1 text-sm font-semibold text-[#263D5C]">
-                  Hanoi, Vietnam
-                </p>
-              </div>
-            </div>
-
             {registrationDeadline ? (
-              <div className="flex items-start gap-3 bg-white/75 px-5 py-4 shadow-sm shadow-[#2260AD]/5">
+              <div className="flex items-start gap-3 border-l-4 border-[#80AF41] bg-white/75 px-5 py-4 shadow-sm shadow-[#2260AD]/5">
                 <Clock
                   className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#2260AD]"
                   aria-hidden="true"
@@ -75,7 +45,7 @@ export default function RegistrationPage() {
               </div>
             ) : null}
 
-            <div className="bg-white/75 px-5 py-4 shadow-sm shadow-[#2260AD]/5">
+            <div className="border-l-4 border-[#80AF41] bg-white/75 px-5 py-4 shadow-sm shadow-[#2260AD]/5">
               <UserCheck
                 className="mb-3 h-5 w-5 text-[#2260AD]"
                 aria-hidden="true"
