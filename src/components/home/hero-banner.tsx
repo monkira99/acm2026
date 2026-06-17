@@ -33,11 +33,10 @@ const HERO_BACKGROUND = [
 export function HeroBanner() {
   return (
     <section
-      className="relative min-h-0 flex-1 overflow-hidden bg-[#0753A9]"
+      className="relative flex min-h-0 flex-1 flex-col overflow-hidden bg-[#0753A9]"
       style={{ backgroundImage: HERO_BACKGROUND }}
     >
-      <div className="relative z-10 flex h-full w-full flex-col">
-        <div className="grid w-full gap-3 px-4 pt-4 sm:px-[1cm] sm:pt-5 lg:grid-cols-2 lg:px-[1.5cm] lg:pt-6">
+      <div className="absolute inset-x-0 top-0 z-20 grid w-full gap-3 px-4 pt-4 sm:px-[1cm] sm:pt-5 lg:grid-cols-2 lg:px-[1.5cm] lg:pt-6">
           {HERO_LOGOS.map((logo) => (
             <div
               key={logo.src}
@@ -55,8 +54,8 @@ export function HeroBanner() {
           ))}
         </div>
 
-        <div className="mx-auto flex w-full max-w-7xl flex-1 items-center px-4 py-8 sm:px-6 sm:py-10 lg:px-8 lg:py-14">
-          <div className="mx-auto flex max-w-4xl flex-col items-center text-center">
+        <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col items-center justify-center px-4 py-20 sm:px-6 lg:px-8">
+          <div className="flex w-full max-w-4xl flex-col items-center text-center">
             <h1 className="mb-3 text-4xl font-black leading-tight text-[#2260AD] sm:mb-4 sm:text-6xl lg:text-7xl">
               ACM23
             </h1>
@@ -105,7 +104,6 @@ export function HeroBanner() {
             </div>
           </div>
         </div>
-      </div>
     </section>
   );
 }
