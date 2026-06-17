@@ -16,7 +16,7 @@ const ACCEPTED_FILE_TYPES = new Set([
 ]);
 
 const fieldClassName =
-  "w-full min-w-0 rounded-lg border border-[#2260AD]/15 bg-white px-4 py-3 text-[#143D78] outline-none transition focus:border-[#2260AD] focus:ring-2 focus:ring-[#2260AD]/20";
+  "w-full min-w-0 rounded-lg border border-[#2260AD]/15 bg-white px-4 py-2.5 text-[#143D78] outline-none transition focus:border-[#2260AD] focus:ring-2 focus:ring-[#2260AD]/20";
 
 const labelClassName = "block text-sm font-bold text-[#143D78] mb-2";
 
@@ -68,7 +68,10 @@ export function AbstractForm() {
   }
 
   return (
-    <form onSubmit={onSubmit} className="flex h-full min-w-0 flex-col gap-5">
+    <form
+      onSubmit={onSubmit}
+      className="flex h-full min-w-0 flex-col gap-5 lg:justify-between"
+    >
       {submitNotice && (
         <div
           className="flex items-start gap-3 rounded-lg border border-[#80AF41]/25 bg-[#EEF7E2] px-4 py-3 text-sm font-semibold text-[#486724]"
@@ -88,19 +91,21 @@ export function AbstractForm() {
         </label>
         <label
           htmlFor="abstractFile"
-          className="flex cursor-pointer flex-col items-center justify-center gap-2 rounded-lg border-2 border-dashed border-[#2260AD]/25 bg-[#F4F8FD] px-5 py-6 text-center transition hover:border-[#2260AD] hover:bg-[#E8F1FA]"
+          className="flex cursor-pointer items-center gap-3 rounded-lg border-2 border-dashed border-[#2260AD]/25 bg-[#F4F8FD] px-4 py-3 text-center transition hover:border-[#2260AD] hover:bg-[#E8F1FA]"
         >
-          <span className="flex h-12 w-12 items-center justify-center rounded-full bg-white text-[#2260AD] shadow-sm shadow-[#2260AD]/10">
-            <UploadCloud className="h-6 w-6" aria-hidden="true" />
+          <span className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full bg-white text-[#2260AD] shadow-sm shadow-[#2260AD]/10">
+            <UploadCloud className="h-5 w-5" aria-hidden="true" />
           </span>
-          <span className="max-w-full break-words text-sm font-bold text-[#143D78]">
-            {file ? file.name : "Choose abstract file"}
-          </span>
-          <span className="text-xs font-medium text-[#263D5C]/65">
-            PDF, DOC, or DOCX. Maximum 10MB.
+          <span className="min-w-0 flex-1">
+            <span className="block max-w-full break-words text-sm font-bold text-[#143D78]">
+              {file ? file.name : "Choose abstract file"}
+            </span>
+            <span className="block text-xs font-medium text-[#263D5C]/65">
+              PDF, DOC, or DOCX. Maximum 10MB.
+            </span>
           </span>
           {file && (
-            <span className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#2260AD]">
+            <span className="inline-flex flex-shrink-0 items-center gap-1.5 text-xs font-semibold text-[#2260AD]">
               <FileText className="h-3.5 w-3.5" aria-hidden="true" />
               {formatFileSize(file.size)}
             </span>
@@ -169,9 +174,28 @@ export function AbstractForm() {
         </select>
       </div>
 
+      <div>
+        <label className={labelClassName} htmlFor="notificationEmail">
+          Email for notifications <span className="text-red-500">*</span>
+        </label>
+        <input
+          id="notificationEmail"
+          name="notificationEmail"
+          type="email"
+          required
+          autoComplete="email"
+          placeholder="you@example.com"
+          className={fieldClassName}
+        />
+        <p className="mt-2 text-xs font-medium text-[#263D5C]/65">
+          We&apos;ll send your submission confirmation and updates to this
+          address.
+        </p>
+      </div>
+
       <button
         type="submit"
-        className="mt-auto flex h-12 w-full items-center justify-center rounded-lg bg-[#2260AD] text-base font-bold text-white transition-colors hover:bg-[#143D78]"
+        className="flex h-12 w-full items-center justify-center rounded-lg bg-[#2260AD] text-base font-bold text-white transition-colors hover:bg-[#143D78]"
       >
         Submit abstract
       </button>

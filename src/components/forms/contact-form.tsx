@@ -8,7 +8,11 @@ import { sendContactAction } from "@/lib/actions/send-contact";
 import { Loader2, CheckCircle } from "lucide-react";
 
 const fieldClassName =
-  "w-full rounded-lg border border-[#2260AD]/15 bg-white px-4 py-3 text-[#143D78] outline-none transition focus:border-[#2260AD] focus:ring-2 focus:ring-[#2260AD]/20";
+  "w-full min-w-0 rounded-lg border border-[#2260AD]/15 bg-white px-4 py-2.5 text-[#143D78] outline-none transition focus:border-[#2260AD] focus:ring-2 focus:ring-[#2260AD]/20";
+
+const labelClassName = "block text-sm font-bold text-[#143D78] mb-2";
+
+const errorClassName = "mt-2 text-sm font-semibold text-red-600";
 
 export function ContactForm() {
   const [isPending, startTransition] = useTransition();
@@ -49,31 +53,31 @@ export function ContactForm() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <label className="block text-sm font-semibold text-[#143D78] mb-1.5" htmlFor="name">Your Name *</label>
+          <label className={labelClassName} htmlFor="name">Your Name <span className="text-red-500">*</span></label>
           <input id="name" {...register("name")} className={fieldClassName} />
-          {errors.name && <p className="text-red-500 text-xs mt-1" role="alert">{errors.name.message}</p>}
+          {errors.name && <p className={errorClassName} role="alert">{errors.name.message}</p>}
         </div>
         <div>
-          <label className="block text-sm font-semibold text-[#143D78] mb-1.5" htmlFor="contactEmail">Email *</label>
+          <label className={labelClassName} htmlFor="contactEmail">Email <span className="text-red-500">*</span></label>
           <input id="contactEmail" {...register("email")} type="email" className={fieldClassName} />
-          {errors.email && <p className="text-red-500 text-xs mt-1" role="alert">{errors.email.message}</p>}
+          {errors.email && <p className={errorClassName} role="alert">{errors.email.message}</p>}
         </div>
       </div>
 
       <div>
-        <label className="block text-sm font-semibold text-[#143D78] mb-1.5" htmlFor="subject">Subject *</label>
+        <label className={labelClassName} htmlFor="subject">Subject <span className="text-red-500">*</span></label>
         <input id="subject" {...register("subject")} className={fieldClassName} />
-        {errors.subject && <p className="text-red-500 text-xs mt-1" role="alert">{errors.subject.message}</p>}
+        {errors.subject && <p className={errorClassName} role="alert">{errors.subject.message}</p>}
       </div>
 
       <div>
-        <label className="block text-sm font-semibold text-[#143D78] mb-1.5" htmlFor="message">Message *</label>
+        <label className={labelClassName} htmlFor="message">Message <span className="text-red-500">*</span></label>
         <textarea id="message" {...register("message")} rows={6} className={`${fieldClassName} resize-none`} />
-        {errors.message && <p className="text-red-500 text-xs mt-1" role="alert">{errors.message.message}</p>}
+        {errors.message && <p className={errorClassName} role="alert">{errors.message.message}</p>}
       </div>
 
       <button type="submit" disabled={isPending}
-        className="flex items-center gap-2 rounded-lg bg-[#2260AD] px-8 py-3.5 font-bold text-white transition-colors hover:bg-[#143D78] disabled:opacity-50">
+        className="flex h-12 w-full items-center justify-center gap-2 rounded-lg bg-[#2260AD] text-base font-bold text-white transition-colors hover:bg-[#143D78] disabled:opacity-50">
         {isPending && <Loader2 size={18} className="animate-spin" aria-hidden="true" />}
         {isPending ? "Sending..." : "Send message"}
       </button>

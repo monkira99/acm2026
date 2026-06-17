@@ -3,7 +3,7 @@ import { RegistrationForm } from "@/components/forms/registration-form";
 import { SectionHero } from "@/components/ui/section-hero";
 import { Ordinal23 } from "@/components/ui/ordinal-23";
 import { importantDates } from "@/data/dates";
-import { Clock, UserCheck } from "lucide-react";
+import { CalendarDays, UserCheck } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Registration",
@@ -30,7 +30,7 @@ export default function RegistrationPage() {
           <aside className="space-y-3">
             {registrationDeadline ? (
               <div className="flex items-start gap-3 border-l-4 border-[#80AF41] bg-white/75 px-5 py-4 shadow-sm shadow-[#2260AD]/5">
-                <Clock
+                <CalendarDays
                   className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#2260AD]"
                   aria-hidden="true"
                 />
@@ -38,7 +38,7 @@ export default function RegistrationPage() {
                   <p className="text-xs font-bold uppercase tracking-[0.14em] text-[#2260AD]">
                     Registration deadline
                   </p>
-                  <p className="mt-1 text-sm font-semibold text-[#263D5C]">
+                  <p className="mt-1 text-sm font-black text-[#143D78]">
                     {registrationDeadline.date}
                   </p>
                 </div>

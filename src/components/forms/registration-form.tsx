@@ -27,7 +27,11 @@ const countries = [
 ];
 
 const fieldClassName =
-  "w-full rounded-lg border border-[#2260AD]/15 bg-white px-4 py-3 text-[#143D78] outline-none transition focus:border-[#2260AD] focus:ring-2 focus:ring-[#2260AD]/20";
+  "w-full min-w-0 rounded-lg border border-[#2260AD]/15 bg-white px-4 py-2.5 text-[#143D78] outline-none transition focus:border-[#2260AD] focus:ring-2 focus:ring-[#2260AD]/20";
+
+const labelClassName = "block text-sm font-bold text-[#143D78] mb-2";
+
+const errorClassName = "mt-2 text-sm font-semibold text-red-600";
 
 export function RegistrationForm() {
   const router = useRouter();
@@ -62,35 +66,35 @@ export function RegistrationForm() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <label className="block text-sm font-semibold text-[#143D78] mb-1.5" htmlFor="fullName">Full Name *</label>
+          <label className={labelClassName} htmlFor="fullName">Full Name <span className="text-red-500">*</span></label>
           <input id="fullName" {...register("fullName")} className={fieldClassName} />
-          {errors.fullName && <p className="text-red-500 text-xs mt-1" role="alert">{errors.fullName.message}</p>}
+          {errors.fullName && <p className={errorClassName} role="alert">{errors.fullName.message}</p>}
         </div>
         <div>
-          <label className="block text-sm font-semibold text-[#143D78] mb-1.5" htmlFor="email">Email *</label>
+          <label className={labelClassName} htmlFor="email">Email <span className="text-red-500">*</span></label>
           <input id="email" {...register("email")} type="email" className={fieldClassName} />
-          {errors.email && <p className="text-red-500 text-xs mt-1" role="alert">{errors.email.message}</p>}
+          {errors.email && <p className={errorClassName} role="alert">{errors.email.message}</p>}
         </div>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
-          <label className="block text-sm font-semibold text-[#143D78] mb-1.5" htmlFor="affiliation">Affiliation *</label>
+          <label className={labelClassName} htmlFor="affiliation">Affiliation <span className="text-red-500">*</span></label>
           <input id="affiliation" {...register("affiliation")} className={fieldClassName} />
-          {errors.affiliation && <p className="text-red-500 text-xs mt-1" role="alert">{errors.affiliation.message}</p>}
+          {errors.affiliation && <p className={errorClassName} role="alert">{errors.affiliation.message}</p>}
         </div>
         <div>
-          <label className="block text-sm font-semibold text-[#143D78] mb-1.5" htmlFor="country">Country *</label>
+          <label className={labelClassName} htmlFor="country">Country <span className="text-red-500">*</span></label>
           <select id="country" {...register("country")} className={fieldClassName}>
             <option value="">Select country</option>
             {countries.map((c) => <option key={c} value={c}>{c}</option>)}
           </select>
-          {errors.country && <p className="text-red-500 text-xs mt-1" role="alert">{errors.country.message}</p>}
+          {errors.country && <p className={errorClassName} role="alert">{errors.country.message}</p>}
         </div>
       </div>
 
       <div>
-        <label className="block text-sm font-semibold text-[#143D78] mb-1.5" htmlFor="role">Role *</label>
+        <label className={labelClassName} htmlFor="role">Role <span className="text-red-500">*</span></label>
         <select id="role" {...register("role")} className={fieldClassName}>
           <option value="">Select role</option>
           <option value="researcher">Researcher</option>
@@ -98,23 +102,23 @@ export function RegistrationForm() {
           <option value="industry">Industry Professional</option>
           <option value="other">Other</option>
         </select>
-        {errors.role && <p className="text-red-500 text-xs mt-1" role="alert">{errors.role.message}</p>}
+        {errors.role && <p className={errorClassName} role="alert">{errors.role.message}</p>}
       </div>
 
       <div>
-        <label className="block text-sm font-semibold text-[#143D78] mb-1.5" htmlFor="dietaryRequirements">Dietary Requirements</label>
+        <label className={labelClassName} htmlFor="dietaryRequirements">Dietary Requirements</label>
         <input id="dietaryRequirements" {...register("dietaryRequirements")} className={fieldClassName} placeholder="e.g. Vegetarian, Halal, Allergies..." />
       </div>
 
       <div>
-        <label className="block text-sm font-semibold text-[#143D78] mb-1.5" htmlFor="specialRequests">Special Requests</label>
+        <label className={labelClassName} htmlFor="specialRequests">Special Requests</label>
         <textarea id="specialRequests" {...register("specialRequests")} rows={3} className={`${fieldClassName} resize-none`} />
       </div>
 
       <button
         type="submit"
         disabled={isPending}
-        className="flex w-full items-center justify-center gap-2 rounded-lg bg-[#2260AD] py-3.5 text-base font-bold text-white transition-colors hover:bg-[#143D78] disabled:opacity-50"
+        className="flex h-12 w-full items-center justify-center gap-2 rounded-lg bg-[#2260AD] text-base font-bold text-white transition-colors hover:bg-[#143D78] disabled:opacity-50"
       >
         {isPending && <Loader2 size={18} className="animate-spin" aria-hidden="true" />}
         {isPending ? "Submitting..." : "Register for ACM23"}

@@ -28,9 +28,17 @@ test("abstract page balances both desktop columns and their actions", async () =
     /<section className="[^"]*flex[^"]*h-full[^"]*flex-col[^"]*"/,
   );
   assert.match(aside, /Submission guidance[\s\S]*border-t[\s\S]*Abstract template/);
-  assert.match(aside, /className="mt-6 border-t[^"]*lg:mt-auto/);
-  assert.match(form, /className="min-w-0 space-y-5"/);
-  assert.match(form, /gap-2[^"]*py-6/);
+  // The guidance list grows and distributes its cards so whitespace spreads
+  // evenly instead of pooling above the template, keeping the two action
+  // buttons aligned without a large gap.
+  assert.match(aside, /<ul className="[^"]*lg:flex-1[^"]*lg:justify-between/);
+  assert.match(form, /className="flex h-full min-w-0 flex-col gap-5 lg:justify-between"/);
+  // The abstract dropzone is a compact row: icon anchored left, with the
+  // description text centered in the remaining space.
+  assert.match(form, /items-center gap-3[^"]*py-3[^"]*text-center/);
+  assert.match(form, /min-w-0 flex-1/);
+  // A notification email is collected on the form.
+  assert.match(form, /name="notificationEmail"[\s\S]*type="email"/);
   assert.match(
     page,
     /<a[\s\S]*className="[^"]*h-12[^"]*"[\s\S]*Download abstract template/,

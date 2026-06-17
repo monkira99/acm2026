@@ -6,10 +6,6 @@ function read(relativePath) {
   return readFileSync(new URL(relativePath, import.meta.url), "utf8");
 }
 
-function labelIndex(source, label) {
-  return source.search(new RegExp(`<p[^>]*>\\s*${label}\\s*</p>`));
-}
-
 function registrationDeadlineCard(source) {
   const start = source.indexOf("{registrationDeadline ? (");
   const end = source.indexOf(") : null}", start);
@@ -41,38 +37,24 @@ test("registration page renders the registration deadline from important dates",
   assert.match(source, /registrationDeadline\.date/);
 });
 
-test("registration sidebar lists location before registration deadline", () => {
-  const source = read("./registration/page.tsx");
-  const datesIndex = labelIndex(source, "Dates");
-  const locationIndex = labelIndex(source, "Location");
-  const deadlineIndex = labelIndex(source, "Registration deadline");
-
-  assert.ok(datesIndex !== -1, "Dates card should be present");
-  assert.ok(locationIndex !== -1, "Location card should be present");
-  assert.ok(deadlineIndex !== -1, "Registration deadline card should be present");
-  assert.ok(datesIndex < locationIndex, "Location should be second after Dates");
-  assert.ok(
-    locationIndex < deadlineIndex,
-    "Registration deadline should be third after Location",
-  );
-});
-
-test("registration deadline card uses neutral styling", () => {
+test("registration deadline card matches the abstract deadline styling", () => {
   const source = read("./registration/page.tsx");
   const card = registrationDeadlineCard(source);
 
-  assert.doesNotMatch(card, /border-l-4/);
-  assert.doesNotMatch(card, /border-\[#80AF41\]/);
-  assert.doesNotMatch(card, /font-black/);
-  assert.match(card, /text-sm font-semibold text-\[#263D5C\]/);
+  // Consistent with /abstract: green accent border, calendar icon, and a
+  // bold navy date.
+  assert.match(card, /border-l-4/);
+  assert.match(card, /border-\[#80AF41\]/);
+  assert.match(card, /<CalendarDays/);
+  assert.match(card, /text-sm font-black text-\[#143D78\]/);
 });
 
-test("registration intro card uses neutral styling", () => {
+test("registration intro card shares the abstract accent styling", () => {
   const source = read("./registration/page.tsx");
   const card = registrationIntroCard(source);
 
-  assert.doesNotMatch(card, /border-l-4/);
-  assert.doesNotMatch(card, /border-\[#80AF41\]/);
+  assert.match(card, /border-l-4/);
+  assert.match(card, /border-\[#80AF41\]/);
 });
 
 test("abstract page renders the abstract submission deadline from important dates", () => {

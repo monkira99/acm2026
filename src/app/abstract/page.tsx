@@ -60,7 +60,7 @@ export default function AbstractPage() {
                 </div>
               ) : null}
 
-              <ul className="space-y-4">
+              <ul className="space-y-4 lg:flex lg:min-h-0 lg:flex-1 lg:flex-col lg:justify-between lg:gap-4 lg:space-y-0">
                 {guidanceItems.map((item) => (
                   <li
                     key={item}
@@ -71,7 +71,7 @@ export default function AbstractPage() {
                 ))}
               </ul>
 
-              <div className="mt-6 border-t border-[#2260AD]/15 pt-6 lg:mt-auto">
+              <div className="mt-6 border-t border-[#2260AD]/15 pt-6">
                 <div className="mb-4 flex items-center gap-3">
                   <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#E8F1FA] text-[#2260AD]">
                     <FileText className="h-5 w-5" aria-hidden="true" />
