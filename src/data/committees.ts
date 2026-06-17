@@ -81,7 +81,7 @@ export const committees: Committee[] = [
           "",
         ],
         affiliation:
-          "Head of the Vietnam Type Culture Collection, Institute of Microbiology and Biotechnology (IMBT), Vietnam National University Hanoi",
+          "Head of the Vietnam Type Culture Collection (VTCC), Institute of Microbiology and Biotechnology (IMBT), Vietnam National University Hanoi",
         image: "/images/committees/DR_HOANG_THI_LAN_ANH.png",
       },
       {

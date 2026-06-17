@@ -25,7 +25,7 @@ export default function VenuePage() {
                 Legend Westlake Hotel
               </p>
               <p className="mt-1 text-sm font-bold uppercase tracking-[0.14em] text-[#2260AD]">
-                Yen Phu 1, Hanoi, Vietnam
+                1 Yen Phu, Hanoi, Vietnam
               </p>
             </div>
 

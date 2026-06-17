@@ -6,7 +6,7 @@ const hotels = [
     name: "Legend Westlake Hotel",
     description:
       "Our official conference venue. Premium stay located right by scenic West Lake, offering world-class amenities and peaceful lakeside views.",
-    location: "Yen Phu 1, West Lake, Hanoi",
+    location: "1 Yen Phu, West Lake, Hanoi",
     websiteUrl: "https://www.legendwestlake.com/",
     bookingUrl: "https://www.booking.com/hotel/vn/legend-west-lake.html",
     agodaUrl:

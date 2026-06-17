@@ -28,7 +28,7 @@ export const programOverview = {
   theme:
     "Harnessing Microbial Resources: From Single Cells to Microbiomes for a Sustainable Bioeconomy",
   dates: "16 - 18 November, 2026",
-  venue: "Legend Westlake Hotel, Yen Phu 1, Hanoi, Vietnam",
+  venue: "Legend Westlake Hotel, 1 Yen Phu, Hanoi, Vietnam",
 };
 
 export const program: ProgramDay[] = [
