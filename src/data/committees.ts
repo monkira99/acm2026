@@ -39,7 +39,7 @@ export const committees: Committee[] = [
           "",
         ],
         affiliation:
-          "Director of the Institute of Bioscience, Universiti Putra Malaysia",
+          "General Secretary of National Infectious Diseases Bank (NIDB)\nInvestigator and Deputy Director of National Institute of Infectious Diseases and Vaccinology, National Health Research Institutes",
         image: "/images/committees/DR_HSIU_JUNG_LO.png",
       },
       {
