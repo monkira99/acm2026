@@ -3,10 +3,25 @@ import { SectionHero } from "@/components/ui/section-hero";
 import { ScientificCommitteeCarousel } from "@/components/committees/scientific-committee-carousel";
 import { committees } from "@/data/committees";
 
+const ORGANIZING_LAST_ROW_START_CLASSES: Record<number, string> = {
+  1: "sm:col-start-3",
+  2: "sm:col-start-2",
+};
+
 export const metadata: Metadata = {
   title: "Committees",
   description: "Scientific and organizing committees for ACM23.",
 };
+
+function getOrganizingCardPlacementClass(index: number, total: number) {
+  const remainder = total % 3;
+
+  if (remainder === 0 || index !== total - remainder) {
+    return "";
+  }
+
+  return ORGANIZING_LAST_ROW_START_CLASSES[remainder];
+}
 
 export default function CommitteesPage() {
   const scientificCommittee = committees.find(
@@ -37,11 +52,19 @@ export default function CommitteesPage() {
                 {organizingCommittee.name}
               </h2>
             </div>
-            <div className="grid gap-3 sm:grid-cols-3">
+            <div className="grid auto-rows-fr gap-3 sm:grid-cols-6">
               {organizingCommittee.members.map((member, index) => (
                 <div
                   key={`${member.name}-${index}`}
-                  className="bg-white/70 px-5 py-4"
+                  className={[
+                    "h-full bg-white/70 px-5 py-4 sm:col-span-2",
+                    getOrganizingCardPlacementClass(
+                      index,
+                      organizingCommittee.members.length,
+                    ),
+                  ]
+                    .filter(Boolean)
+                    .join(" ")}
                 >
                   <p className="text-base font-bold text-[#143D78]">
                     {member.name}
