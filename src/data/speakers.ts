@@ -13,7 +13,7 @@ export interface Speaker {
 export const speakers: Speaker[] = [
   {
     id: "speaker-1",
-    name: "Jörg Overmann",
+    name: "Prof. Dr. Jörg Overmann",
     positions: [
       "Director General, Bavarian State Collections of Natural History, Germany",
       "Chair for Molecular Biodiversity Research, Ludwig-Maximilians Universität München",
