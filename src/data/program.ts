@@ -53,7 +53,9 @@ export const program: ProgramDay[] = [
       },
       {
         time: "9:15 - 9:45",
-        title: "Keynote lecture 1",
+        title:
+          "Significance and challenges of microbial resource centers in a changing world",
+        description: "Jörg Overmann",
         type: "keynote",
       },
       {
