@@ -64,18 +64,24 @@ export default function SpeakersPage() {
                   ))}
                 </ul>
 
-                <div className="mt-5 border-t border-[#2260AD]/10 pt-5">
-                  <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#80AF41]">
-                    Keynote lecture
-                  </p>
-                  <p className="mt-1.5 text-lg font-black leading-7 text-[#143D78]">
-                    {speaker.talkTitle}
-                  </p>
-                  {speaker.bio && (
-                    <p className="mt-2 text-sm leading-6 text-[#263D5C]">
-                      {speaker.bio}
+                <div className="mt-6 flex items-stretch gap-4 border-t border-[#2260AD]/10 pt-5">
+                  <span
+                    className="w-1 flex-shrink-0 rounded-full bg-[#80AF41]"
+                    aria-hidden="true"
+                  />
+                  <div>
+                    <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#80AF41]">
+                      Keynote lecture
                     </p>
-                  )}
+                    <p className="mt-1.5 text-lg font-black leading-7 text-[#143D78]">
+                      {speaker.talkTitle}
+                    </p>
+                    {speaker.bio && (
+                      <p className="mt-2 text-sm leading-6 text-[#263D5C]">
+                        {speaker.bio}
+                      </p>
+                    )}
+                  </div>
                 </div>
               </div>
             </article>
