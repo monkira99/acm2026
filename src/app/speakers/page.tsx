@@ -18,9 +18,6 @@ export default function SpeakersPage() {
       <div className="content-rail pb-12 pt-8 sm:pb-16 sm:pt-12">
         <div className="mb-8 flex flex-col gap-1 border-b border-[#2260AD]/20 pb-4 sm:flex-row sm:items-end sm:justify-between">
           <h2 className="text-2xl font-black text-[#2260AD]">Featured talks</h2>
-          <p className="text-sm font-semibold text-[#263D5C]">
-            {speakers.length} keynote {speakers.length === 1 ? "lecture" : "lectures"}
-          </p>
         </div>
 
         <div className="mx-auto flex max-w-4xl flex-col gap-6">
