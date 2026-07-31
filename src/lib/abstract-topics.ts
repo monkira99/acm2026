@@ -36,6 +36,7 @@ export const ABSTRACT_SESSION_VALUES = [
   "food-safety",
   "human-health",
   "one-health",
+  "annual-acm-report",
 ] as const;
 
 export type AbstractSession = (typeof ABSTRACT_SESSION_VALUES)[number];
@@ -49,6 +50,7 @@ export const ABSTRACT_SESSION_LABELS: Record<AbstractSession, string> = {
   "food-safety": "Food safety",
   "human-health": "Human health",
   "one-health": "One Health",
+  "annual-acm-report": "Annual ACM report",
 };
 
 export const ABSTRACT_SESSION_OPTIONS = ABSTRACT_SESSION_VALUES.map((value) => ({
