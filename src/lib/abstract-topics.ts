@@ -5,6 +5,7 @@ export const ABSTRACT_TOPIC_VALUES = [
   "fermented-food",
   "circular-economy",
   "one-health",
+  "annual-acm-report",
   "other",
 ] as const;
 
@@ -17,6 +18,7 @@ export const ABSTRACT_TOPIC_LABELS: Record<AbstractTopic, string> = {
   "fermented-food": "Fermented Food",
   "circular-economy": "Circular Economy",
   "one-health": "One Health",
+  "annual-acm-report": "Annual ACM report",
   other: "Other",
 };
 
