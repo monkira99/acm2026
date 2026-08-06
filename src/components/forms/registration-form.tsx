@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useTransition } from "react";
-import { useRouter } from "next/navigation";
+import { useTransition } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { toast } from "sonner";
 import { registrationSchema, type RegistrationInput } from "@/lib/validators";
 import { registerAction } from "@/lib/actions/register";
 import { Loader2 } from "lucide-react";
@@ -34,36 +34,33 @@ const labelClassName = "block text-sm font-bold text-[#143D78] mb-2";
 const errorClassName = "mt-2 text-sm font-semibold text-red-600";
 
 export function RegistrationForm() {
-  const router = useRouter();
   const [isPending, startTransition] = useTransition();
-  const [serverError, setServerError] = useState<string | null>(null);
 
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<RegistrationInput>({
     resolver: zodResolver(registrationSchema),
   });
 
   function onSubmit(data: RegistrationInput) {
-    setServerError(null);
     startTransition(async () => {
       const result = await registerAction(data);
       if (result.success) {
-        router.push(`/registration/success?id=${result.confirmationId}`);
+        toast.success("Registration submitted successfully", {
+          description: `Your confirmation ID is ${result.confirmationId}. A confirmation email is on its way.`,
+        });
+        reset();
       } else {
-        setServerError(result.error ?? "Registration failed.");
+        toast.error(result.error ?? "Registration failed. Please try again.");
       }
     });
   }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-      {serverError && (
-        <div className="bg-red-50 text-red-600 p-4 rounded-lg text-sm" role="alert">{serverError}</div>
-      )}
-
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <label className={labelClassName} htmlFor="fullName">Full Name <span className="text-red-500">*</span></label>

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 import { Inter } from "next/font/google";
+import { Toaster } from "sonner";
 import { SiteChrome } from "@/components/layout/site-chrome";
 import "@/styles/globals.css";
 
@@ -60,6 +61,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <SiteChrome>{children}</SiteChrome>
+        <Toaster position="top-center" richColors closeButton />
       </body>
     </html>
   );
