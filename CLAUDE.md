@@ -63,3 +63,17 @@ The three user-facing forms (abstract, registration, contact) all follow the sam
 
 ### Environment variables
 See `.env.local.example`: `MONGODB_URI`, `RESEND_API_KEY`, `ADMIN_PASSWORD`, `BLOB_READ_WRITE_TOKEN`. Server actions allow up to `11mb` bodies (`next.config.ts`) for abstract file uploads.
+
+## Agent skills
+
+### Issue tracker
+
+Issues and specs are tracked as GitHub issues (`monkira99/acm2026`, via the `gh` CLI). See `docs/agents/issue-tracker.md`.
+
+### Triage labels
+
+Canonical triage roles map to identically-named labels (`needs-triage`, `needs-info`, `ready-for-agent`, `ready-for-human`, `wontfix`). See `docs/agents/triage-labels.md`.
+
+### Domain docs
+
+Single-context layout — one `CONTEXT.md` + `docs/adr/` at the repo root. See `docs/agents/domain.md`.
