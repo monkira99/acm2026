@@ -3,7 +3,7 @@
 import { connectDB } from "@/lib/mongodb";
 import { Registration } from "@/lib/models/registration";
 import { registrationSchema, type RegistrationInput } from "@/lib/validators";
-import { sendRegistrationConfirmation } from "@/lib/email";
+import { deliverRegistrationConfirmation } from "@/lib/registration-email";
 
 interface ActionResult {
   success: boolean;
@@ -35,8 +35,11 @@ export async function registerAction(data: RegistrationInput): Promise<ActionRes
     await registration.save();
 
     // Email is non-fatal: the registration is already saved, so a send failure
-    // must not fail the action (recovery via admin manual resend — issue #8).
-    const mail = await sendRegistrationConfirmation(parsed.data.email, {
+    // must not fail the action — it's recorded on the doc and recoverable via
+    // admin manual resend (issue #8).
+    const mail = await deliverRegistrationConfirmation({
+      confirmationId,
+      email: parsed.data.email,
       fullName: parsed.data.fullName,
       country: parsed.data.country,
     });

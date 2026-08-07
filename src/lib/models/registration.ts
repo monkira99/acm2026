@@ -10,6 +10,9 @@ export interface IRegistration extends Document {
   specialRequests?: string;
   registeredAt: Date;
   confirmationId: string;
+  emailSent: boolean;
+  emailSentAt?: Date;
+  lastEmailError?: string;
 }
 
 const RegistrationSchema = new Schema<IRegistration>({
@@ -22,6 +25,9 @@ const RegistrationSchema = new Schema<IRegistration>({
   specialRequests: String,
   registeredAt: { type: Date, default: Date.now },
   confirmationId: { type: String, required: true, unique: true },
+  emailSent: { type: Boolean, default: false },
+  emailSentAt: Date,
+  lastEmailError: String,
 });
 
 export const Registration =
