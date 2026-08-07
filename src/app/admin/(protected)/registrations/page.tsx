@@ -5,7 +5,41 @@ import {
   AdminEmptyState,
   AdminExportButton,
   AdminPageHeader,
+  AdminResendEmailButton,
 } from "@/components/admin";
+
+function EmailStatus({
+  sent,
+  sentAt,
+  error,
+}: {
+  sent?: boolean;
+  sentAt?: Date;
+  error?: string;
+}) {
+  if (sent) {
+    return (
+      <span className="inline-flex rounded-full bg-[#E6F6EF] px-2.5 py-0.5 text-xs font-semibold text-[#0D7377]">
+        Sent · {formatAdminDate(sentAt)}
+      </span>
+    );
+  }
+  if (error) {
+    return (
+      <span
+        className="inline-flex rounded-full bg-[#FDEAEA] px-2.5 py-0.5 text-xs font-semibold text-[#C0362C]"
+        title={error}
+      >
+        Failed
+      </span>
+    );
+  }
+  return (
+    <span className="inline-flex rounded-full bg-[#EEF1F5] px-2.5 py-0.5 text-xs font-semibold text-[#263D5C]/60">
+      Not sent
+    </span>
+  );
+}
 
 export const dynamic = "force-dynamic";
 
@@ -39,6 +73,7 @@ export default async function AdminRegistrationsPage() {
                   <th className="px-4 py-3">Country</th>
                   <th className="px-4 py-3">Role</th>
                   <th className="px-4 py-3">Date</th>
+                  <th className="px-4 py-3">Confirmation Email</th>
                 </tr>
               </thead>
               <tbody>
@@ -65,6 +100,19 @@ export default async function AdminRegistrationsPage() {
                     </td>
                     <td className="whitespace-nowrap px-4 py-3 tabular-nums text-[#263D5C]/70">
                       {formatAdminDate(r.registeredAt)}
+                    </td>
+                    <td className="whitespace-nowrap px-4 py-3">
+                      <div className="flex items-center gap-3">
+                        <EmailStatus
+                          sent={r.emailSent}
+                          sentAt={r.emailSentAt}
+                          error={r.lastEmailError}
+                        />
+                        <AdminResendEmailButton
+                          confirmationId={r.confirmationId}
+                          sent={Boolean(r.emailSent)}
+                        />
+                      </div>
                     </td>
                   </tr>
                 ))}
