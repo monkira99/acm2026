@@ -14,11 +14,12 @@ export async function sendContactAction(data: ContactInput): Promise<ActionResul
     return { success: false, error: parsed.error.issues[0].message };
   }
 
-  try {
-    await sendContactNotification(parsed.data);
-    return { success: true };
-  } catch (error) {
-    console.error("Contact form error:", error);
+  // Contact messages are delivered by email only (no DB copy), so a send
+  // failure must surface to the user to retry.
+  const mail = await sendContactNotification(parsed.data);
+  if (!mail.ok) {
+    console.error("Contact form email failed:", mail.error);
     return { success: false, error: "Failed to send message. Please try again." };
   }
+  return { success: true };
 }

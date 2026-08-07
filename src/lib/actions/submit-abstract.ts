@@ -52,12 +52,17 @@ export async function submitAbstractAction(formData: FormData): Promise<ActionRe
     });
     await abstract.save();
 
-    await sendAbstractConfirmation(parsed.data.correspondingEmail, {
+    // Non-fatal: the abstract is already saved, so a send failure must not fail
+    // the submission (same rule as registration — issue #4/#6).
+    const mail = await sendAbstractConfirmation(parsed.data.correspondingEmail, {
       title: parsed.data.title,
       submissionId,
       presentationType: parsed.data.presentationType,
       topic: parsed.data.topic,
     });
+    if (!mail.ok) {
+      console.error(`Abstract ${submissionId}: confirmation email failed — ${mail.error}`);
+    }
 
     return { success: true, submissionId };
   } catch (error) {

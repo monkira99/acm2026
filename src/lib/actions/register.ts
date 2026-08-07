@@ -34,12 +34,15 @@ export async function registerAction(data: RegistrationInput): Promise<ActionRes
     });
     await registration.save();
 
-    await sendRegistrationConfirmation(parsed.data.email, {
+    // Email is non-fatal: the registration is already saved, so a send failure
+    // must not fail the action (recovery via admin manual resend — issue #8).
+    const mail = await sendRegistrationConfirmation(parsed.data.email, {
       fullName: parsed.data.fullName,
-      confirmationId,
-      role: parsed.data.role,
-      affiliation: parsed.data.affiliation,
+      country: parsed.data.country,
     });
+    if (!mail.ok) {
+      console.error(`Registration ${confirmationId}: confirmation email failed — ${mail.error}`);
+    }
 
     return { success: true, confirmationId };
   } catch (error) {
