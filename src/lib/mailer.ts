@@ -29,6 +29,15 @@ function getMailer(): Transporter {
 const FROM =
   process.env.MAIL_FROM ?? `ACM23 Organizing Committee <${process.env.SMTP_USER ?? ""}>`;
 
+// Standing CC: every outgoing ACM23 email copies the organizing-committee
+// inboxes. Override with a comma-separated MAIL_CC env var.
+const CC = (
+  process.env.MAIL_CC ?? "nhung.dt@vnu.edu.vn, ha.nguyenviet@vnu.edu.vn"
+)
+  .split(",")
+  .map((address) => address.trim())
+  .filter(Boolean);
+
 export interface MailOptions {
   to: string;
   subject: string;
@@ -48,9 +57,18 @@ export type MailResult =
  */
 export async function sendMail(options: MailOptions): Promise<MailResult> {
   try {
-    const info = await getMailer().sendMail({ from: FROM, ...options });
-    if (info.rejected && info.rejected.length > 0) {
-      return { ok: false, error: `Recipient rejected: ${info.rejected.join(", ")}` };
+    const info = await getMailer().sendMail({
+      from: FROM,
+      cc: CC.length > 0 ? CC : undefined,
+      ...options,
+    });
+    // Only a rejected *primary* recipient is a real failure — a bounced CC
+    // (e.g. a committee inbox) must not mark the recipient's email as failed.
+    const rejected = (info.rejected ?? []).map((address: unknown) =>
+      String(address).toLowerCase(),
+    );
+    if (rejected.includes(options.to.toLowerCase())) {
+      return { ok: false, error: `Recipient rejected: ${options.to}` };
     }
     return { ok: true, messageId: info.messageId };
   } catch (error) {
