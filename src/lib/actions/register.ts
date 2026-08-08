@@ -4,6 +4,7 @@ import { connectDB } from "@/lib/mongodb";
 import { Registration } from "@/lib/models/registration";
 import { registrationSchema, type RegistrationInput } from "@/lib/validators";
 import { deliverRegistrationConfirmation } from "@/lib/registration-email";
+import { nextSequentialId, isDuplicateKeyError } from "@/lib/actions/sequential-id";
 
 interface ActionResult {
   success: boolean;
@@ -25,14 +26,24 @@ export async function registerAction(data: RegistrationInput): Promise<ActionRes
       return { success: false, error: "This email is already registered." };
     }
 
-    const count = await Registration.countDocuments();
-    const confirmationId = `ACM23-R-${String(count + 1).padStart(4, "0")}`;
-
-    const registration = new Registration({
-      ...parsed.data,
-      confirmationId,
-    });
-    await registration.save();
+    // Allocate the sequential ID from the current max and save. Retry if a
+    // concurrent registration grabbed the same confirmationId first.
+    let confirmationId = "";
+    for (let attempt = 0; ; attempt++) {
+      confirmationId = await nextSequentialId(Registration, "ACM23-R-", "confirmationId");
+      try {
+        await new Registration({ ...parsed.data, confirmationId }).save();
+        break;
+      } catch (error) {
+        if (isDuplicateKeyError(error, "email")) {
+          return { success: false, error: "This email is already registered." };
+        }
+        if (isDuplicateKeyError(error, "confirmationId") && attempt < 5) {
+          continue;
+        }
+        throw error;
+      }
+    }
 
     // Email is non-fatal: the registration is already saved, so a send failure
     // must not fail the action — it's recorded on the doc and recoverable via

@@ -4,6 +4,7 @@ import { connectDB } from "@/lib/mongodb";
 import { Abstract } from "@/lib/models/abstract";
 import { abstractSchema } from "@/lib/validators";
 import { sendAbstractConfirmation } from "@/lib/email";
+import { nextSequentialId, isDuplicateKeyError } from "@/lib/actions/sequential-id";
 
 interface ActionResult {
   success: boolean;
@@ -43,14 +44,21 @@ export async function submitAbstractAction(formData: FormData): Promise<ActionRe
   try {
     await connectDB();
 
-    const count = await Abstract.countDocuments();
-    const submissionId = `ACM23-A-${String(count + 1).padStart(4, "0")}`;
-
-    const abstract = new Abstract({
-      ...parsed.data,
-      submissionId,
-    });
-    await abstract.save();
+    // Allocate the sequential ID from the current max and save. Retry if a
+    // concurrent submission grabbed the same submissionId first.
+    let submissionId = "";
+    for (let attempt = 0; ; attempt++) {
+      submissionId = await nextSequentialId(Abstract, "ACM23-A-", "submissionId");
+      try {
+        await new Abstract({ ...parsed.data, submissionId }).save();
+        break;
+      } catch (error) {
+        if (isDuplicateKeyError(error, "submissionId") && attempt < 5) {
+          continue;
+        }
+        throw error;
+      }
+    }
 
     // Non-fatal: the abstract is already saved, so a send failure must not fail
     // the submission (same rule as registration — issue #4/#6).
