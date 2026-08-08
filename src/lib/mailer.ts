@@ -29,7 +29,7 @@ function getMailer(): Transporter {
 const FROM =
   process.env.MAIL_FROM ?? `ACM23 Organizing Committee <${process.env.SMTP_USER ?? ""}>`;
 
-// Address used for the List-Unsubscribe header and Reply-To.
+// Address used as the default Reply-To.
 const CONTACT_ADDRESS = process.env.SMTP_USER ?? "acm23@vnu.edu.vn";
 
 // Standing CC: every outgoing ACM23 email copies the organizing-committee
@@ -45,8 +45,35 @@ export interface MailOptions {
   to: string;
   subject: string;
   html: string;
+  /** Plain-text alternative. Derived from `html` when omitted. */
+  text?: string;
   replyTo?: string;
   attachments?: { filename: string; content?: Buffer | string; path?: string }[];
+}
+
+/**
+ * Derive a readable plain-text body from our email HTML. We send both parts
+ * (multipart/alternative) because a text alternative is a deliverability
+ * best-practice — spam filters treat HTML-only mail with more suspicion.
+ * The templates emit a small, known set of tags/entities, so a light
+ * transform is enough (no HTML parser needed).
+ */
+function htmlToText(html: string): string {
+  return html
+    .replace(/<br\s*\/?>/gi, "\n")
+    .replace(/<\/(p|h[1-6]|div|tr)>/gi, "\n\n")
+    .replace(/<[^>]+>/g, "")
+    .replace(/&nbsp;/g, " ")
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .split("\n")
+    .map((line) => line.trim())
+    .join("\n")
+    .replace(/\n{3,}/g, "\n\n")
+    .trim();
 }
 
 export type MailResult =
@@ -64,9 +91,9 @@ export async function sendMail(options: MailOptions): Promise<MailResult> {
       from: FROM,
       cc: CC.length > 0 ? CC : undefined,
       ...options,
+      // Send a plain-text alternative alongside the HTML (multipart/alternative).
+      text: options.text ?? htmlToText(options.html),
       replyTo: options.replyTo ?? CONTACT_ADDRESS,
-      // Presence of List-Unsubscribe is a positive sender signal for Gmail.
-      headers: { "List-Unsubscribe": `<mailto:${CONTACT_ADDRESS}?subject=Unsubscribe>` },
     });
     // Only a rejected *primary* recipient is a real failure — a bounced CC
     // (e.g. a committee inbox) must not mark the recipient's email as failed.
