@@ -1,13 +1,19 @@
 import { z } from "zod";
 import { ABSTRACT_TOPIC_VALUES } from "@/lib/abstract-topics";
 
-// Normalise a human name: trim the ends and collapse runs of internal
-// whitespace to a single space (fixes stray double spaces / tabs from paste).
-// We deliberately do NOT force casing — title-casing mangles proper nouns and
-// Vietnamese names (e.g. "McDonald", "Nguyễn Thị").
-const collapseSpaces = (value: string) => value.replace(/\s+/g, " ");
+// Normalise a human name: trim, collapse internal whitespace to single spaces,
+// then Title-Case each word — capitalise the first letter, lower-case the rest
+// (e.g. "  nHUNG  dOAN " → "Nhung Doan"). Unicode-aware (\p{L} + /u) so
+// Vietnamese diacritics survive: "nguyễn thị" → "Nguyễn Thị". Only the letter
+// after a space or the start is capitalised — casing after hyphens/apostrophes
+// (e.g. "McDonald") is not special-cased.
+const normalizeName = (value: string) =>
+  value
+    .replace(/\s+/g, " ")
+    .toLocaleLowerCase()
+    .replace(/(?:^|\s)\p{L}/gu, (match) => match.toLocaleUpperCase());
 const nameField = (message: string, max = 200) =>
-  z.string().trim().min(2, message).max(max).transform(collapseSpaces);
+  z.string().trim().min(2, message).max(max).transform(normalizeName);
 
 export const registrationSchema = z.object({
   fullName: nameField("Full name is required"),
