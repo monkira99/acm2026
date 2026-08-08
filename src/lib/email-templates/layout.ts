@@ -17,13 +17,12 @@ export function paragraphs(...html: string[]): string {
 }
 
 // Table-based layout for cross-client rendering. Outlook (Word engine) ignores
-// CSS gradients and `background` on <div>, which made the header band vanish —
-// so the header/footer colours are set with the `bgcolor` attribute on <td>
-// (which Outlook honours) plus a solid `background-color`. The gradient is kept
-// as a `background-image` for clients that support it (Gmail, Apple Mail);
-// Outlook simply falls back to the solid colour. `border-radius` is cosmetic
-// and safely ignored by Outlook.
-const HEADER_SOLID = "#0F5C97"; // solid fallback within the #12659F→#0A3A63 gradient
+// `background` on <div>, so the header/footer colours are set with the
+// `bgcolor` attribute on <td> (which Outlook honours) plus a solid
+// `background-color`. A single solid colour is used deliberately — no gradient,
+// which Outlook cannot render anyway. `border-radius` is cosmetic and safely
+// ignored by Outlook.
+const HEADER_SOLID = "#1A73B7"; // solid IMBT blue for the header band
 
 export function brandWrapper(title: string, bodyHtml: string): string {
   return `
@@ -32,7 +31,7 @@ export function brandWrapper(title: string, bodyHtml: string): string {
         <td align="center" style="padding:24px;">
           <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;width:100%;max-width:600px;background-color:#ffffff;border:1px solid #e6e9ee;border-radius:12px;">
             <tr>
-              <td bgcolor="${HEADER_SOLID}" style="background-color:${HEADER_SOLID};background-image:linear-gradient(135deg,#12659F,#0A3A63);padding:32px;border-radius:12px 12px 0 0;font-family:sans-serif;">
+              <td bgcolor="${HEADER_SOLID}" style="background-color:${HEADER_SOLID};padding:32px;border-radius:12px 12px 0 0;font-family:sans-serif;">
                 <h1 style="color:#ffffff;margin:0;font-size:24px;letter-spacing:-0.01em;">${title}</h1>
                 <p style="color:#BFD8EF;margin:8px 0 0;font-size:14px;">Hanoi, Vietnam · November 16-18, 2026</p>
               </td>
