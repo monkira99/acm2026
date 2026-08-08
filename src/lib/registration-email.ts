@@ -19,6 +19,7 @@ export async function deliverRegistrationConfirmation(registration: {
   country: string;
 }): Promise<MailResult> {
   const result = await sendRegistrationConfirmation(registration.email, {
+    confirmationId: registration.confirmationId,
     fullName: registration.fullName,
     country: registration.country,
   });

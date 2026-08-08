@@ -44,13 +44,17 @@ function internationalBody(fullName: string): string {
 }
 
 export function registrationEmail(data: {
+  confirmationId: string;
   fullName: string;
   country: string;
 }): { subject: string; html: string } {
   const isVietnam = data.country === "Vietnam";
   const body = isVietnam ? vietnameseBody(data.fullName) : internationalBody(data.fullName);
   return {
-    subject: "ACM23 Registration Confirmation",
+    // Unique per registration so Gmail does not thread identical-subject
+    // confirmations together and collapse the repeated body behind "…"
+    // (matches the abstract email's "— {submissionId}" convention).
+    subject: `ACM23 Registration Confirmation — ${data.confirmationId}`,
     html: brandWrapper("ACM23 Registration Received", body),
   };
 }
