@@ -10,7 +10,7 @@ import { registrationEmail } from "@/lib/email-templates/registration";
  */
 export function sendRegistrationConfirmation(
   to: string,
-  data: { confirmationId: string; fullName: string; country: string },
+  data: { fullName: string; country: string },
 ): Promise<MailResult> {
   const { subject, html } = registrationEmail(data);
   return sendMail({ to, subject, html });
