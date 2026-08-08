@@ -32,10 +32,13 @@ const FROM =
 // Address used as the default Reply-To.
 const CONTACT_ADDRESS = process.env.SMTP_USER ?? "acm23@vnu.edu.vn";
 
-// Standing CC: every outgoing ACM23 email copies the organizing-committee
-// inboxes. Override with a comma-separated MAIL_CC env var.
-const CC = (
-  process.env.MAIL_CC ?? "nhung.dt@vnu.edu.vn, ha.nguyenviet@vnu.edu.vn"
+// Standing BCC: every outgoing ACM23 email blind-copies the organizing-
+// committee inboxes, so the recipient never sees these addresses. Override
+// with a comma-separated MAIL_BCC env var (MAIL_CC still honoured as a fallback).
+const BCC = (
+  process.env.MAIL_BCC ??
+  process.env.MAIL_CC ??
+  "nhung.dt@vnu.edu.vn, ha.nguyenviet@vnu.edu.vn"
 )
   .split(",")
   .map((address) => address.trim())
@@ -89,13 +92,13 @@ export async function sendMail(options: MailOptions): Promise<MailResult> {
   try {
     const info = await getMailer().sendMail({
       from: FROM,
-      cc: CC.length > 0 ? CC : undefined,
+      bcc: BCC.length > 0 ? BCC : undefined,
       ...options,
       // Send a plain-text alternative alongside the HTML (multipart/alternative).
       text: options.text ?? htmlToText(options.html),
       replyTo: options.replyTo ?? CONTACT_ADDRESS,
     });
-    // Only a rejected *primary* recipient is a real failure — a bounced CC
+    // Only a rejected *primary* recipient is a real failure — a bounced BCC
     // (e.g. a committee inbox) must not mark the recipient's email as failed.
     const rejected = (info.rejected ?? []).map((address: unknown) =>
       String(address).toLowerCase(),
