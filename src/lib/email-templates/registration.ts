@@ -50,10 +50,7 @@ export function registrationEmail(data: {
   const isVietnam = data.country === "Vietnam";
   const body = isVietnam ? vietnameseBody(data.fullName) : internationalBody(data.fullName);
   return {
-    // Personalise the subject with the registrant's name so Gmail does not
-    // thread identical-subject confirmations together and collapse the
-    // repeated body behind "Show trimmed content" (…).
-    subject: `ACM23 Registration Confirmation — ${data.fullName}`,
+    subject: "ACM23 Registration Confirmation",
     html: brandWrapper("ACM23 Registration Received", body),
   };
 }
