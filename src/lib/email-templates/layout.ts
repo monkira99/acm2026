@@ -26,6 +26,11 @@ export function brandWrapper(title: string, bodyHtml: string): string {
       <div style="padding:32px;background:#ffffff;">
         ${bodyHtml}
       </div>
+      <div style="padding:18px 32px;background:#f3f5f7;border-top:1px solid #e6e9ee;color:#6b7684;font-size:12px;line-height:1.6;">
+        <p style="margin:0 0 4px;color:#334155;font-weight:600;">ACM23 · Asian Consortium for Microbial Resources</p>
+        <p style="margin:0 0 4px;">Organized by the VNU Institute of Microbiology and Biotechnology (IMBT), Vietnam National University, Hanoi, Vietnam.</p>
+        <p style="margin:0;">Contact <a href="mailto:acm23@vnu.edu.vn" style="color:#12659F;text-decoration:none;">acm23@vnu.edu.vn</a> &middot; <a href="https://acm23.org" style="color:#12659F;text-decoration:none;">acm23.org</a></p>
+      </div>
     </div>
   `;
 }

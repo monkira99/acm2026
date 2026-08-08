@@ -29,6 +29,9 @@ function getMailer(): Transporter {
 const FROM =
   process.env.MAIL_FROM ?? `ACM23 Organizing Committee <${process.env.SMTP_USER ?? ""}>`;
 
+// Address used for the List-Unsubscribe header and Reply-To.
+const CONTACT_ADDRESS = process.env.SMTP_USER ?? "acm23@vnu.edu.vn";
+
 // Standing CC: every outgoing ACM23 email copies the organizing-committee
 // inboxes. Override with a comma-separated MAIL_CC env var.
 const CC = (
@@ -61,6 +64,9 @@ export async function sendMail(options: MailOptions): Promise<MailResult> {
       from: FROM,
       cc: CC.length > 0 ? CC : undefined,
       ...options,
+      replyTo: options.replyTo ?? CONTACT_ADDRESS,
+      // Presence of List-Unsubscribe is a positive sender signal for Gmail.
+      headers: { "List-Unsubscribe": `<mailto:${CONTACT_ADDRESS}?subject=Unsubscribe>` },
     });
     // Only a rejected *primary* recipient is a real failure — a bounced CC
     // (e.g. a committee inbox) must not mark the recipient's email as failed.
