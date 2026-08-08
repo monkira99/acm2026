@@ -42,8 +42,33 @@ export interface MailOptions {
   to: string;
   subject: string;
   html: string;
+  /** Plain-text alternative. Auto-derived from `html` when omitted. */
+  text?: string;
   replyTo?: string;
   attachments?: { filename: string; content?: Buffer | string; path?: string }[];
+}
+
+/**
+ * Derive a readable plain-text body from our email HTML. Sending multipart
+ * (HTML + text) instead of HTML-only is a well-known deliverability win —
+ * HTML-only messages are a common spam signal.
+ */
+function htmlToText(html: string): string {
+  return html
+    .replace(/\r?\n/g, " ") // flatten source indentation/newlines
+    .replace(/<\s*br\s*\/?\s*>/gi, "\n") // <br> -> newline
+    .replace(/<\/\s*(p|div|h[1-6]|li|tr)\s*>/gi, "\n") // block ends -> newline
+    .replace(/<[^>]+>/g, "") // strip remaining tags
+    .replace(/&nbsp;/gi, " ")
+    .replace(/&amp;/gi, "&")
+    .replace(/&lt;/gi, "<")
+    .replace(/&gt;/gi, ">")
+    .replace(/&quot;/gi, '"')
+    .replace(/&#39;/gi, "'")
+    .replace(/[ \t]+/g, " ") // collapse runs of spaces
+    .replace(/ *\n */g, "\n") // trim spaces around newlines
+    .replace(/\n{3,}/g, "\n\n") // at most one blank line
+    .trim();
 }
 
 export type MailResult =
@@ -61,6 +86,7 @@ export async function sendMail(options: MailOptions): Promise<MailResult> {
       from: FROM,
       cc: CC.length > 0 ? CC : undefined,
       ...options,
+      text: options.text ?? htmlToText(options.html),
     });
     // Only a rejected *primary* recipient is a real failure — a bounced CC
     // (e.g. a committee inbox) must not mark the recipient's email as failed.
