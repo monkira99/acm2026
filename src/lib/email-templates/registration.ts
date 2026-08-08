@@ -51,6 +51,6 @@ export function registrationEmail(data: {
   const body = isVietnam ? vietnameseBody(data.fullName) : internationalBody(data.fullName);
   return {
     subject: "ACM23 Registration Confirmation",
-    html: brandWrapper("ACM23 Registration Received", body),
+    html: brandWrapper("ACM23 Registration Confirmation", body),
   };
 }
