@@ -94,6 +94,10 @@ export async function sendMail(options: MailOptions): Promise<MailResult> {
       from: FROM,
       bcc: BCC.length > 0 ? BCC : undefined,
       ...options,
+      // Strip CR/LF from the subject to prevent header injection — subjects can
+      // carry user input (e.g. the contact form). Done centrally so no call
+      // site can forget it. nodemailer also guards this, but defence in depth.
+      subject: options.subject.replace(/[\r\n]+/g, " ").trim(),
       // Send a plain-text alternative alongside the HTML (multipart/alternative).
       text: options.text ?? htmlToText(options.html),
       replyTo: options.replyTo ?? CONTACT_ADDRESS,

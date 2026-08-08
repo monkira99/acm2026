@@ -30,7 +30,7 @@ export function brandWrapper(title: string, bodyHtml: string): string {
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;background-color:#f4f6f8;">
       <tr>
         <td align="center" style="padding:24px;">
-          <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;width:600px;max-width:600px;background-color:#ffffff;border:1px solid #e6e9ee;border-radius:12px;">
+          <table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse;width:100%;max-width:600px;background-color:#ffffff;border:1px solid #e6e9ee;border-radius:12px;">
             <tr>
               <td bgcolor="${HEADER_SOLID}" style="background-color:${HEADER_SOLID};background-image:linear-gradient(135deg,#12659F,#0A3A63);padding:32px;border-radius:12px 12px 0 0;font-family:sans-serif;">
                 <h1 style="color:#ffffff;margin:0;font-size:24px;letter-spacing:-0.01em;">${title}</h1>

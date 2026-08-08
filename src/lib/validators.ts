@@ -1,8 +1,16 @@
 import { z } from "zod";
 import { ABSTRACT_TOPIC_VALUES } from "@/lib/abstract-topics";
 
+// Normalise a human name: trim the ends and collapse runs of internal
+// whitespace to a single space (fixes stray double spaces / tabs from paste).
+// We deliberately do NOT force casing — title-casing mangles proper nouns and
+// Vietnamese names (e.g. "McDonald", "Nguyễn Thị").
+const collapseSpaces = (value: string) => value.replace(/\s+/g, " ");
+const nameField = (message: string, max = 200) =>
+  z.string().trim().min(2, message).max(max).transform(collapseSpaces);
+
 export const registrationSchema = z.object({
-  fullName: z.string().min(2, "Full name is required").max(200),
+  fullName: nameField("Full name is required"),
   email: z.string().email("Invalid email address"),
   affiliation: z.string().min(2, "Affiliation is required").max(300),
   country: z.string().min(2, "Country is required").max(100),
@@ -16,13 +24,13 @@ export const registrationSchema = z.object({
 export type RegistrationInput = z.infer<typeof registrationSchema>;
 
 const presentingAuthorSchema = z.object({
-  name: z.string().min(2, "Presenting Author is required").max(200),
+  name: nameField("Presenting Author is required"),
   affiliation: z.string().min(2, "Affiliation is required").max(300),
   email: z.string().email("Invalid email address"),
 });
 
 const coAuthorSchema = z.object({
-  name: z.string().min(2, "Co-Author name is required").max(200),
+  name: nameField("Co-Author name is required"),
   affiliation: z.string().min(2, "Co-Author affiliation is required").max(300),
 });
 
@@ -68,7 +76,7 @@ export const abstractSchema = z.object({
 export type AbstractInput = z.infer<typeof abstractSchema>;
 
 export const contactSchema = z.object({
-  name: z.string().min(2, "Name is required").max(200),
+  name: nameField("Name is required"),
   email: z.string().email("Invalid email address"),
   subject: z.string().min(2, "Subject is required").max(200),
   message: z.string().min(10, "Message must be at least 10 characters").max(2000),
