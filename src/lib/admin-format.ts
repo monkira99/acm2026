@@ -12,15 +12,3 @@ export function formatAdminDate(value: unknown): string {
 export function formatRole(role: string): string {
   return role.charAt(0).toUpperCase() + role.slice(1);
 }
-
-export interface AuthorRow {
-  role?: string;
-  name?: string;
-  affiliation?: string;
-  email?: string;
-}
-
-export function parseAuthors(authors: unknown): AuthorRow[] {
-  if (!Array.isArray(authors)) return [];
-  return authors as AuthorRow[];
-}

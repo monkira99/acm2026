@@ -2,7 +2,10 @@ import { NextResponse } from "next/server";
 import { connectDB } from "@/lib/mongodb";
 import { Abstract } from "@/lib/models/abstract";
 import { verifyAdmin } from "@/lib/admin-session";
-import { formatAbstractTopic } from "@/lib/abstract-topics";
+import {
+  formatAbstractSession,
+  formatScientistCategory,
+} from "@/lib/abstract-topics";
 
 function toCSV(headers: string[], rows: string[][]): string {
   const escape = (val: string) => `"${String(val).replace(/"/g, '""')}"`;
@@ -12,50 +15,46 @@ function toCSV(headers: string[], rows: string[][]): string {
   ].join("\n");
 }
 
-function formatAuthors(authors: unknown): string {
-  if (Array.isArray(authors)) {
-    return authors
-      .map((author) => {
-        const label =
-          author?.role === "presenting" ? "Presenting Author" : "Co-Author";
-        const email = author?.email ? ` <${author.email}>` : "";
-        return `${author?.name ?? ""} (${label}) - ${author?.affiliation ?? ""}${email}`;
-      })
-      .join("; ");
-  }
-
-  return String(authors ?? "");
-}
-
-export async function GET() {
+export async function GET(request: Request) {
   const isAdmin = await verifyAdmin();
-  if (!isAdmin) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!isAdmin)
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+
+  const url = new URL(request.url);
+  const host =
+    request.headers.get("x-forwarded-host") ??
+    request.headers.get("host") ??
+    url.host;
+  const proto =
+    request.headers.get("x-forwarded-proto") ??
+    url.protocol.replace(":", "");
+  const origin = `${proto}://${host}`;
 
   await connectDB();
   const docs = await Abstract.find().sort({ submittedAt: -1 }).lean();
   const headers = [
     "Submission ID",
-    "Title",
-    "Authors",
-    "Email",
-    "Affiliation",
-    "Type",
-    "Topic",
-    "Keywords",
-    "Abstract Text",
-    "Date",
+    "Notification Email",
+    "Scientist Category",
+    "Preferred Session",
+    "File Name",
+    "File URL",
+    "File Size (bytes)",
+    "Submitted At",
+    "Email Sent",
   ];
   const rows = docs.map((d) => [
     d.submissionId ?? "",
-    d.title ?? "",
-    formatAuthors(d.authors),
-    d.correspondingEmail ?? "",
-    d.affiliation ?? "",
-    d.presentationType ?? "",
-    formatAbstractTopic(d.topic),
-    (d.keywords as string[]).join("; "),
-    d.abstractText ?? "",
+    d.notificationEmail ?? "",
+    formatScientistCategory(d.scientistCategory),
+    formatAbstractSession(d.sessionPreference),
+    d.fileName ?? "",
+    d.submissionId
+      ? `${origin}/api/admin/abstracts/${d.submissionId}/file`
+      : (d.fileUrl ?? ""),
+    String(d.fileSize ?? ""),
     new Date(d.submittedAt).toISOString(),
+    d.emailSent ? "yes" : "no",
   ]);
 
   return new Response(toCSV(headers, rows), {

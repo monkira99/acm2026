@@ -1,54 +1,45 @@
 import mongoose, { Schema, type Document } from "mongoose";
 import {
-  ABSTRACT_TOPIC_VALUES,
-  type AbstractTopic,
+  ABSTRACT_SESSION_VALUES,
+  SCIENTIST_CATEGORY_VALUES,
+  type AbstractSession,
+  type ScientistCategory,
 } from "@/lib/abstract-topics";
 
-export interface AbstractAuthor {
-  role: "presenting" | "co";
-  name: string;
-  affiliation: string;
-  email?: string;
-}
-
 export interface IAbstract extends Document {
-  title: string;
-  authors: AbstractAuthor[];
-  correspondingEmail: string;
-  affiliation: string;
-  abstractText: string;
-  keywords: string[];
-  presentationType: "oral" | "poster";
-  topic: AbstractTopic;
-  submittedAt: Date;
   submissionId: string;
+  notificationEmail: string;
+  scientistCategory: ScientistCategory;
+  sessionPreference: AbstractSession;
+  fileUrl: string;
+  fileName: string;
+  fileSize: number;
+  submittedAt: Date;
+  emailSent?: boolean;
+  emailSentAt?: Date;
+  lastEmailError?: string;
 }
-
-const AbstractAuthorSchema = new Schema<AbstractAuthor>(
-  {
-    role: { type: String, required: true, enum: ["presenting", "co"] },
-    name: { type: String, required: true },
-    affiliation: { type: String, required: true },
-    email: String,
-  },
-  { _id: false },
-);
 
 const AbstractSchema = new Schema<IAbstract>({
-  title: { type: String, required: true },
-  authors: { type: [AbstractAuthorSchema], required: true },
-  correspondingEmail: { type: String, required: true },
-  affiliation: { type: String, required: true },
-  abstractText: { type: String, required: true },
-  keywords: { type: [String], required: true },
-  presentationType: { type: String, required: true, enum: ["oral", "poster"] },
-  topic: {
+  submissionId: { type: String, required: true, unique: true },
+  notificationEmail: { type: String, required: true },
+  scientistCategory: {
     type: String,
     required: true,
-    enum: [...ABSTRACT_TOPIC_VALUES],
+    enum: [...SCIENTIST_CATEGORY_VALUES],
   },
+  sessionPreference: {
+    type: String,
+    required: true,
+    enum: [...ABSTRACT_SESSION_VALUES],
+  },
+  fileUrl: { type: String, required: true },
+  fileName: { type: String, required: true },
+  fileSize: { type: Number, required: true },
   submittedAt: { type: Date, default: Date.now },
-  submissionId: { type: String, required: true, unique: true },
+  emailSent: { type: Boolean, default: false },
+  emailSentAt: { type: Date },
+  lastEmailError: { type: String },
 });
 
 export const Abstract =

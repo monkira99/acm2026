@@ -6,7 +6,6 @@ type VenueDetailRowProps = {
   imageAlt: string;
   aspect: "hotel" | "place" | "food";
   reversed?: boolean;
-  badge?: string;
   children: ReactNode;
 };
 
@@ -21,7 +20,6 @@ export function VenueDetailRow({
   imageAlt,
   aspect,
   reversed = false,
-  badge,
   children,
 }: VenueDetailRowProps) {
   return (

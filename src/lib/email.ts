@@ -1,4 +1,7 @@
-import { formatAbstractTopic } from "@/lib/abstract-topics";
+import {
+  formatAbstractSession,
+  formatScientistCategory,
+} from "@/lib/abstract-topics";
 import { sendMail, type MailResult } from "@/lib/mailer";
 import { brandWrapper, escapeHtml, paragraphs } from "@/lib/email-templates/layout";
 import { registrationEmail } from "@/lib/email-templates/registration";
@@ -18,9 +21,13 @@ export function sendRegistrationConfirmation(
 
 export function sendAbstractConfirmation(
   to: string,
-  data: { title: string; submissionId: string; presentationType: string; topic: string },
+  data: {
+    submissionId: string;
+    scientistCategory: string;
+    sessionPreference: string;
+    fileName: string;
+  },
 ): Promise<MailResult> {
-  const topicLabel = formatAbstractTopic(data.topic);
   // Email-safe two-column row: fixed-width label cell + value cell, spacing via
   // cell padding (Outlook mishandles margin on tables), valign top so long
   // values wrap cleanly beside the label.
@@ -33,9 +40,9 @@ export function sendAbstractConfirmation(
     ${paragraphs("Dear Author,", "Your abstract has been successfully submitted to ACM23.")}
     <table role="presentation" width="100%" border="0" cellspacing="0" cellpadding="0" style="width:100%;border-collapse:collapse;">
       ${row("Submission ID", `<strong style="color:#0D7377;">${escapeHtml(data.submissionId)}</strong>`)}
-      ${row("Title", escapeHtml(data.title))}
-      ${row("Type", escapeHtml(data.presentationType))}
-      ${row("Topic", escapeHtml(topicLabel))}
+      ${row("Scientist", escapeHtml(formatScientistCategory(data.scientistCategory)))}
+      ${row("Preferred session", escapeHtml(formatAbstractSession(data.sessionPreference)))}
+      ${row("File", escapeHtml(data.fileName))}
     </table>
     ${paragraphs(
       "You will be notified of the review outcome by August 15, 2026.",
@@ -49,9 +56,9 @@ export function sendAbstractConfirmation(
 Your abstract has been successfully submitted to ACM23.
 
 Submission ID: ${data.submissionId}
-Title: ${data.title}
-Type: ${data.presentationType}
-Topic: ${topicLabel}
+Scientist: ${formatScientistCategory(data.scientistCategory)}
+Preferred session: ${formatAbstractSession(data.sessionPreference)}
+File: ${data.fileName}
 
 You will be notified of the review outcome by August 15, 2026.
 

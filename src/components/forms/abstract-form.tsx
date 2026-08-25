@@ -1,22 +1,17 @@
 "use client";
 
-import { useState, type ChangeEvent, type FormEvent } from "react";
+import { useState, useTransition, type ChangeEvent, type FormEvent } from "react";
+import { useRouter } from "next/navigation";
 import {
   ABSTRACT_SESSION_OPTIONS,
   SCIENTIST_CATEGORY_OPTIONS,
 } from "@/lib/abstract-topics";
-import { CheckCircle2, FileText, UploadCloud } from "lucide-react";
-
-const MAX_FILE_SIZE = 10 * 1024 * 1024;
-const ACCEPTED_EXTENSIONS = [".pdf", ".doc", ".docx"];
-const ACCEPTED_FILE_TYPES = new Set([
-  "application/pdf",
-  "application/msword",
-  "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-]);
+import { getFileError } from "@/lib/abstract-file";
+import { submitAbstractAction } from "@/lib/actions/submit-abstract";
+import { AlertCircle, FileText, Loader2, UploadCloud } from "lucide-react";
 
 const fieldClassName =
-  "w-full min-w-0 rounded-lg border border-[#2260AD]/15 bg-white px-4 py-2.5 text-[#143D78] outline-none transition focus:border-[#2260AD] focus:ring-2 focus:ring-[#2260AD]/20";
+  "w-full min-w-0 rounded-lg border border-[#2260AD]/15 bg-white px-4 py-2.5 text-[#143D78] outline-none transition focus:border-[#2260AD] focus:ring-2 focus:ring-[#2260AD]/20 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:opacity-70";
 
 const labelClassName = "block text-sm font-bold text-[#143D78] mb-2";
 
@@ -25,23 +20,9 @@ function formatFileSize(size: number): string {
   return `${(size / (1024 * 1024)).toFixed(1)} MB`;
 }
 
-function getFileError(file: File | null): string | null {
-  if (!file) return "Please upload your abstract file.";
-  if (file.size > MAX_FILE_SIZE) return "Abstract file must be under 10MB.";
-
-  const lowerName = file.name.toLowerCase();
-  const hasAcceptedExtension = ACCEPTED_EXTENSIONS.some((extension) =>
-    lowerName.endsWith(extension),
-  );
-
-  if (!ACCEPTED_FILE_TYPES.has(file.type) && !hasAcceptedExtension) {
-    return "Only PDF, DOC, or DOCX files are accepted.";
-  }
-
-  return null;
-}
-
 export function AbstractForm() {
+  const router = useRouter();
+  const [isPending, startTransition] = useTransition();
   const [file, setFile] = useState<File | null>(null);
   const [fileError, setFileError] = useState<string | null>(null);
   const [submitNotice, setSubmitNotice] = useState<string | null>(null);
@@ -56,15 +37,26 @@ export function AbstractForm() {
   function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
+    const formEl = event.currentTarget;
+    const fd = new FormData(formEl);
+
     const nextFileError = getFileError(file);
     setFileError(nextFileError);
     setSubmitNotice(null);
 
-    if (!event.currentTarget.reportValidity() || nextFileError) return;
+    if (!formEl.reportValidity() || nextFileError) return;
 
-    setSubmitNotice(
-      "The abstract submission form is ready. Data storage will be connected in the MongoDB step.",
-    );
+    startTransition(async () => {
+      const result = await submitAbstractAction(fd);
+      if (result.success) {
+        router.push(`/abstract/success?id=${result.submissionId}`);
+      } else {
+        setSubmitNotice(
+          result.error ??
+            "An unexpected error occurred while submitting your abstract. Please try again.",
+        );
+      }
+    });
   }
 
   return (
@@ -74,14 +66,16 @@ export function AbstractForm() {
     >
       {submitNotice && (
         <div
-          className="flex items-start gap-3 rounded-lg border border-[#80AF41]/25 bg-[#EEF7E2] px-4 py-3 text-sm font-semibold text-[#486724]"
-          role="status"
+          className="flex items-start gap-3 rounded-lg border border-red-300 bg-red-50 px-4 py-3 text-sm font-semibold text-red-700"
+          role="alert"
         >
-          <CheckCircle2
+          <AlertCircle
             className="mt-0.5 h-5 w-5 flex-shrink-0"
             aria-hidden="true"
           />
-          <span>{submitNotice}</span>
+          <span>
+            {submitNotice} If this persists, contact acm23@vnu.edu.vn.
+          </span>
         </div>
       )}
 
@@ -118,6 +112,7 @@ export function AbstractForm() {
           accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
           className="sr-only"
           onChange={onFileChange}
+          disabled={isPending}
         />
         {fileError && (
           <p className="mt-2 text-sm font-semibold text-red-600" role="alert">
@@ -141,6 +136,7 @@ export function AbstractForm() {
                 name="scientistCategory"
                 value={option.value}
                 required
+                disabled={isPending}
                 className="mt-1 h-4 w-4 accent-[#2260AD]"
               />
               <span className="min-w-0 break-words text-sm font-semibold leading-6 text-[#263D5C]">
@@ -161,6 +157,7 @@ export function AbstractForm() {
           name="sessionPreference"
           required
           defaultValue=""
+          disabled={isPending}
           className={fieldClassName}
         >
           <option value="" disabled>
@@ -185,6 +182,7 @@ export function AbstractForm() {
           required
           autoComplete="email"
           placeholder="you@example.com"
+          disabled={isPending}
           className={fieldClassName}
         />
         <p className="mt-2 text-xs font-medium text-[#263D5C]/65">
@@ -195,9 +193,20 @@ export function AbstractForm() {
 
       <button
         type="submit"
-        className="flex h-12 w-full items-center justify-center rounded-lg bg-[#2260AD] text-base font-bold text-white transition-colors hover:bg-[#143D78]"
+        disabled={isPending}
+        className="flex h-12 w-full items-center justify-center rounded-lg bg-[#2260AD] text-base font-bold text-white transition-colors hover:bg-[#143D78] disabled:cursor-not-allowed disabled:opacity-70"
       >
-        Submit abstract
+        {isPending ? (
+          <>
+            <Loader2
+              className="mr-2 h-5 w-5 animate-spin"
+              aria-hidden="true"
+            />
+            Submitting abstract…
+          </>
+        ) : (
+          "Submit abstract"
+        )}
       </button>
     </form>
   );

@@ -32,7 +32,7 @@ export default async function AbstractSuccessPage({
             Abstract Submitted
           </p>
           <h1 className="mt-2 text-3xl font-black text-[#143D78] sm:text-4xl">
-            Your abstract is under review
+            Your abstract has been received
           </h1>
 
           {id && (
@@ -47,8 +47,8 @@ export default async function AbstractSuccessPage({
           )}
 
           <p className="mx-auto mt-6 max-w-xl text-sm leading-7 text-[#263D5C]">
-            A confirmation email has been sent to the presenting author. Please
-            retain your submission ID for future correspondence with the
+            A confirmation email will follow from the Scientific Committee.
+            Please retain your submission ID for future correspondence with the
             Scientific Committee.
           </p>
 
@@ -81,10 +81,10 @@ export default async function AbstractSuccessPage({
                   Secretariat
                 </p>
                 <a
-                  href="mailto:abstracts@acm23-hanoi.org"
+                  href="mailto:acm23@vnu.edu.vn"
                   className="mt-1 block text-sm font-semibold text-[#2260AD] underline-offset-2 hover:underline"
                 >
-                  abstracts@acm23-hanoi.org
+                  acm23@vnu.edu.vn
                 </a>
                 <p className="mt-1 text-xs text-[#263D5C]/70">
                   For questions or amendments.

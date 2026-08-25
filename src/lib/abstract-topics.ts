@@ -1,32 +1,3 @@
-export const ABSTRACT_TOPIC_VALUES = [
-  "crop",
-  "livestock",
-  "aquaculture",
-  "fermented-food",
-  "circular-economy",
-  "one-health",
-  "annual-acm-report",
-  "other",
-] as const;
-
-export type AbstractTopic = (typeof ABSTRACT_TOPIC_VALUES)[number];
-
-export const ABSTRACT_TOPIC_LABELS: Record<AbstractTopic, string> = {
-  crop: "Crop",
-  livestock: "Livestock",
-  aquaculture: "Aquaculture",
-  "fermented-food": "Fermented Food",
-  "circular-economy": "Circular Economy",
-  "one-health": "One Health",
-  "annual-acm-report": "Annual ACM report",
-  other: "Other",
-};
-
-export const ABSTRACT_TOPIC_OPTIONS = ABSTRACT_TOPIC_VALUES.map((value) => ({
-  value,
-  label: ABSTRACT_TOPIC_LABELS[value],
-}));
-
 export const ABSTRACT_SESSION_VALUES = [
   "environmental-protection",
   "circular-economy",
@@ -79,20 +50,12 @@ export const SCIENTIST_CATEGORY_OPTIONS = SCIENTIST_CATEGORY_VALUES.map(
   }),
 );
 
-export function formatAbstractTopic(topic: unknown): string {
-  if (typeof topic === "string" && topic in ABSTRACT_TOPIC_LABELS) {
-    return ABSTRACT_TOPIC_LABELS[topic as AbstractTopic];
-  }
-
-  return String(topic ?? "");
-}
-
 export function formatAbstractSession(session: unknown): string {
   if (typeof session === "string" && session in ABSTRACT_SESSION_LABELS) {
     return ABSTRACT_SESSION_LABELS[session as AbstractSession];
   }
 
-  return formatAbstractTopic(session);
+  return String(session ?? "");
 }
 
 export function formatScientistCategory(category: unknown): string {

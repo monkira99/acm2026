@@ -1,5 +1,8 @@
 import { z } from "zod";
-import { ABSTRACT_TOPIC_VALUES } from "@/lib/abstract-topics";
+import {
+  ABSTRACT_SESSION_VALUES,
+  SCIENTIST_CATEGORY_VALUES,
+} from "@/lib/abstract-topics";
 
 // Normalise a human name: trim, collapse internal whitespace to single spaces,
 // then Title-Case each word — capitalise the first letter, lower-case the rest
@@ -29,57 +32,17 @@ export const registrationSchema = z.object({
 
 export type RegistrationInput = z.infer<typeof registrationSchema>;
 
-const presentingAuthorSchema = z.object({
-  name: nameField("Presenting Author is required"),
-  affiliation: z.string().min(2, "Affiliation is required").max(300),
-  email: z.string().email("Invalid email address"),
-});
-
-const coAuthorSchema = z.object({
-  name: nameField("Co-Author name is required"),
-  affiliation: z.string().min(2, "Co-Author affiliation is required").max(300),
-});
-
-const abstractTopicSchema = z.enum(ABSTRACT_TOPIC_VALUES, {
-  message: "Please select topic",
-});
-
-export const abstractSchema = z.object({
-  title: z.string().min(5, "Title must be at least 5 characters").max(300),
-  presentingAuthor: presentingAuthorSchema,
-  coAuthors: z.array(coAuthorSchema).max(20, "Please limit co-authors to 20"),
-  abstractText: z
-    .string()
-    .min(50, "Abstract must be at least 50 characters")
-    .refine(
-      (text) => text.split(/\s+/).filter(Boolean).length <= 300,
-      "Abstract must not exceed 300 words"
-    ),
-  keywords: z
-    .string()
-    .min(1, "Keywords are required")
-    .transform((val) =>
-      val.split(",").map((k) => k.trim()).filter(Boolean)
-    )
-    .refine((arr) => arr.length >= 3 && arr.length <= 5, "Please provide 3-5 keywords"),
-  presentationType: z.enum(["oral", "poster"], {
-    message: "Please select presentation type",
+export const abstractSubmissionSchema = z.object({
+  notificationEmail: z.string().email("Invalid email address"),
+  scientistCategory: z.enum(SCIENTIST_CATEGORY_VALUES, {
+    message: "Please select scientist category",
   }),
-  topic: abstractTopicSchema,
-}).transform(({ presentingAuthor, coAuthors, ...data }) => ({
-  ...data,
-  authors: [
-    { role: "presenting" as const, ...presentingAuthor },
-    ...coAuthors.map((author) => ({
-      role: "co" as const,
-      ...author,
-    })),
-  ],
-  correspondingEmail: presentingAuthor.email,
-  affiliation: presentingAuthor.affiliation,
-}));
+  sessionPreference: z.enum(ABSTRACT_SESSION_VALUES, {
+    message: "Please select preferred session",
+  }),
+});
 
-export type AbstractInput = z.infer<typeof abstractSchema>;
+export type AbstractSubmissionInput = z.infer<typeof abstractSubmissionSchema>;
 
 export const contactSchema = z.object({
   name: nameField("Name is required"),
