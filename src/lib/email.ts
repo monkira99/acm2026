@@ -1,10 +1,7 @@
-import {
-  formatAbstractSession,
-  formatScientistCategory,
-} from "@/lib/abstract-topics";
 import { sendMail, type MailResult } from "@/lib/mailer";
 import { brandWrapper, escapeHtml, paragraphs } from "@/lib/email-templates/layout";
 import { registrationEmail } from "@/lib/email-templates/registration";
+import { abstractConfirmationEmail } from "@/lib/email-templates/abstract";
 
 /**
  * Registration confirmation. Content + Vietnamese/International variant come
@@ -19,56 +16,23 @@ export function sendRegistrationConfirmation(
   return sendMail({ to, subject, html });
 }
 
+/**
+ * Abstract submission confirmation. Prose template from the Organizing
+ * Committee plus the submission details table. Non-throwing — returns a
+ * result so the caller can record sent-status and treat failure as non-fatal.
+ */
 export function sendAbstractConfirmation(
   to: string,
   data: {
+    recipientName: string;
     submissionId: string;
     scientistCategory: string;
     sessionPreference: string;
     fileName: string;
   },
 ): Promise<MailResult> {
-  // Email-safe two-column row: fixed-width label cell + value cell, spacing via
-  // cell padding (Outlook mishandles margin on tables), valign top so long
-  // values wrap cleanly beside the label.
-  const row = (label: string, value: string) => `
-    <tr>
-      <td width="130" valign="top" style="padding:8px 12px 8px 0;color:#64748b;font-size:14px;">${label}</td>
-      <td valign="top" style="padding:8px 0;color:#1A2332;font-size:14px;">${value}</td>
-    </tr>`;
-  const body = `
-    ${paragraphs("Dear Author,", "Your abstract has been successfully submitted to ACM23.")}
-    <table role="presentation" width="100%" border="0" cellspacing="0" cellpadding="0" style="width:100%;border-collapse:collapse;">
-      ${row("Submission ID", `<strong style="color:#0D7377;">${escapeHtml(data.submissionId)}</strong>`)}
-      ${row("Scientist", escapeHtml(formatScientistCategory(data.scientistCategory)))}
-      ${row("Preferred session", escapeHtml(formatAbstractSession(data.sessionPreference)))}
-      ${row("File", escapeHtml(data.fileName))}
-    </table>
-    ${paragraphs(
-      "You will be notified of the review outcome by August 15, 2026.",
-      '<span style="color:#888;font-size:12px;">— ACM23 Scientific Committee</span>',
-    )}
-  `;
-  // Explicit plain-text alternative: the details are a table, which the HTML→text
-  // fallback would flatten badly — so we author the text part directly.
-  const text = `Dear Author,
-
-Your abstract has been successfully submitted to ACM23.
-
-Submission ID: ${data.submissionId}
-Scientist: ${formatScientistCategory(data.scientistCategory)}
-Preferred session: ${formatAbstractSession(data.sessionPreference)}
-File: ${data.fileName}
-
-You will be notified of the review outcome by August 15, 2026.
-
-— ACM23 Scientific Committee`;
-  return sendMail({
-    to,
-    subject: `ACM23 Abstract Received — ${data.submissionId}`,
-    text,
-    html: brandWrapper("Abstract Submission Received", body),
-  });
+  const { subject, html } = abstractConfirmationEmail(data);
+  return sendMail({ to, subject, html });
 }
 
 export function sendContactNotification(data: {
@@ -77,10 +41,6 @@ export function sendContactNotification(data: {
   subject: string;
   message: string;
 }): Promise<MailResult> {
-  // Same layout system as the other emails (brandWrapper). The message body
-  // sits in a bgcolor'd table cell rather than a styled <div>, so Outlook keeps
-  // the tinted panel. Subject sanitisation and Reply-To validation happen
-  // upstream (sendMail strips CR/LF; contactSchema validates data.email).
   const body = `
     ${paragraphs(
       `<strong>From:</strong> ${escapeHtml(data.name)} (${escapeHtml(data.email)})`,

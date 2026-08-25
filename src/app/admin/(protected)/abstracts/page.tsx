@@ -13,10 +13,12 @@ import {
   EmailStatus,
 } from "@/components/admin";
 import { resendAbstractEmailAction } from "@/lib/actions/resend-abstract-email";
+import { FileText } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
 function formatFileSize(size: number): string {
+  if (!size) return "0 KB";
   if (size < 1024 * 1024) return `${Math.ceil(size / 1024)} KB`;
   return `${(size / (1024 * 1024)).toFixed(1)} MB`;
 }
@@ -34,7 +36,7 @@ export default async function AdminAbstractsPage() {
     <div>
       <AdminPageHeader
         title="Abstracts"
-        description="Review submitted abstracts and export data."
+        description="All submitted conference abstracts."
         count={abstracts.length}
         actions={<AdminExportButton href="/api/export/abstracts" />}
       />
@@ -42,75 +44,91 @@ export default async function AdminAbstractsPage() {
       {abstracts.length === 0 ? (
         <AdminEmptyState message="No abstracts submitted yet." />
       ) : (
-        <div className="space-y-4">
-          {abstracts.map((a) => (
-            <article
-              key={String(a._id)}
-              className="rounded-xl border border-[#2260AD]/10 bg-white p-5 shadow-sm shadow-[#2260AD]/5 sm:p-6"
-            >
-              <div className="flex flex-wrap items-center justify-between gap-2 border-b border-[#2260AD]/10 pb-3">
-                <span className="font-mono text-sm font-bold text-[#143D78]">
-                  {a.submissionId}
-                </span>
-                <span className="text-xs tabular-nums text-[#263D5C]/60">
-                  {formatAdminDate(a.submittedAt)}
-                </span>
-              </div>
-
-              <div className="mt-3 flex flex-wrap gap-2">
-                <span
-                  title={formatScientistCategory(a.scientistCategory)}
-                  className="rounded-full bg-[#E8F1FA] px-2.5 py-0.5 text-xs font-semibold text-[#2260AD] ring-1 ring-[#2260AD]/15"
-                >
-                  {formatCategoryBadge(a.scientistCategory)}
-                </span>
-                <span className="rounded-full bg-[#EEF7E2] px-2.5 py-0.5 text-xs font-semibold text-[#486724] ring-1 ring-[#80AF41]/20">
-                  {formatAbstractSession(a.sessionPreference)}
-                </span>
-              </div>
-
-              <div className="mt-4 space-y-2 text-sm text-[#263D5C]">
-                <div>
-                  <span className="font-medium text-[#263D5C]/70">
-                    Notification email:{" "}
-                  </span>
-                  <a
-                    href={`mailto:${a.notificationEmail}`}
-                    className="font-medium text-[#143D78] hover:underline"
+        <div className="overflow-hidden rounded-xl border border-[#2260AD]/10 bg-white shadow-sm shadow-[#2260AD]/5">
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-[1000px] text-sm">
+              <thead>
+                <tr className="border-b border-[#2260AD]/10 bg-[#F4F8FD] text-left text-xs font-bold uppercase tracking-[0.1em] text-[#263D5C]/70">
+                  <th className="px-4 py-3">ID</th>
+                  <th className="px-4 py-3">Email</th>
+                  <th className="px-4 py-3">Scientist</th>
+                  <th className="px-4 py-3">Preferred Session</th>
+                  <th className="px-4 py-3">File</th>
+                  <th className="px-4 py-3">Date</th>
+                  <th className="px-4 py-3">Confirmation Email</th>
+                </tr>
+              </thead>
+              <tbody>
+                {abstracts.map((a) => (
+                  <tr
+                    key={String(a._id)}
+                    className="border-b border-[#2260AD]/5 last:border-0 hover:bg-[#F4F8FD]/50"
                   >
-                    {a.notificationEmail}
-                  </a>
-                </div>
-                <div>
-                  <span className="font-medium text-[#263D5C]/70">File: </span>
-                  <a
-                    href={`/api/admin/abstracts/${a.submissionId}/file`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-medium text-[#2260AD] underline-offset-2 hover:underline"
-                  >
-                    {a.fileName}
-                  </a>{" "}
-                  <span className="text-xs text-[#263D5C]/60">
-                    ({formatFileSize(a.fileSize)})
-                  </span>
-                </div>
-              </div>
-
-              <div className="mt-4 flex flex-wrap items-center justify-between gap-3 border-t border-[#2260AD]/10 pt-3">
-                <EmailStatus
-                  sent={a.emailSent}
-                  sentAt={a.emailSentAt}
-                  error={a.lastEmailError}
-                />
-                <AdminResendEmailButton
-                  id={a.submissionId}
-                  sent={Boolean(a.emailSent)}
-                  resendAction={resendAbstractEmailAction}
-                />
-              </div>
-            </article>
-          ))}
+                    <td className="whitespace-nowrap px-4 py-3 font-mono text-xs font-semibold text-[#2260AD]">
+                      {a.submissionId}
+                    </td>
+                    <td className="max-w-[200px] truncate px-4 py-3 text-[#263D5C]">
+                      <a
+                        href={`mailto:${a.notificationEmail}`}
+                        title={a.notificationEmail}
+                        className="hover:text-[#2260AD] hover:underline"
+                      >
+                        {a.notificationEmail}
+                      </a>
+                    </td>
+                    <td className="px-4 py-3">
+                      <span
+                        title={formatScientistCategory(a.scientistCategory)}
+                        className="inline-flex whitespace-nowrap rounded-full bg-[#E8F1FA] px-2.5 py-0.5 text-xs font-semibold text-[#2260AD]"
+                      >
+                        {formatCategoryBadge(a.scientistCategory)}
+                      </span>
+                    </td>
+                    <td className="max-w-[200px] px-4 py-3">
+                      <span
+                        title={formatAbstractSession(a.sessionPreference)}
+                        className="inline-flex max-w-full truncate whitespace-nowrap rounded-full bg-[#EEF7E2] px-2.5 py-0.5 text-xs font-semibold text-[#486724]"
+                      >
+                        {formatAbstractSession(a.sessionPreference)}
+                      </span>
+                    </td>
+                    <td className="max-w-[220px] px-4 py-3">
+                      <a
+                        href={`/api/admin/abstracts/${a.submissionId}/file`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex max-w-full items-center gap-1.5 font-medium text-[#2260AD] underline-offset-2 hover:underline"
+                        title={a.fileName}
+                      >
+                        <FileText size={14} className="shrink-0 text-[#2260AD]" />
+                        <span className="truncate">{a.fileName}</span>
+                      </a>
+                      <span className="ml-1.5 text-xs text-[#263D5C]/50">
+                        {formatFileSize(a.fileSize)}
+                      </span>
+                    </td>
+                    <td className="whitespace-nowrap px-4 py-3 tabular-nums text-[#263D5C]/70">
+                      {formatAdminDate(a.submittedAt)}
+                    </td>
+                    <td className="whitespace-nowrap px-4 py-3">
+                      <div className="flex items-center gap-3">
+                        <EmailStatus
+                          sent={a.emailSent}
+                          sentAt={a.emailSentAt}
+                          error={a.lastEmailError}
+                        />
+                        <AdminResendEmailButton
+                          id={a.submissionId}
+                          sent={Boolean(a.emailSent)}
+                          resendAction={resendAbstractEmailAction}
+                        />
+                      </div>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       )}
     </div>

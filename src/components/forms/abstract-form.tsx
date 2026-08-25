@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useTransition, type ChangeEvent, type FormEvent } from "react";
-import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 import {
   ABSTRACT_SESSION_OPTIONS,
   SCIENTIST_CATEGORY_OPTIONS,
@@ -21,7 +21,6 @@ function formatFileSize(size: number): string {
 }
 
 export function AbstractForm() {
-  const router = useRouter();
   const [isPending, startTransition] = useTransition();
   const [file, setFile] = useState<File | null>(null);
   const [fileError, setFileError] = useState<string | null>(null);
@@ -49,7 +48,12 @@ export function AbstractForm() {
     startTransition(async () => {
       const result = await submitAbstractAction(fd);
       if (result.success) {
-        router.push(`/abstract/success?id=${result.submissionId}`);
+        toast.success("Abstract submitted successfully", {
+          description: `Your submission ID is ${result.submissionId}. A confirmation email will follow from the Organizing Committee.`,
+        });
+        formEl.reset();
+        setFile(null);
+        setFileError(null);
       } else {
         setSubmitNotice(
           result.error ??

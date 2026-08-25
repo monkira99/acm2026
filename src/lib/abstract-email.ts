@@ -1,5 +1,6 @@
 import { connectDB } from "@/lib/mongodb";
 import { Abstract } from "@/lib/models/abstract";
+import { Registration } from "@/lib/models/registration";
 import { sendAbstractConfirmation } from "@/lib/email";
 import type { MailResult } from "@/lib/mailer";
 
@@ -15,7 +16,17 @@ export async function deliverAbstractConfirmation(
     return { ok: false, error: "Abstract not found." };
   }
 
+  // Resolve a friendly recipient name: reuse the registered fullName when the
+  // same email registered earlier, otherwise fall back to the neutral "Author".
+  const registration = await Registration.findOne({
+    email: doc.notificationEmail,
+  })
+    .select({ fullName: 1 })
+    .lean();
+  const recipientName = registration?.fullName ?? "Author";
+
   const result = await sendAbstractConfirmation(doc.notificationEmail, {
+    recipientName,
     submissionId: doc.submissionId,
     scientistCategory: doc.scientistCategory,
     sessionPreference: doc.sessionPreference,

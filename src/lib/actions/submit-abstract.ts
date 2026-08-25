@@ -5,6 +5,7 @@ import { connectDB } from "@/lib/mongodb";
 import { Abstract } from "@/lib/models/abstract";
 import { abstractSubmissionSchema } from "@/lib/validators";
 import { getFileError } from "@/lib/abstract-file";
+import { deliverAbstractConfirmation } from "@/lib/abstract-email";
 import { nextSequentialId, isDuplicateKeyError } from "@/lib/actions/sequential-id";
 
 type SubmitAbstractResult =
@@ -105,6 +106,14 @@ export async function submitAbstractAction(
         }
         throw error;
       }
+    }
+
+    // Email is non-fatal: the abstract is already saved, so a send failure
+    // must not fail the submission — it's recorded on the doc and recoverable
+    // via admin manual resend.
+    const mail = await deliverAbstractConfirmation({ submissionId });
+    if (!mail.ok) {
+      console.error(`Abstract ${submissionId}: confirmation email failed — ${mail.error}`);
     }
 
     return { success: true, submissionId };
