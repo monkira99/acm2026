@@ -68,3 +68,30 @@ export function formatScientistCategory(category: unknown): string {
 
   return String(category ?? "");
 }
+
+export const PRESENTATION_TYPE_VALUES = [
+  "oral",
+  "poster",
+] as const;
+
+export type PresentationType = (typeof PRESENTATION_TYPE_VALUES)[number];
+
+export const PRESENTATION_TYPE_LABELS: Record<PresentationType, string> = {
+  oral: "Oral presentation",
+  poster: "Poster presentation",
+};
+
+export const PRESENTATION_TYPE_OPTIONS = PRESENTATION_TYPE_VALUES.map(
+  (value) => ({
+    value,
+    label: PRESENTATION_TYPE_LABELS[value],
+  }),
+);
+
+export function formatPresentationType(type: unknown): string {
+  if (typeof type === "string" && type in PRESENTATION_TYPE_LABELS) {
+    return PRESENTATION_TYPE_LABELS[type as PresentationType];
+  }
+
+  return String(type ?? "");
+}

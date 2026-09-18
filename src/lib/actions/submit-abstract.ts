@@ -32,6 +32,7 @@ export async function submitAbstractAction(
     notificationEmail: String(formData.get("notificationEmail") ?? ""),
     scientistCategory: String(formData.get("scientistCategory") ?? ""),
     sessionPreference: String(formData.get("sessionPreference") ?? ""),
+    presentationType: String(formData.get("presentationType") ?? ""),
   };
 
   const parsed = abstractSubmissionSchema.safeParse(rawData);

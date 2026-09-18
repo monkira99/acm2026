@@ -28,6 +28,7 @@ export function sendAbstractConfirmation(
     submissionId: string;
     scientistCategory: string;
     sessionPreference: string;
+    presentationType?: string;
     fileName: string;
   },
 ): Promise<MailResult> {

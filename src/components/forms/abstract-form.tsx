@@ -4,6 +4,7 @@ import { useState, useTransition, type ChangeEvent, type FormEvent } from "react
 import { toast } from "sonner";
 import {
   ABSTRACT_SESSION_OPTIONS,
+  PRESENTATION_TYPE_OPTIONS,
   SCIENTIST_CATEGORY_OPTIONS,
 } from "@/lib/abstract-topics";
 import { getFileError } from "@/lib/abstract-file";
@@ -12,6 +13,13 @@ import { AlertCircle, FileText, Loader2, UploadCloud } from "lucide-react";
 
 const fieldClassName =
   "w-full min-w-0 rounded-lg border border-[#2260AD]/15 bg-white px-4 py-2.5 text-[#143D78] outline-none transition focus:border-[#2260AD] focus:ring-2 focus:ring-[#2260AD]/20 disabled:cursor-not-allowed disabled:bg-slate-100 disabled:opacity-70";
+
+// Selects reuse the field style but show the empty placeholder option muted.
+// A required select with an empty value matches :invalid only while the
+// placeholder is chosen — once a real option is picked it turns dark. This is
+// safe for selects (no partially-typed state) so it stays off `fieldClassName`,
+// which text inputs like the email field also use.
+const selectClassName = `${fieldClassName} invalid:text-[#143D78]/45`;
 
 const labelClassName = "block text-sm font-bold text-[#143D78] mb-2";
 
@@ -98,7 +106,7 @@ export function AbstractForm() {
             <span className="block max-w-full break-words text-sm font-bold text-[#143D78]">
               {file ? file.name : "Choose abstract file"}
             </span>
-            <span className="block text-xs font-medium text-[#263D5C]/65">
+            <span className="block text-xs font-medium text-[#143D78]/60">
               PDF, DOC, or DOCX. Maximum 10MB.
             </span>
           </span>
@@ -143,7 +151,7 @@ export function AbstractForm() {
                 disabled={isPending}
                 className="mt-1 h-4 w-4 accent-[#2260AD]"
               />
-              <span className="min-w-0 break-words text-sm font-semibold leading-6 text-[#263D5C]">
+              <span className="min-w-0 break-words text-sm font-semibold leading-6 text-[#143D78]">
                 {option.label}
               </span>
             </label>
@@ -162,7 +170,7 @@ export function AbstractForm() {
           required
           defaultValue=""
           disabled={isPending}
-          className={fieldClassName}
+          className={selectClassName}
         >
           <option value="" disabled>
             Select preferred session
@@ -170,6 +178,30 @@ export function AbstractForm() {
           {ABSTRACT_SESSION_OPTIONS.map((session) => (
             <option key={session.value} value={session.value}>
               {session.label}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <div>
+        <label className={labelClassName} htmlFor="presentationType">
+          Would you like to give an oral or poster presentation?{" "}
+          <span className="text-red-500">*</span>
+        </label>
+        <select
+          id="presentationType"
+          name="presentationType"
+          required
+          defaultValue=""
+          disabled={isPending}
+          className={selectClassName}
+        >
+          <option value="" disabled>
+            Select presentation type
+          </option>
+          {PRESENTATION_TYPE_OPTIONS.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
             </option>
           ))}
         </select>
@@ -189,7 +221,7 @@ export function AbstractForm() {
           disabled={isPending}
           className={fieldClassName}
         />
-        <p className="mt-2 text-xs font-medium text-[#263D5C]/65">
+        <p className="mt-2 text-xs font-medium text-[#143D78]/60">
           We&apos;ll send your submission confirmation and updates to this
           address.
         </p>

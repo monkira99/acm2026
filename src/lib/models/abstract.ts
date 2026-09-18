@@ -1,8 +1,10 @@
 import mongoose, { Schema, type Document } from "mongoose";
 import {
   ABSTRACT_SESSION_VALUES,
+  PRESENTATION_TYPE_VALUES,
   SCIENTIST_CATEGORY_VALUES,
   type AbstractSession,
+  type PresentationType,
   type ScientistCategory,
 } from "@/lib/abstract-topics";
 
@@ -11,6 +13,7 @@ export interface IAbstract extends Document {
   notificationEmail: string;
   scientistCategory: ScientistCategory;
   sessionPreference: AbstractSession;
+  presentationType: PresentationType;
   fileUrl: string;
   fileName: string;
   fileSize: number;
@@ -32,6 +35,11 @@ const AbstractSchema = new Schema<IAbstract>({
     type: String,
     required: true,
     enum: [...ABSTRACT_SESSION_VALUES],
+  },
+  presentationType: {
+    type: String,
+    required: true,
+    enum: [...PRESENTATION_TYPE_VALUES],
   },
   fileUrl: { type: String, required: true },
   fileName: { type: String, required: true },

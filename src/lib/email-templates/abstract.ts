@@ -1,5 +1,6 @@
 import {
   formatAbstractSession,
+  formatPresentationType,
   formatScientistCategory,
 } from "@/lib/abstract-topics";
 import { brandWrapper, escapeHtml, paragraphs } from "./layout";
@@ -35,6 +36,7 @@ export function abstractConfirmationEmail(data: {
   submissionId: string;
   scientistCategory: string;
   sessionPreference: string;
+  presentationType?: string;
   fileName: string;
 }): { subject: string; html: string } {
   const body = `
@@ -43,6 +45,7 @@ export function abstractConfirmationEmail(data: {
       ${row("Submission ID", `<strong style="color:#0D7377;">${escapeHtml(data.submissionId)}</strong>`)}
       ${row("Scientist", escapeHtml(formatScientistCategory(data.scientistCategory)))}
       ${row("Preferred session", escapeHtml(formatAbstractSession(data.sessionPreference)))}
+      ${data.presentationType ? row("Presentation type", escapeHtml(formatPresentationType(data.presentationType))) : ""}
       ${row("File", escapeHtml(data.fileName))}
     </table>
     ${paragraphs(FOLLOW_UP, SIGNATURE)}

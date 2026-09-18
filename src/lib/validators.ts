@@ -1,6 +1,7 @@
 import { z } from "zod";
 import {
   ABSTRACT_SESSION_VALUES,
+  PRESENTATION_TYPE_VALUES,
   SCIENTIST_CATEGORY_VALUES,
 } from "@/lib/abstract-topics";
 
@@ -40,6 +41,12 @@ export const abstractSubmissionSchema = z.object({
   sessionPreference: z.enum(ABSTRACT_SESSION_VALUES, {
     message: "Please select preferred session",
   }),
+  presentationType: z.preprocess(
+    (val) => (typeof val === "string" ? val.trim().toLowerCase() : val),
+    z.enum(PRESENTATION_TYPE_VALUES, {
+      message: "Please select presentation type",
+    }),
+  ),
 });
 
 export type AbstractSubmissionInput = z.infer<typeof abstractSubmissionSchema>;

@@ -28,10 +28,12 @@ test("abstract page balances both desktop columns and their actions", async () =
     /<section className="[^"]*flex[^"]*h-full[^"]*flex-col[^"]*"/,
   );
   assert.match(aside, /Submission guidance[\s\S]*border-t[\s\S]*Abstract template/);
-  // The guidance list grows and distributes its cards so whitespace spreads
-  // evenly instead of pooling above the template, keeping the two action
-  // buttons aligned without a large gap.
-  assert.match(aside, /<ul className="[^"]*lg:flex-1[^"]*lg:justify-between/);
+  // The guidance cards keep a natural, even gap (no flex stretch that spreads
+  // them apart); the template block sinks to the column bottom via lg:mt-auto so
+  // the two action buttons stay aligned while the slack pools above the template.
+  assert.match(aside, /<ul className="space-y-5"/);
+  assert.doesNotMatch(aside, /lg:justify-between/);
+  assert.match(aside, /border-t[^"]*lg:mt-auto/);
   assert.match(form, /className="flex h-full min-w-0 flex-col gap-5 lg:justify-between"/);
   // The abstract dropzone is a compact row: icon anchored left, with the
   // description text centered in the remaining space.

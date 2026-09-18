@@ -2,6 +2,7 @@ import { connectDB } from "@/lib/mongodb";
 import { Abstract } from "@/lib/models/abstract";
 import {
   formatAbstractSession,
+  formatPresentationType,
   formatScientistCategory,
 } from "@/lib/abstract-topics";
 import { formatAdminDate } from "@/lib/admin-format";
@@ -53,6 +54,7 @@ export default async function AdminAbstractsPage() {
                   <th className="px-4 py-3">Email</th>
                   <th className="px-4 py-3">Scientist</th>
                   <th className="px-4 py-3">Preferred Session</th>
+                  <th className="px-4 py-3">Presentation Type</th>
                   <th className="px-4 py-3">File</th>
                   <th className="px-4 py-3">Date</th>
                   <th className="px-4 py-3">Confirmation Email</th>
@@ -91,6 +93,22 @@ export default async function AdminAbstractsPage() {
                       >
                         {formatAbstractSession(a.sessionPreference)}
                       </span>
+                    </td>
+                    <td className="whitespace-nowrap px-4 py-3">
+                      {a.presentationType ? (
+                        <span
+                          title={formatPresentationType(a.presentationType)}
+                          className={`inline-flex whitespace-nowrap rounded-full px-2.5 py-0.5 text-xs font-semibold ${
+                            a.presentationType === "oral"
+                              ? "bg-[#FFF4E5] text-[#B25E00]"
+                              : "bg-[#F3E8FF] text-[#6B21A8]"
+                          }`}
+                        >
+                          {formatPresentationType(a.presentationType)}
+                        </span>
+                      ) : (
+                        <span className="text-xs text-[#263D5C]/40">—</span>
+                      )}
                     </td>
                     <td className="max-w-[220px] px-4 py-3">
                       <a

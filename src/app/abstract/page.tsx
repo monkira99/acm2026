@@ -44,34 +44,34 @@ export default function AbstractPage() {
               </div>
 
               {abstractDeadline ? (
-                <div className="mb-5 flex items-start gap-3 border-l-4 border-[#80AF41] bg-[#F4F8FD] px-4 py-3">
+                <div className="mb-5 flex items-start gap-3 border-l-4 border-[#80AF41] bg-[#F4F8FD] px-5 py-3">
                   <CalendarDays
                     className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#2260AD]"
                     aria-hidden="true"
                   />
                   <div>
-                    <p className="text-xs font-bold uppercase tracking-[0.14em] text-[#2260AD]">
+                    <p className="text-sm font-bold uppercase tracking-[0.14em] text-[#2260AD]">
                       Submission deadline
                     </p>
-                    <p className="mt-1 text-sm font-black text-[#143D78]">
+                    <p className="mt-1 text-base font-black text-[#143D78]">
                       {abstractDeadline.date}
                     </p>
                   </div>
                 </div>
               ) : null}
 
-              <ul className="space-y-4 lg:flex lg:min-h-0 lg:flex-1 lg:flex-col lg:justify-between lg:gap-4 lg:space-y-0">
+              <ul className="space-y-5">
                 {guidanceItems.map((item) => (
                   <li
                     key={item}
-                    className="break-words border-l-4 border-[#80AF41] bg-[#F4F8FD] px-4 py-3 text-sm leading-7 text-[#263D5C]"
+                    className="break-words border-l-4 border-[#80AF41] bg-[#F4F8FD] px-5 py-4 text-base leading-7 text-[#143D78]"
                   >
                     {item}
                   </li>
                 ))}
               </ul>
 
-              <div className="mt-6 border-t border-[#2260AD]/15 pt-6">
+              <div className="mt-6 border-t border-[#2260AD]/15 pt-6 lg:mt-auto">
                 <div className="mb-4 flex items-center gap-3">
                   <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[#E8F1FA] text-[#2260AD]">
                     <FileText className="h-5 w-5" aria-hidden="true" />

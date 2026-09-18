@@ -30,6 +30,7 @@ export async function deliverAbstractConfirmation(
     submissionId: doc.submissionId,
     scientistCategory: doc.scientistCategory,
     sessionPreference: doc.sessionPreference,
+    presentationType: doc.presentationType,
     fileName: doc.fileName,
   });
 

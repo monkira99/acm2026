@@ -4,6 +4,7 @@ import { Abstract } from "@/lib/models/abstract";
 import { verifyAdmin } from "@/lib/admin-session";
 import {
   formatAbstractSession,
+  formatPresentationType,
   formatScientistCategory,
 } from "@/lib/abstract-topics";
 
@@ -37,6 +38,7 @@ export async function GET(request: Request) {
     "Notification Email",
     "Scientist Category",
     "Preferred Session",
+    "Presentation Type",
     "File Name",
     "File URL",
     "File Size (bytes)",
@@ -48,6 +50,7 @@ export async function GET(request: Request) {
     d.notificationEmail ?? "",
     formatScientistCategory(d.scientistCategory),
     formatAbstractSession(d.sessionPreference),
+    d.presentationType ? formatPresentationType(d.presentationType) : "",
     d.fileName ?? "",
     d.submissionId
       ? `${origin}/api/admin/abstracts/${d.submissionId}/file`
