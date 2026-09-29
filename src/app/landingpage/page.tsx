@@ -27,6 +27,9 @@ const mono = IBM_Plex_Mono({
   display: "swap",
 });
 
+// Rendered per request so the deadline sections flip to "closed" on time.
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = {
   title: "ACM23 — Hanoi 2026",
   description:

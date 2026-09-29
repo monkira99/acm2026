@@ -2,9 +2,14 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { SectionHero } from "@/components/ui/section-hero";
 import { importantDates } from "@/data/dates";
+import { isPastDeadline } from "@/lib/deadline";
+import { requestNow } from "@/lib/submission-window";
 import { ArrowRight, Check, Clock } from "lucide-react";
 
 export const metadata: Metadata = { title: "Registration" };
+
+// Rendered per request so each deadline shows as closed once it passes.
+export const dynamic = "force-dynamic";
 
 const dateActions: Record<string, { href: string }> = {
   "Abstract Submission": {
@@ -15,7 +20,9 @@ const dateActions: Record<string, { href: string }> = {
   },
 };
 
-export default function DatesPage() {
+export default async function DatesPage() {
+  const now = await requestNow();
+
   return (
     <div className="bg-[#EAF2FB]">
       <SectionHero title="Registration" />
@@ -31,6 +38,7 @@ export default function DatesPage() {
           <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
             {importantDates.map((item) => {
               const action = dateActions[item.label];
+              const passed = isPastDeadline(item.deadline, now);
 
               return (
                 <Link
@@ -43,10 +51,10 @@ export default function DatesPage() {
                   >
                     <div
                       className={`flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full ${
-                        item.passed ? "bg-[#80AF41]/10" : "bg-[#2260AD]/10"
+                        passed ? "bg-[#80AF41]/10" : "bg-[#2260AD]/10"
                       }`}
                     >
-                      {item.passed ? (
+                      {passed ? (
                         <Check
                           size={18}
                           className="text-[#80AF41]"
@@ -67,13 +75,13 @@ export default function DatesPage() {
                       </p>
                       <h3
                         className={`mt-2 text-xl font-black ${
-                          item.passed ? "text-[#B0ABAC]" : "text-[#143D78]"
+                          passed ? "text-[#B0ABAC]" : "text-[#143D78]"
                         }`}
                       >
                         {item.date}
                       </h3>
                       <p className="mt-2 text-sm leading-6 text-[#263D5C]">
-                        {item.description}
+                        {passed ? "Closed" : item.description}
                       </p>
                     </div>
 

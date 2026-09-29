@@ -5,6 +5,7 @@ import { Registration } from "@/lib/models/registration";
 import { registrationSchema, type RegistrationInput } from "@/lib/validators";
 import { deliverRegistrationConfirmation } from "@/lib/registration-email";
 import { nextSequentialId, isDuplicateKeyError } from "@/lib/actions/sequential-id";
+import { closedMessage, isWindowClosed } from "@/lib/submission-window";
 
 interface ActionResult {
   success: boolean;
@@ -13,6 +14,12 @@ interface ActionResult {
 }
 
 export async function registerAction(data: RegistrationInput): Promise<ActionResult> {
+  // Checked before anything else so a late registration leaves no trace: no
+  // DB write, no email.
+  if (await isWindowClosed("Registration", { grace: true })) {
+    return { success: false, error: closedMessage("Registration") };
+  }
+
   const parsed = registrationSchema.safeParse(data);
   if (!parsed.success) {
     return { success: false, error: parsed.error.issues[0].message };

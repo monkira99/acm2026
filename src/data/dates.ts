@@ -2,7 +2,8 @@ export interface ImportantDate {
   date: string;
   label: string;
   description: string;
-  passed: boolean;
+  /** Closing instant (ISO, Hanoi time). Submissions after it are rejected. */
+  deadline: string;
 }
 
 export const importantDates: ImportantDate[] = [
@@ -10,12 +11,12 @@ export const importantDates: ImportantDate[] = [
     date: "September 30, 2026",
     label: "Abstract Submission",
     description: "Abstract submission deadline",
-    passed: false,
+    deadline: "2026-09-30T23:59:59+07:00",
   },
   {
     date: "October 31, 2026",
     label: "Registration",
     description: "Registration deadline",
-    passed: false,
+    deadline: "2026-10-31T23:59:59+07:00",
   },
 ];

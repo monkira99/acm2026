@@ -1,9 +1,15 @@
 import type { Metadata } from "next";
 import { RegistrationForm } from "@/components/forms/registration-form";
 import { SectionHero } from "@/components/ui/section-hero";
+import { SubmissionClosed } from "@/components/ui/submission-closed";
 import { Ordinal23 } from "@/components/ui/ordinal-23";
 import { importantDates } from "@/data/dates";
+import { closedMessage, isWindowClosed } from "@/lib/submission-window";
 import { CalendarDays, UserCheck } from "lucide-react";
+
+// Rendered per request so the page flips to "closed" at the deadline instead of
+// staying frozen at build time.
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Registration",
@@ -14,7 +20,9 @@ const registrationDeadline = importantDates.find(
   ({ label }) => label === "Registration",
 );
 
-export default function RegistrationPage() {
+export default async function RegistrationPage() {
+  const closed = await isWindowClosed("Registration");
+
   return (
     <div className="bg-[#EAF2FB]">
       <SectionHero title="Registration" />
@@ -58,7 +66,14 @@ export default function RegistrationPage() {
           </aside>
 
           <section className="bg-white/85 px-5 py-6 shadow-sm shadow-[#2260AD]/5 sm:px-7">
-            <RegistrationForm />
+            {closed ? (
+              <SubmissionClosed
+                title="Registration is closed"
+                message={closedMessage("Registration")}
+              />
+            ) : (
+              <RegistrationForm />
+            )}
           </section>
         </div>
       </div>

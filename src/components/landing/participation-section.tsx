@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, UserCheck, FileText, Check } from "lucide-react";
 import { importantDates } from "@/data/dates";
+import { isWindowClosed } from "@/lib/submission-window";
 import { Section, SectionHeading } from "./section";
 import { Reveal } from "./reveal";
 
@@ -26,14 +27,40 @@ const abstractPoints = [
   "Use the official template before uploading your abstract",
 ];
 
-export function ParticipationSection() {
+function DeadlineLine({ closed, date }: { closed: boolean; date: string }) {
+  return (
+    <p className="lp-mono mt-2 flex items-center gap-2 text-xs uppercase tracking-[0.14em] text-[#CC212A]">
+      {closed ? (
+        <>
+          <span className="rounded-full bg-[#CC212A]/10 px-2 py-0.5 font-medium">
+            Closed
+          </span>
+          Closed on {date}
+        </>
+      ) : (
+        <>Closes {date}</>
+      )}
+    </p>
+  );
+}
+
+export async function ParticipationSection() {
+  const registrationClosed = await isWindowClosed("Registration");
+  const abstractClosed = await isWindowClosed("Abstract Submission");
+  const intro =
+    registrationClosed && abstractClosed
+      ? "Registration and abstract submission are now closed."
+      : abstractClosed
+        ? "Register to attend. Abstract submission is now closed."
+        : "Register to attend, and submit an abstract to present your work. Both open now.";
+
   return (
     <Section id="participate" tone="tint">
       <SectionHeading
         align="center"
         eyebrow="Take part"
         title="Two ways to join ACM23"
-        intro="Register to attend, and submit an abstract to present your work. Both open now."
+        intro={intro}
       />
 
       <div className="mx-auto mt-14 grid max-w-4xl gap-6 lg:grid-cols-2">
@@ -45,9 +72,7 @@ export function ParticipationSection() {
             <h3 className="lp-display mt-5 text-2xl font-bold text-[#143D78]">
               Register
             </h3>
-            <p className="lp-mono mt-2 text-xs uppercase tracking-[0.14em] text-[#CC212A]">
-              Closes {registrationDeadline}
-            </p>
+            <DeadlineLine closed={registrationClosed} date={registrationDeadline} />
             <ul className="mt-6 flex-1 space-y-3">
               {registrationPoints.map((point) => (
                 <li key={point} className="flex gap-3 text-sm leading-6 text-[#4A5A6F]">
@@ -60,7 +85,7 @@ export function ParticipationSection() {
               href="/registration"
               className="group mt-7 inline-flex items-center justify-center gap-2 rounded-lg bg-[#80AF41] px-6 py-3.5 text-sm font-bold text-white transition-colors hover:bg-[#739D3B]"
             >
-              Register now
+              {registrationClosed ? "Registration closed" : "Register now"}
               <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
             </Link>
           </article>
@@ -74,9 +99,7 @@ export function ParticipationSection() {
             <h3 className="lp-display mt-5 text-2xl font-bold text-[#143D78]">
               Submit an abstract
             </h3>
-            <p className="lp-mono mt-2 text-xs uppercase tracking-[0.14em] text-[#CC212A]">
-              Closes {abstractDeadline}
-            </p>
+            <DeadlineLine closed={abstractClosed} date={abstractDeadline} />
             <ul className="mt-6 flex-1 space-y-3">
               {abstractPoints.map((point) => (
                 <li key={point} className="flex gap-3 text-sm leading-6 text-[#4A5A6F]">
@@ -90,7 +113,7 @@ export function ParticipationSection() {
                 href="/abstract"
                 className="group inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-[#2260AD] px-6 py-3.5 text-sm font-bold text-white transition-colors hover:bg-[#143D78] sm:flex-[1.7]"
               >
-                Submit abstract
+                {abstractClosed ? "Submission closed" : "Submit abstract"}
                 <ArrowRight size={16} className="transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
               </Link>
               <a

@@ -86,7 +86,9 @@ export function AbstractForm() {
             aria-hidden="true"
           />
           <span>
-            {submitNotice} If this persists, contact acm23@vnu.edu.vn.
+            {submitNotice}
+            {!submitNotice.includes("acm23@vnu.edu.vn") &&
+              " If this persists, contact acm23@vnu.edu.vn."}
           </span>
         </div>
       )}

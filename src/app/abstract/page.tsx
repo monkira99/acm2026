@@ -1,8 +1,14 @@
 import type { Metadata } from "next";
 import { AbstractForm } from "@/components/forms/abstract-form";
 import { SectionHero } from "@/components/ui/section-hero";
+import { SubmissionClosed } from "@/components/ui/submission-closed";
 import { importantDates } from "@/data/dates";
+import { closedMessage, isWindowClosed } from "@/lib/submission-window";
 import { CalendarDays, Download, FileText, Info } from "lucide-react";
+
+// Rendered per request so the page flips to "closed" at the deadline instead of
+// staying frozen at build time.
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Abstract Submission",
@@ -22,7 +28,9 @@ const abstractDeadline = importantDates.find(
   ({ label }) => label === "Abstract Submission",
 );
 
-export default function AbstractPage() {
+export default async function AbstractPage() {
+  const closed = await isWindowClosed("Abstract Submission");
+
   return (
     <div className="min-h-screen overflow-x-hidden bg-[#EAF2FB]">
       <SectionHero
@@ -102,7 +110,14 @@ export default function AbstractPage() {
                 Abstract submission
               </h2>
             </div>
-            <AbstractForm />
+            {closed ? (
+              <SubmissionClosed
+                title="Abstract submission is closed"
+                message={closedMessage("Abstract Submission")}
+              />
+            ) : (
+              <AbstractForm />
+            )}
           </section>
         </div>
       </div>

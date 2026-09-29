@@ -7,6 +7,7 @@ import { abstractSubmissionSchema } from "@/lib/validators";
 import { getFileError } from "@/lib/abstract-file";
 import { deliverAbstractConfirmation } from "@/lib/abstract-email";
 import { nextSequentialId, isDuplicateKeyError } from "@/lib/actions/sequential-id";
+import { closedMessage, isWindowClosed } from "@/lib/submission-window";
 
 type SubmitAbstractResult =
   | { success: true; submissionId: string }
@@ -15,6 +16,12 @@ type SubmitAbstractResult =
 export async function submitAbstractAction(
   formData: FormData,
 ): Promise<SubmitAbstractResult> {
+  // Checked before anything else so a late submission leaves no trace: no
+  // blob upload, no DB write, no email.
+  if (await isWindowClosed("Abstract Submission", { grace: true })) {
+    return { success: false, error: closedMessage("Abstract Submission") };
+  }
+
   const rawFile = formData.get("abstractFile");
   if (!(rawFile instanceof File)) {
     return {

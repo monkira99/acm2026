@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { FileText, UserCheck, CalendarCheck } from "lucide-react";
 import { importantDates } from "@/data/dates";
+import { isPastDeadline } from "@/lib/deadline";
+import { requestNow } from "@/lib/submission-window";
 import { Section, SectionHeading } from "./section";
 import { Reveal } from "./reveal";
 
@@ -16,6 +18,9 @@ interface Milestone {
   title: string;
   kind: Kind;
   href: string;
+  /** Set on deadline milestones: the closing instant and the post-deadline title. */
+  deadline?: string;
+  closedTitle?: string;
 }
 
 const milestones: Milestone[] = [
@@ -26,6 +31,8 @@ const milestones: Milestone[] = [
     title: "Abstract submission closes",
     kind: "deadline",
     href: "/abstract",
+    deadline: abstract?.deadline,
+    closedTitle: "Abstract submission closed",
   },
   {
     icon: UserCheck,
@@ -34,6 +41,8 @@ const milestones: Milestone[] = [
     title: "Registration closes",
     kind: "deadline",
     href: "/registration",
+    deadline: registration?.deadline,
+    closedTitle: "Registration closed",
   },
   {
     icon: CalendarCheck,
@@ -45,7 +54,9 @@ const milestones: Milestone[] = [
   },
 ];
 
-export function DatesSection() {
+export async function DatesSection() {
+  const now = await requestNow();
+
   return (
     <Section id="dates" tone="white">
       <SectionHeading
@@ -57,6 +68,7 @@ export function DatesSection() {
       <ol className="mt-14 grid gap-5 md:grid-cols-3">
         {milestones.map((m, i) => {
           const isDeadline = m.kind === "deadline";
+          const closed = m.deadline ? isPastDeadline(m.deadline, now) : false;
           const accent = isDeadline ? "#CC212A" : "#80AF41";
           return (
             <Reveal as="li" key={m.title} delay={i * 0.1} className="h-full">
@@ -76,14 +88,14 @@ export function DatesSection() {
                     className="lp-mono rounded-full px-2.5 py-1 text-[0.6rem] font-medium uppercase tracking-[0.16em]"
                     style={{ backgroundColor: `${accent}14`, color: accent }}
                   >
-                    {m.tag}
+                    {closed ? "Closed" : m.tag}
                   </span>
                 </div>
                 <p className="lp-display mt-6 text-xl font-bold text-[#143D78]">
                   {m.date}
                 </p>
                 <p className="mt-1.5 text-sm leading-6 text-[#5A6B80]">
-                  {m.title}
+                  {closed ? m.closedTitle : m.title}
                 </p>
               </Link>
             </Reveal>

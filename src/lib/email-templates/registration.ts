@@ -1,3 +1,5 @@
+import { importantDates } from "@/data/dates";
+import { isPastDeadline } from "@/lib/deadline";
 import { brandWrapper, escapeHtml, paragraphs } from "./layout";
 
 // Registration confirmation email. Content is transcribed verbatim from
@@ -17,38 +19,52 @@ const THANKS =
 const ABSTRACT_CALL =
   "If you are an ACM member, or if you would like to present your research topics related to applied microbiology or microbial resources in environmental protection, circular economy, sustainable crop, livestock production, blue aquaculture, food safety, microbiome, human health, One health, or annual ACM report, we warmly encourage you to submit your abstracts by September 30, 2026. The abstract template is available on the ACM23 website.";
 
+const abstractDeadline = importantDates.find(
+  (d) => d.label === "Abstract Submission",
+)?.deadline;
+
 const SIGNATURE =
   "Best regards,<br>On behalf of the ACM23 Organizing Committee<br>Trinh Thanh Trung";
 
-function vietnameseBody(fullName: string): string {
+// Once abstract submission has closed, the abstract call (and the Vietnamese
+// closing line's mention of abstracts) is dropped.
+function vietnameseBody(fullName: string, abstractsOpen: boolean): string {
   return paragraphs(
     GREETING(fullName),
     THANKS,
     "We are pleased to confirm that your registration has been well received. Due to limited seats available, we will notify your successful registration later and send you an invitation letter soon.",
-    ABSTRACT_CALL,
-    "We sincerely appreciate your patience and look forward to receiving your abstracts for ACM23.",
+    ...(abstractsOpen ? [ABSTRACT_CALL] : []),
+    abstractsOpen
+      ? "We sincerely appreciate your patience and look forward to receiving your abstracts for ACM23."
+      : "We sincerely appreciate your patience.",
     SIGNATURE,
   );
 }
 
-function internationalBody(fullName: string): string {
+function internationalBody(fullName: string, abstractsOpen: boolean): string {
   return paragraphs(
     GREETING(fullName),
     THANKS,
     "We are pleased to confirm that your registration has been well received.",
-    ABSTRACT_CALL,
+    ...(abstractsOpen ? [ABSTRACT_CALL] : []),
     "An invitation letter for your visa application or administration purposes will be prepared and sent to you soon.",
     "We sincerely appreciate your participation in the ACM23 meeting and look forward to seeing you in Hanoi soon.",
     SIGNATURE,
   );
 }
 
-export function registrationEmail(data: {
-  fullName: string;
-  country: string;
-}): { subject: string; html: string } {
+export function registrationEmail(
+  data: {
+    fullName: string;
+    country: string;
+  },
+  now = new Date(),
+): { subject: string; html: string } {
   const isVietnam = data.country === "Vietnam";
-  const body = isVietnam ? vietnameseBody(data.fullName) : internationalBody(data.fullName);
+  const abstractsOpen = !abstractDeadline || !isPastDeadline(abstractDeadline, now);
+  const body = isVietnam
+    ? vietnameseBody(data.fullName, abstractsOpen)
+    : internationalBody(data.fullName, abstractsOpen);
   return {
     subject: "ACM23 Registration Confirmation",
     html: brandWrapper("ACM23 Registration Confirmation", body),
