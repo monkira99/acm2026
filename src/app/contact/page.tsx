@@ -58,7 +58,7 @@ export default function ContactPage() {
               href="http://imbt.vnu.edu.vn/"
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-2 inline-block text-sm font-semibold text-[#2260AD] transition-colors hover:text-[#143D78]"
+              className="mt-2 inline-block text-sm font-semibold text-[#2260AD] transition-colors hover:text-[#143D78] max-lg:inline-flex max-lg:min-h-11 max-lg:items-center"
             >
               http://imbt.vnu.edu.vn/
             </Link>

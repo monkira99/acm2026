@@ -55,7 +55,7 @@ export function TransportationSection() {
                   href={option.ctaUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex w-fit items-center gap-2 rounded bg-[#2260AD] px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-[#143D78] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2260AD]"
+                  className="inline-flex w-fit items-center gap-2 rounded bg-[#2260AD] px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-[#143D78] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2260AD] max-lg:min-h-11"
                 >
                   {option.ctaText}
                   <ExternalLink size={14} aria-hidden="true" />

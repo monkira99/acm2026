@@ -48,7 +48,7 @@ export function Footer() {
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-gray-400 transition-colors hover:text-gold"
+                className="text-gray-400 transition-colors hover:text-gold max-lg:inline-flex max-lg:min-h-11 max-lg:min-w-11 max-lg:items-center max-lg:justify-center"
               >
                 {link.label}
               </Link>
@@ -67,7 +67,7 @@ export function Footer() {
             href="http://imbt.vnu.edu.vn/"
             target="_blank"
             rel="noopener noreferrer"
-            className="transition-colors hover:text-gold"
+            className="transition-colors hover:text-gold max-lg:inline-flex max-lg:min-h-11 max-lg:min-w-11 max-lg:items-center"
           >
             IMBT
           </Link>

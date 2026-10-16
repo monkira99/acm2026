@@ -96,3 +96,17 @@
     animation: none;
   }
 }
+
+/* Public-site motion guard: neutralize transitions/animations for users who
+   request reduced motion. Desktop rendering is untouched (only applies when
+   the OS preference is set). */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

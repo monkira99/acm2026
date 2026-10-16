@@ -85,7 +85,7 @@ function BookingMark() {
 }
 
 const secondaryActionClassName =
-  "inline-flex min-h-10 w-full items-center justify-center gap-2 whitespace-nowrap rounded border border-[#D5DCE7] bg-white px-3 py-2 text-sm font-semibold text-[#263D5C] transition-colors hover:border-[#2260AD]/30 hover:bg-[#F7FBFF] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2260AD]";
+  "inline-flex min-h-10 w-full items-center justify-center gap-2 whitespace-nowrap rounded border border-[#D5DCE7] bg-white px-3 py-2 text-sm font-semibold text-[#263D5C] transition-colors hover:border-[#2260AD]/30 hover:bg-[#F7FBFF] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2260AD] max-lg:min-h-11";
 
 export function AccommodationSection() {
   return (
@@ -134,7 +134,7 @@ export function AccommodationSection() {
                     href={hotel.websiteUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex min-h-10 w-full items-center justify-center gap-2 whitespace-nowrap rounded bg-[#2260AD] px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-[#143D78] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2260AD]"
+                    className="inline-flex min-h-10 w-full items-center justify-center gap-2 whitespace-nowrap rounded bg-[#2260AD] px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-[#143D78] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#2260AD] max-lg:min-h-11"
                   >
                     Website
                     <ExternalLink size={14} aria-hidden="true" />

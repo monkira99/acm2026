@@ -67,7 +67,7 @@ export default function SpeakersPage() {
                     aria-hidden="true"
                   />
                   <div>
-                    <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#80AF41]">
+                    <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#4E6E26]">
                       Keynote lecture
                     </p>
                     <p className="mt-1.5 text-lg font-black leading-7 text-[#143D78]">

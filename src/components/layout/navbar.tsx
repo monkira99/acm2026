@@ -40,13 +40,31 @@ export function Navbar() {
           </ul>
         </div>
 
-        <div className="ml-auto flex items-center justify-end lg:hidden">
-          <MobileMenu links={navLinks} />
+        <div className="flex w-full items-center gap-2 lg:hidden">
+          <Link
+            href="/"
+            aria-label="ACM23 home"
+            className="inline-flex min-h-11 items-center gap-2 text-sm font-black text-[#2260AD]"
+          >
+            ACM23
+            <span className="text-xs font-semibold text-gray-500">
+              Hanoi 2026
+            </span>
+          </Link>
+          <div className="ml-auto flex items-center gap-1">
+            <Link
+              href="/registration"
+              className="inline-flex min-h-11 items-center whitespace-nowrap rounded-md bg-[#5C7E2C] px-4 text-sm font-bold text-white transition-colors hover:bg-[#4E6E26]"
+            >
+              Register
+            </Link>
+            <MobileMenu links={navLinks} />
+          </div>
         </div>
       </nav>
       <Link
         href="/registration"
-        className="absolute right-4 top-1/2 hidden -translate-y-1/2 whitespace-nowrap rounded-md bg-[#80AF41] px-5 py-2.5 text-sm font-bold text-white transition-colors hover:bg-[#739D3B] sm:right-6 lg:right-8 lg:inline-flex"
+        className="absolute right-4 top-1/2 hidden -translate-y-1/2 whitespace-nowrap rounded-md bg-[#5C7E2C] px-5 py-2.5 text-sm font-bold text-white transition-colors hover:bg-[#4E6E26] sm:right-6 lg:right-8 lg:inline-flex"
       >
         Register now
       </Link>

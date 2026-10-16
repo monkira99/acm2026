@@ -62,12 +62,12 @@ export function HeroBanner() {
             <div className="mb-2 max-w-4xl space-y-3 text-white drop-shadow-[0_2px_8px_rgba(16,55,104,0.3)]">
               <p className="text-lg leading-snug sm:text-xl lg:text-2xl">
                 The <Ordinal23 /> Meeting of the Asian Consortium for the
-                Conservation
+                Conservation{" "}
                 <br className="hidden sm:block" />
                 and Sustainable Use of Microbial Resources
               </p>
               <p className="text-sm font-medium leading-snug text-white/90 sm:text-base lg:text-lg">
-                Harnessing Microbial Resources: From Single Cells to Microbiomes
+                Harnessing Microbial Resources: From Single Cells to Microbiomes{" "}
                 <br className="hidden sm:block" />
                 for a Sustainable Bioeconomy
               </p>
@@ -91,7 +91,7 @@ export function HeroBanner() {
             <div className="mt-7 flex flex-wrap justify-center gap-3 sm:mt-10 sm:gap-4">
               <Link
                 href="/registration"
-                className="rounded-lg bg-[#80AF41] px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-[#739D3B] sm:px-8 sm:py-3.5 sm:text-base"
+                className="rounded-lg bg-[#5C7E2C] px-6 py-3 text-sm font-bold text-white transition-colors hover:bg-[#4E6E26] sm:px-8 sm:py-3.5 sm:text-base"
               >
                 Register now
               </Link>

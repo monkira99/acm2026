@@ -104,7 +104,7 @@ export function TasteOfHanoiSection() {
                     href={dish.mapUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="mt-4 inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-[#2260AD] transition-colors hover:text-[#143D78] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2260AD]"
+                    className="mt-4 inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-[#2260AD] transition-colors hover:text-[#143D78] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#2260AD] max-lg:min-h-11"
                   >
                     <MapPin size={14} aria-hidden="true" />
                     View on Map

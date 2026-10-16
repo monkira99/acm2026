@@ -37,7 +37,7 @@ export default async function AbstractSuccessPage({
                 />
               </div>
 
-              <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#80AF41]">
+              <p className="text-xs font-bold uppercase tracking-[0.18em] text-[#4E6E26]">
                 Abstract Submitted
               </p>
               <h3 className="mt-2 text-2xl font-black text-[#143D78] sm:text-3xl">
