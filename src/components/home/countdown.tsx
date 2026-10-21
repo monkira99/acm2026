@@ -36,36 +36,51 @@ function TimeUnit({ value, label }: { value: number; label: string }) {
   );
 }
 
-// Fitted into the existing h-20 band: bottoms aligned so the wordmark
-// baselines sit on one line; optical areas balanced (stacked vs
-// horizontal lockup). The inter-logo gap is doubled (16px lg / 24px xl)
-// via BX margin so it breathes against the label and countdown gaps.
-// At lg the left cell budgets ~264px against a 270px flank (1024px
-// viewport, 420px countdown); at xl ~313px against a ~414px flank.
-const SPONSORS = [
+// Logo pairs mirror around the countdown: square marks hug the center
+// (Bien Xanh left-inner, TABC right-inner), wide wordmarks sit outward
+// (VNU first on the left, Suran on the right). Wide lockups share
+// h-8/xl:h-9, square marks h-12/xl:h-13. At lg+ the bar is full-bleed
+// (no container cap or padding): each flank cell is flex-1 with
+// justify-evenly, so all six gaps from the true screen edges are exactly
+// equal and the countdown stays centered. Bottoms aligned via items-end.
+const LEFT_SPONSORS = [
   {
-    src: "/images/sponsors/suran-logo.svg",
-    alt: "Suran — Medical and Scientific Solution",
-    width: 929,
-    height: 291,
-    className: "h-7 w-auto shrink-0 xl:h-8",
+    src: "/images/sponsors/vnu-logo.svg",
+    alt: "Vietnam National University, Hanoi (VNU)",
+    width: 186,
+    height: 60,
+    className: "h-8 w-auto shrink-0 xl:h-9",
   },
   {
     src: "/images/sponsors/bien-xanh-logo.svg",
     alt: "BIỂN XANH",
     width: 1814,
     height: 1343,
-    className: "ms-2 h-11 w-auto shrink-0 xl:ms-3 xl:h-12",
+    className: "h-12 w-auto shrink-0 xl:h-13",
   },
 ] as const;
 
-function SponsorCell() {
+const RIGHT_SPONSORS = [
+  {
+    src: "/images/sponsors/tabc-logo.png",
+    alt: "TABC",
+    width: 640,
+    height: 467,
+    className: "h-12 w-auto shrink-0 xl:h-13",
+  },
+  {
+    src: "/images/sponsors/suran-logo.svg",
+    alt: "Suran — Medical and Scientific Solution",
+    width: 929,
+    height: 291,
+    className: "h-8 w-auto shrink-0 xl:h-9",
+  },
+] as const;
+
+function SponsorCell({ logos }: { logos: typeof LEFT_SPONSORS | typeof RIGHT_SPONSORS }) {
   return (
-    <div className="hidden min-w-0 flex-1 items-end gap-2 lg:flex xl:gap-3">
-      <span className="shrink-0 whitespace-nowrap text-[10px] font-bold uppercase tracking-[0.15em] text-gray-400 xl:text-[11px] xl:tracking-[0.2em]">
-        Sponsored by
-      </span>
-      {SPONSORS.map((logo) => (
+    <div className="hidden min-w-0 flex-1 items-end justify-evenly lg:flex">
+      {logos.map((logo) => (
         <Image
           key={logo.src}
           src={logo.src}
@@ -114,13 +129,16 @@ export function Countdown() {
   );
 
   return (
-    <section className="h-20 shrink-0 bg-light px-4" aria-label="Countdown to ACM23">
-      <div className="mx-auto flex h-full max-w-7xl items-center justify-center px-4 lg:justify-start">
-        <SponsorCell />
+    <section className="relative h-20 shrink-0 bg-light px-4 lg:px-0" aria-label="Countdown to ACM23">
+      <span className="absolute left-4 top-2 text-[10px] font-semibold uppercase tracking-[0.2em] text-gray-400 lg:left-6">
+        Sponsored by
+      </span>
+      <div className="flex h-full items-center justify-center">
+        <SponsorCell logos={LEFT_SPONSORS} />
         <div className="flex shrink-0 items-center gap-2 sm:gap-4 lg:gap-6">
           {units}
         </div>
-        <div className="hidden flex-1 lg:block" aria-hidden="true" />
+        <SponsorCell logos={RIGHT_SPONSORS} />
       </div>
     </section>
   );
