@@ -5,7 +5,7 @@ import { program } from "@/data/program";
 
 export const metadata: Metadata = {
   title: "Scientific Program",
-  description: "ACM23 tentative scientific program for November 16-18, 2026.",
+  description: "ACM23 scientific program for November 16-18, 2026.",
 };
 
 export default function ProgramPage() {
@@ -34,52 +34,57 @@ export default function ProgramPage() {
               </div>
 
               <div className="space-y-3">
-                {day.sessions.map((session) => {
-                  return (
-                    <div
-                      key={`${day.id}-${session.time}-${session.title}`}
-                      className="grid gap-3 bg-white/75 px-4 py-4 shadow-sm shadow-[#2260AD]/5 sm:grid-cols-[9rem_1fr]"
-                    >
-                      <div className="self-start">
-                        <p className="text-sm font-bold leading-7 text-[#2260AD]">
-                          {session.time}
-                        </p>
-                      </div>
+                {day.sessions.map((session) => (
+                  <div
+                    key={`${day.id}-${session.time}-${session.title}`}
+                    className="bg-white/75 px-4 py-4 shadow-sm shadow-[#2260AD]/5"
+                  >
+                    <div className="grid gap-3 sm:grid-cols-[9rem_1fr]">
+                      <p className="text-sm font-bold leading-7 tabular-nums text-[#2260AD]">
+                        {session.time}
+                      </p>
 
-                      <div>
+                      <div className="min-w-0">
                         <h3 className="text-base font-bold leading-7 text-[#143D78] sm:text-lg">
                           {session.title}
                         </h3>
 
                         {session.description && (
-                          <p className="mt-2 text-sm leading-6 text-[#263D5C]">
+                          <p className="mt-2 max-w-[75ch] text-sm leading-6 text-[#263D5C]">
                             {session.description}
                           </p>
                         )}
-
-                        {session.items && (
-                          <ul
-                            className={`mt-3 grid gap-1.5 text-sm leading-6 text-[#263D5C] ${
-                              session.items.length >= 6
-                                ? "sm:grid-flow-col sm:grid-cols-2 sm:grid-rows-3"
-                                : "sm:grid-cols-2"
-                            }`}
-                          >
-                            {session.items.map((item) => (
-                              <li key={item} className="flex gap-2">
-                                <span
-                                  className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-[#80AF41]"
-                                  aria-hidden="true"
-                                />
-                                <span>{item}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        )}
                       </div>
                     </div>
-                  );
-                })}
+
+                    {session.talks && (
+                      <ol className="mt-4 divide-y divide-[#2260AD]/15 border-t border-[#2260AD]/15">
+                        {session.talks.map((talk) => (
+                          <li
+                            key={`${talk.time}-${talk.title}`}
+                            className="grid gap-3 py-5 last:pb-0 sm:grid-cols-[9rem_1fr]"
+                          >
+                            <p className="text-sm font-bold leading-7 tabular-nums text-[#2260AD]">
+                              {talk.time}
+                            </p>
+                            <div className="min-w-0 max-w-[75ch]">
+                              <h4 className="text-base font-bold leading-7 text-[#143D78]">
+                                {talk.keynote && `${talk.keynote}: `}
+                                {talk.title}
+                              </h4>
+                              <p className="mt-2 text-sm font-semibold leading-6 text-[#263D5C]">
+                                {talk.speaker}
+                              </p>
+                              <p className="text-sm leading-6 text-[#263D5C]">
+                                {talk.affiliation}
+                              </p>
+                            </div>
+                          </li>
+                        ))}
+                      </ol>
+                    )}
+                  </div>
+                ))}
               </div>
             </section>
           ))}
