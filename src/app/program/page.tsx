@@ -16,7 +16,7 @@ export default function ProgramPage() {
       <div className="content-rail pb-12 pt-8 sm:pb-16 sm:pt-12">
         <div className="space-y-10">
           {program.map((day) => (
-            <section key={day.id}>
+            <section key={day.id} id={day.id} className="scroll-mt-24">
               <div className="sticky top-20 z-30 -mx-4 mb-5 border-b border-[#2260AD]/20 bg-[#EAF2FB]/95 px-4 py-4 backdrop-blur sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
                 <div className="flex flex-wrap items-center gap-3">
                   <h2 className="text-2xl font-black text-[#2260AD]">
