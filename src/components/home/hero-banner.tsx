@@ -5,22 +5,31 @@ import { Ordinal23 } from "@/components/ui/ordinal-23";
 
 const HERO_LOGOS = [
   {
+    src: "/images/sponsors/vnu-logo.svg",
+    alt: "Vietnam National University, Hanoi (VNU) logo",
+    width: 186,
+    height: 60,
+    className: "max-w-[14rem]",
+    sizes: "(min-width: 1024px) 14rem, (min-width: 640px) 24vw, 23vw",
+    align: "justify-start",
+  },
+  {
     src: "/logo_imbt.png",
     alt: "Institute of Microbiology and Biotechnology logo",
     width: 1578,
     height: 238,
-    className: "max-w-[16.2rem] sm:max-w-[25.2rem] lg:max-w-[27.9rem]",
-    sizes: "(min-width: 1024px) 27.9rem, (min-width: 640px) 25.2rem, 77vw",
-    align: "lg:justify-start",
+    className: "max-w-[27.9rem]",
+    sizes: "(min-width: 1024px) 27.9rem, (min-width: 640px) 39vw, 37vw",
+    align: "justify-center",
   },
   {
     src: "/acm_logo.png",
     alt: "Asian Consortium for the Conservation and Sustainable Use of Microbial Resources logo",
     width: 1280,
     height: 274,
-    className: "max-w-[11.9rem] sm:max-w-[17.85rem] lg:max-w-[20.4rem]",
-    sizes: "(min-width: 1024px) 20.4rem, (min-width: 640px) 17.85rem, 72vw",
-    align: "lg:justify-end",
+    className: "max-w-[20.4rem]",
+    sizes: "(min-width: 1024px) 20.4rem, (min-width: 640px) 29vw, 27vw",
+    align: "justify-end",
   },
 ] as const;
 
@@ -36,11 +45,11 @@ export function HeroBanner() {
       className="relative flex min-h-0 flex-1 flex-col overflow-hidden bg-[#0753A9]"
       style={{ backgroundImage: HERO_BACKGROUND }}
     >
-      <div className="absolute inset-x-0 top-0 z-20 grid w-full gap-3 px-4 pt-4 sm:px-[1cm] sm:pt-5 lg:grid-cols-2 lg:px-[1.5cm] lg:pt-6">
+      <div className="relative z-20 grid w-full grid-cols-[0.9fr_1.5fr_1.1fr] items-center gap-4 px-4 pt-4 sm:gap-8 sm:px-[1cm] sm:pt-5 lg:px-[1.5cm] lg:pt-6">
           {HERO_LOGOS.map((logo) => (
             <div
               key={logo.src}
-              className={`flex justify-center ${logo.align}`}
+              className={`flex min-w-0 ${logo.align}`}
             >
               <Image
                 src={logo.src}
@@ -54,7 +63,7 @@ export function HeroBanner() {
           ))}
         </div>
 
-        <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col items-center justify-center px-4 py-20 sm:px-6 lg:px-8">
+        <div className="relative z-10 mx-auto flex w-full max-w-7xl flex-1 flex-col items-center justify-center px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
           <div className="flex w-full max-w-4xl flex-col items-center text-center">
             <h1 className="mb-3 text-4xl font-black leading-tight text-[#2260AD] sm:mb-4 sm:text-6xl lg:text-7xl">
               ACM23
