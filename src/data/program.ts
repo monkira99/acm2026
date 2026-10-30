@@ -10,7 +10,7 @@ export type ProgramSessionType =
 
 interface ProgramTalk {
   time: string;
-  title: string;
+  title: string | (string | { scientificName: string })[];
   speaker: string;
   affiliation: string;
   keynote?: "Invited keynote" | "Selected keynote";
@@ -20,6 +20,8 @@ export interface ProgramSession {
   time: string;
   title: string;
   description?: string;
+  details?: string[];
+  chairs?: string[];
   talks?: ProgramTalk[];
   type: ProgramSessionType;
 }
@@ -52,11 +54,16 @@ export const program: ProgramDay[] = [
       {
         "time": "8:30 - 8:45",
         "title": "Opening ceremony",
+        "details": [
+          "Welcome remarks from the Chair",
+          "Welcome remarks from VNU and ACM representatives"
+        ],
         "type": "ceremony"
       },
       {
         "time": "8:45 - 10:05",
         "title": "Session 1: Microbial Culture Collection in Circular Bioeconomy and AI Era",
+        "chairs": ["Dr. Trinh Thanh Trung"],
         "type": "session",
         "talks": [
           {
@@ -90,6 +97,7 @@ export const program: ProgramDay[] = [
       {
         "time": "10:30 - 12:25",
         "title": "Session 2: Microbial Culture Collection in Circular Bioeconomy and AI Era",
+        "chairs": ["Dr. Hsiu-Jung Lo"],
         "type": "session",
         "talks": [
           {
@@ -124,7 +132,11 @@ export const program: ProgramDay[] = [
           },
           {
             "time": "12:10 - 12:25",
-            "title": "Induction of sporangiospores for long-term preservation of Syzygites megalocarpus (Mucoromycetes): insights from transcriptome analysis.",
+            "title": [
+              "Induction of sporangiospores for long-term preservation of ",
+              { "scientificName": "Syzygites megalocarpus" },
+              " (Mucoromycetes): insights from transcriptome analysis."
+            ],
             "speaker": "Dr. C. Moriya",
             "affiliation": "Biological Resource Center, National Institute of Technology and Evaluation, Japan"
           }
@@ -138,6 +150,7 @@ export const program: ProgramDay[] = [
       {
         "time": "13:30 - 15:30",
         "title": "Session 3: Agricultural Microbes for Sustainable Crop Production",
+        "chairs": ["Dr. Seung Beom Hong", "Dr. Hailei Wei"],
         "type": "session",
         "talks": [
           {
@@ -156,7 +169,11 @@ export const program: ProgramDay[] = [
           },
           {
             "time": "14:20 - 14:40",
-            "title": "Metabolites from Streptomyces spp. as potential biostimulants for use in agriculture",
+            "title": [
+              "Metabolites from ",
+              { "scientificName": "Streptomyces" },
+              " spp. as potential biostimulants for use in agriculture"
+            ],
             "speaker": "Dr. Hillol Chakdar",
             "affiliation": "National Agriculturally Important Microbial Culture Collection (NAIMCC), ICAR-National Bureau of Agriculturally Important Microorganisms (NBAIM), Mau, Uttar Pradesh, India"
           },
@@ -174,7 +191,13 @@ export const program: ProgramDay[] = [
           },
           {
             "time": "15:15 - 15:30",
-            "title": "Microbes for sustainable agriculture: Plant growth promotion and genomic characterization of Enterobacter roggenkampii B1-01 and Leclercia barmai B1-02",
+            "title": [
+              "Microbes for sustainable agriculture: Plant growth promotion and genomic characterization of ",
+              { "scientificName": "Enterobacter roggenkampii" },
+              " B1-01 and ",
+              { "scientificName": "Leclercia barmai" },
+              " B1-02"
+            ],
             "speaker": "Camille Andrea Flores",
             "affiliation": "Natural Sciences Research Institute, University of the Philippines Diliman, Quezon City, Philippines"
           }
@@ -188,11 +211,16 @@ export const program: ProgramDay[] = [
       {
         "time": "16:00 - 17:35",
         "title": "Session 4: Microbiome-based strategies for plant and animal health",
+        "chairs": ["Dr. Kinoshita Hiroshi", "Assoc. Prof. Dr. Dinh Thuy Hang"],
         "type": "session",
         "talks": [
           {
             "time": "16:00 - 16:20",
-            "title": "Bacterial resources for antivirulence drug discovery: Endophytic bacterial communities of Panax vietnamensis and their interaction with the host plant in the production of bioactive compounds",
+            "title": [
+              "Bacterial resources for antivirulence drug discovery: Endophytic bacterial communities of ",
+              { "scientificName": "Panax vietnamensis" },
+              " and their interaction with the host plant in the production of bioactive compounds"
+            ],
             "speaker": "Prof. Dr. Sebastian Günther",
             "affiliation": "Department of Pharmaceutical Biology, Institute of Pharmacy, University of Greifswald, Greifswald, Germany"
           },
@@ -282,6 +310,7 @@ export const program: ProgramDay[] = [
       {
         "time": "15:30 - 17:30",
         "title": "Session 6: Microbes for human health and safe foods",
+        "chairs": ["Dr. Ju Huck Lee", "Prof. Dr. Zunita Zakaria"],
         "type": "session",
         "talks": [
           {
@@ -292,7 +321,10 @@ export const program: ProgramDay[] = [
           },
           {
             "time": "15:50 - 16:20",
-            "title": "From microbial bioactive molecules to neuroprotection: Exploring β-amyloid modulation by biomolecules from Rhodotorula paludigena",
+            "title": [
+              "From microbial bioactive molecules to neuroprotection: Exploring β-amyloid modulation by biomolecules from ",
+              { "scientificName": "Rhodotorula paludigena" }
+            ],
             "speaker": "Mark Kevin Devanadera",
             "affiliation": "Department of Biochemistry, Faculty of Pharmacy, University of Santo Tomas, Manila, Philippines"
           },
@@ -316,7 +348,10 @@ export const program: ProgramDay[] = [
           },
           {
             "time": "17:15 - 17:30",
-            "title": "Chlorella sorokiniana derived ZnO nanoparticles for Pb(II) sequestration: Interfacial adsorption behavior, thermodynamics, and regeneration study",
+            "title": [
+              { "scientificName": "Chlorella sorokiniana" },
+              " derived ZnO nanoparticles for Pb(II) sequestration: Interfacial adsorption behavior, thermodynamics, and regeneration study"
+            ],
             "speaker": "Manish Sutradhar",
             "affiliation": "Department of Earth and Environmental Sciences, National Chung Cheng University, Min-Hsiung, Chiayi County, Chinese Taipei"
           }

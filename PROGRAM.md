@@ -4,7 +4,9 @@
 **Dates:** 16 - 18 November, 2026  
 **Venue:** Legend Westlake Hotel, Yen Phu 1, Hanoi, Vietnam
 
-Official program for `/program`, based on `Tentative program_ACM23_4th draft.docx` and the agreed publication decisions. Source time ranges are retained; parenthetical durations beside time ranges and empty chair labels are omitted. Member Report and Flash talks timing instructions remain part of their titles.
+Official program for `/program`, based on `Tentative program_ACM23_final.docx` and the agreed publication decisions. Source time ranges are retained; parenthetical durations beside time ranges are omitted, including where they disagree with the time ranges. Member Report and Flash talks timing instructions remain part of their titles. Only named chairs are published; `Dr. Rie’s suggestion`, `???`, and the incomplete Tuesday morning session heading are omitted. Session 5 has no chairs, as confirmed by the organizer. Opening ceremony remarks share the 8:30 - 8:45 slot without invented sub-times or speaker names. The program overview on `/landingpage` reflects Sessions 1–4 on Monday, Sessions 5–6 on Tuesday, six sessions, and five keynote lectures. The current homepage `/` does not render this overview.
+
+Scientific genus and species names in report titles are italicized to match the DOCX. The six affected titles contain seven names; `spp.`, strain identifiers (`B1-01`, `B1-02`), and the class name `Mucoromycetes` remain upright. `src/data/program.ts` marks scientific-name segments explicitly; all 26 rendered report titles retain the DOCX wording.
 
 ## Monday, November 16, 2026
 
@@ -12,7 +14,12 @@ Official program for `/program`, based on `Tentative program_ACM23_4th draft.doc
 
 ### 8:30 - 8:45 — Opening ceremony
 
+- Welcome remarks from the Chair
+- Welcome remarks from VNU and ACM representatives
+
 ### 8:45 - 10:05 — Session 1: Microbial Culture Collection in Circular Bioeconomy and AI Era
+
+**Chairs:** Dr. Trinh Thanh Trung
 
 #### 8:45 - 9:15 — Invited keynote: Significance and challenges of microbial resource centers in a changing world
 
@@ -29,6 +36,8 @@ Dr. Donald Pan, Basecamp Research, London, United Kingdom
 ### 10:05 - 10:30 — Coffee break & Poster presentation
 
 ### 10:30 - 12:25 — Session 2: Microbial Culture Collection in Circular Bioeconomy and AI Era
+
+**Chairs:** Dr. Hsiu-Jung Lo
 
 #### 10:30 - 10:50 — From the culture collection to the cell factory
 
@@ -50,13 +59,15 @@ Dr. Zhang Xiaojun, Engineering Microorganism and Genetic Tools Collection Center
 
 Dr. Hsiu-Jung Lo, Taiwan Mycology Reference Center, National Infectious Diseases Bank, National Institute of Infectious Diseases and Vaccinology, National Health Research Institutes, Miaoli County, Chinese Taipei
 
-#### 12:10 - 12:25 — Induction of sporangiospores for long-term preservation of Syzygites megalocarpus (Mucoromycetes): insights from transcriptome analysis.
+#### 12:10 - 12:25 — Induction of sporangiospores for long-term preservation of *Syzygites megalocarpus* (Mucoromycetes): insights from transcriptome analysis.
 
 Dr. C. Moriya, Biological Resource Center, National Institute of Technology and Evaluation, Japan
 
 ### 12:25 - 13:30 — Lunch
 
 ### 13:30 - 15:30 — Session 3: Agricultural Microbes for Sustainable Crop Production
+
+**Chairs:** Dr. Seung Beom Hong and Dr. Hailei Wei
 
 #### 13:30 - 13:55 — Selected keynote: The neglected foundation: why true One Health demands soil health focus
 
@@ -66,7 +77,7 @@ Dr. Didier Lesueur, School of Life and Environmental Sciences, Faculty of Scienc
 
 Dr. Joseph Mulema, CAB International (CABI), Nairobi, Kenya
 
-#### 14:20 - 14:40 — Metabolites from Streptomyces spp. as potential biostimulants for use in agriculture
+#### 14:20 - 14:40 — Metabolites from *Streptomyces* spp. as potential biostimulants for use in agriculture
 
 Dr. Hillol Chakdar, National Agriculturally Important Microbial Culture Collection (NAIMCC), ICAR-National Bureau of Agriculturally Important Microorganisms (NBAIM), Mau, Uttar Pradesh, India
 
@@ -78,7 +89,7 @@ Dr. Hai-Lei Wei, Agricultural Culture collection of China, Chinese Academy of Ag
 
 Dr. Sieun Kim, Division of Agricultural Microbiology, National Institute of Agricultural Science, Rural Development Administration, Wanju, Korea
 
-#### 15:15 - 15:30 — Microbes for sustainable agriculture: Plant growth promotion and genomic characterization of Enterobacter roggenkampii B1-01 and Leclercia barmai B1-02
+#### 15:15 - 15:30 — Microbes for sustainable agriculture: Plant growth promotion and genomic characterization of *Enterobacter roggenkampii* B1-01 and *Leclercia barmai* B1-02
 
 Camille Andrea Flores, Natural Sciences Research Institute, University of the Philippines Diliman, Quezon City, Philippines
 
@@ -86,7 +97,9 @@ Camille Andrea Flores, Natural Sciences Research Institute, University of the Ph
 
 ### 16:00 - 17:35 — Session 4: Microbiome-based strategies for plant and animal health
 
-#### 16:00 - 16:20 — Bacterial resources for antivirulence drug discovery: Endophytic bacterial communities of Panax vietnamensis and their interaction with the host plant in the production of bioactive compounds
+**Chairs:** Dr. Kinoshita Hiroshi and Assoc. Prof. Dr. Dinh Thuy Hang
+
+#### 16:00 - 16:20 — Bacterial resources for antivirulence drug discovery: Endophytic bacterial communities of *Panax vietnamensis* and their interaction with the host plant in the production of bioactive compounds
 
 Prof. Dr. Sebastian Günther, Department of Pharmaceutical Biology, Institute of Pharmacy, University of Greifswald, Greifswald, Germany
 
@@ -130,11 +143,13 @@ Ha Viet Nguyen, Institute of Microbiology and Biotechnology, Vietnam National Un
 
 ### 15:30 - 17:30 — Session 6: Microbes for human health and safe foods
 
+**Chairs:** Dr. Ju Huck Lee and Prof. Dr. Zunita Zakaria
+
 #### 15:30 - 15:50 — From indigenous probiotic resources to gut microbiomes: Development and functional evaluation of multi-strain probiotics
 
 Dr. Hoang Van Vinh, Institute of Microbiology and Biotechnology, Vietnam National University, Hanoi, Vietnam
 
-#### 15:50 - 16:20 — From microbial bioactive molecules to neuroprotection: Exploring β-amyloid modulation by biomolecules from Rhodotorula paludigena
+#### 15:50 - 16:20 — From microbial bioactive molecules to neuroprotection: Exploring β-amyloid modulation by biomolecules from *Rhodotorula paludigena*
 
 Mark Kevin Devanadera, Department of Biochemistry, Faculty of Pharmacy, University of Santo Tomas, Manila, Philippines
 
@@ -150,7 +165,7 @@ Dr. Misun Yun, Industrial Innovation Research Division, Kimchiome Bio-Resources 
 
 Dr. Hoang Thi Lan Anh, Institute of Microbiology and Biotechnology, Vietnam National University, Hanoi, Vietnam
 
-#### 17:15 - 17:30 — Chlorella sorokiniana derived ZnO nanoparticles for Pb(II) sequestration: Interfacial adsorption behavior, thermodynamics, and regeneration study
+#### 17:15 - 17:30 — *Chlorella sorokiniana* derived ZnO nanoparticles for Pb(II) sequestration: Interfacial adsorption behavior, thermodynamics, and regeneration study
 
 Manish Sutradhar, Department of Earth and Environmental Sciences, National Chung Cheng University, Min-Hsiung, Chiayi County, Chinese Taipei
 

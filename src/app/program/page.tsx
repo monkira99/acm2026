@@ -49,6 +49,21 @@ export default function ProgramPage() {
                           {session.title}
                         </h3>
 
+                        {session.chairs && (
+                          <p className="mt-2 max-w-[75ch] text-sm leading-6 text-[#263D5C]">
+                            <span className="font-semibold">Chairs: </span>
+                            {session.chairs.join(" and ")}
+                          </p>
+                        )}
+
+                        {session.details && (
+                          <ul className="mt-2 max-w-[75ch] list-disc space-y-1 pl-5 text-sm leading-6 text-[#263D5C]">
+                            {session.details.map((detail) => (
+                              <li key={detail}>{detail}</li>
+                            ))}
+                          </ul>
+                        )}
+
                         {session.description && (
                           <p className="mt-2 max-w-[75ch] text-sm leading-6 text-[#263D5C]">
                             {session.description}
@@ -61,7 +76,7 @@ export default function ProgramPage() {
                       <ol className="mt-4 divide-y divide-[#2260AD]/15 border-t border-[#2260AD]/15">
                         {session.talks.map((talk) => (
                           <li
-                            key={`${talk.time}-${talk.title}`}
+                            key={`${talk.time}-${talk.speaker}`}
                             className="grid gap-3 py-5 last:pb-0 sm:grid-cols-[9rem_1fr]"
                           >
                             <p className="text-sm font-bold leading-7 tabular-nums text-[#2260AD]">
@@ -70,7 +85,15 @@ export default function ProgramPage() {
                             <div className="min-w-0 max-w-[75ch]">
                               <h4 className="text-base font-bold leading-7 text-[#143D78]">
                                 {talk.keynote && `${talk.keynote}: `}
-                                {talk.title}
+                                {typeof talk.title === "string"
+                                  ? talk.title
+                                  : talk.title.map((part, index) =>
+                                      typeof part === "string" ? (
+                                        part
+                                      ) : (
+                                        <i key={index}>{part.scientificName}</i>
+                                      ),
+                                    )}
                               </h4>
                               <p className="mt-2 text-sm font-semibold leading-6 text-[#263D5C]">
                                 {talk.speaker}

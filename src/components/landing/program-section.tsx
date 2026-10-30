@@ -8,12 +8,12 @@ import { Reveal } from "./reveal";
 const dayHighlights: Record<string, string[]> = {
   "day-1": [
     "Opening ceremony & keynote lectures",
-    "Scientific Sessions 1–3",
+    "Scientific Sessions 1–4",
     "Coffee breaks & poster presentations",
   ],
   "day-2": [
     "ACM23 General Assembly & Task Force report",
-    "Scientific Sessions 4–5",
+    "Scientific Sessions 5–6",
     "Wrap-up",
   ],
   "day-3": [
@@ -25,8 +25,8 @@ const dayHighlights: Record<string, string[]> = {
 // Facts counted from the schedule — not invented.
 const facts = [
   { value: "3", label: "Days" },
-  { value: "5", label: "Scientific sessions" },
-  { value: "2", label: "Keynote lectures" },
+  { value: "6", label: "Scientific sessions" },
+  { value: "5", label: "Keynote lectures" },
   { value: "Posters", label: "ACM member reports" },
 ];
 
