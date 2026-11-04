@@ -1,13 +1,17 @@
+import type { ReactNode } from "react";
+
 interface SectionHeroProps {
   title: string;
   subtitle?: string;
   eyebrow?: string;
+  action?: ReactNode;
 }
 
 export function SectionHero({
   title,
   subtitle,
   eyebrow = "ACM23 Hanoi",
+  action,
 }: SectionHeroProps) {
   const compact = !subtitle;
 
@@ -25,13 +29,16 @@ export function SectionHero({
         >
           {eyebrow}
         </p>
-        <h1
-          className={`max-w-4xl break-words font-black leading-tight text-white ${
-            compact ? "text-3xl sm:text-4xl" : "text-4xl sm:text-5xl"
-          }`}
-        >
-          {title}
-        </h1>
+        <div className="flex flex-wrap items-center justify-between gap-x-8 gap-y-4">
+          <h1
+            className={`max-w-4xl break-words font-black leading-tight text-white ${
+              compact ? "text-3xl sm:text-4xl" : "text-4xl sm:text-5xl"
+            }`}
+          >
+            {title}
+          </h1>
+          {action}
+        </div>
         {subtitle && (
           <p className="mt-3 max-w-2xl break-words text-lg text-white/75">
             {subtitle}

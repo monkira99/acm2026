@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { CalendarDays } from "lucide-react";
+import { CalendarDays, Download } from "lucide-react";
 import { SectionHero } from "@/components/ui/section-hero";
 import { program } from "@/data/program";
 
@@ -11,7 +11,19 @@ export const metadata: Metadata = {
 export default function ProgramPage() {
   return (
     <div className="bg-[#EAF2FB]">
-      <SectionHero title="Scientific program" />
+      <SectionHero
+        title="Scientific program"
+        action={
+          <a
+            href="/program/download"
+            download="ACM23-scientific-programme.pdf"
+            className="inline-flex min-h-12 w-full items-center justify-center gap-2 rounded-lg border border-white/60 bg-white px-4 py-3 text-sm font-bold text-[#143D78] transition-colors hover:bg-[#EAF2FB] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white sm:min-h-11 sm:w-auto"
+          >
+            <Download size={18} aria-hidden="true" />
+            Download programme PDF
+          </a>
+        }
+      />
 
       <div className="content-rail pb-12 pt-8 sm:pb-16 sm:pt-12">
         <div className="space-y-10">
