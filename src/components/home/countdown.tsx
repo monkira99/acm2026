@@ -25,26 +25,26 @@ function calcTimeLeft(): TimeLeft {
 
 function TimeUnit({ value, label }: { value: number; label: string }) {
   return (
-    <div className="relative min-w-0 text-center">
-      <div className="flex h-[clamp(2rem,10cqw,2.75rem)] items-center justify-center text-[clamp(1.25rem,9cqw,2.5rem)] font-extrabold leading-none text-[#2260AD] tabular-nums">
+    <div className="min-w-0 text-center">
+      <div className="text-3xl font-bold leading-none text-[#2260AD] tabular-nums sm:text-4xl lg:text-5xl xl:text-6xl">
         {String(value).padStart(2, "0")}
       </div>
-      <div className="absolute inset-x-0 top-full mt-[clamp(0.125rem,0.8cqw,0.25rem)] whitespace-nowrap text-[clamp(0.625rem,2.7cqw,0.75rem)] uppercase leading-[1.15] tracking-[0.08em] text-gray-500">
+      <div className="mt-2 text-[10px] uppercase leading-none tracking-widest text-gray-500 lg:text-xs">
         {label}
       </div>
     </div>
   );
 }
 
-// Container-relative sizing keeps the five marks responsive to the space left
-// beside the countdown. The wide Suran lockup uses less height for visual balance.
+// Preserve each mark's proportions; the wide Suran lockup needs less height
+// to carry the same visual weight as the more compact logos.
 const SPONSORS = [
   {
     src: "/images/sponsors/arc-logo.svg",
     alt: "ARC — Asia Research Center",
     width: 129,
     height: 79,
-    className: "h-full",
+    className: "h-full scale-125",
   },
   {
     src: "/images/sponsors/tabc-logo.png",
@@ -78,15 +78,15 @@ const SPONSORS = [
 
 function SponsorGroup() {
   return (
-    <ul className="grid w-full min-w-0 grid-cols-6 items-center gap-[clamp(0.5rem,2vw,2rem)] [container-type:inline-size] [&>li:nth-child(4)]:col-start-2 lg:w-auto lg:flex-1 lg:grid-cols-5 lg:[&>li:nth-child(4)]:col-start-auto" aria-label="Sponsors">
+    <ul className="grid min-w-0 grid-cols-6 items-center gap-x-6 gap-y-4 sm:grid-cols-5 [&>li:nth-child(4)]:col-start-2 sm:[&>li:nth-child(4)]:col-start-auto" aria-label="Sponsors">
       {SPONSORS.map((logo) => (
-        <li key={logo.src} className="col-span-2 flex h-[clamp(2.5rem,14cqw,4rem)] min-w-0 items-center justify-center lg:col-span-1 lg:h-[clamp(2rem,6cqw,3.5rem)]">
+        <li key={logo.src} className="col-span-2 flex h-12 min-w-0 items-center justify-center sm:col-span-1 lg:h-10">
           <Image
             src={logo.src}
             alt={logo.alt}
             width={logo.width}
             height={logo.height}
-            sizes="(min-width: 1024px) 15vw, 30vw"
+            sizes="(min-width: 1024px) 112px, (min-width: 640px) 18vw, 28vw"
             className={`w-full object-contain ${logo.className}`}
           />
         </li>
@@ -114,24 +114,28 @@ export function Countdown() {
   const units = (
     <>
       <TimeUnit value={timeLeft.days} label="Days" />
-      <span className="flex h-[clamp(2rem,10cqw,2.75rem)] items-center text-[clamp(1rem,6cqw,1.75rem)] font-light leading-none text-gray-300" aria-hidden="true">:</span>
+      <span className="self-start text-2xl font-light leading-none text-gray-300 sm:text-3xl lg:pt-1 lg:text-4xl xl:text-5xl" aria-hidden="true">:</span>
       <TimeUnit value={timeLeft.hours} label="Hours" />
-      <span className="flex h-[clamp(2rem,10cqw,2.75rem)] items-center text-[clamp(1rem,6cqw,1.75rem)] font-light leading-none text-gray-300" aria-hidden="true">:</span>
+      <span className="self-start text-2xl font-light leading-none text-gray-300 sm:text-3xl lg:pt-1 lg:text-4xl xl:text-5xl" aria-hidden="true">:</span>
       <TimeUnit value={timeLeft.minutes} label="Minutes" />
-      <span className="flex h-[clamp(2rem,10cqw,2.75rem)] items-center text-[clamp(1rem,6cqw,1.75rem)] font-light leading-none text-gray-300" aria-hidden="true">:</span>
+      <span className="self-start text-2xl font-light leading-none text-gray-300 sm:text-3xl lg:pt-1 lg:text-4xl xl:text-5xl" aria-hidden="true">:</span>
       <TimeUnit value={timeLeft.seconds} label="Seconds" />
     </>
   );
 
   return (
-    <section className="relative flex shrink-0 flex-col items-center gap-4 bg-light px-4 py-5 lg:h-[clamp(5rem,6.25vw,6rem)] lg:flex-row lg:gap-6 lg:px-6 lg:pb-0 lg:pt-2" aria-label="Conference countdown and sponsors">
-      <h2 className="text-center text-[10px] font-semibold uppercase tracking-[0.2em] text-gray-500 lg:absolute lg:left-6 lg:top-0.5">
-        Sponsored by
-      </h2>
-      <SponsorGroup />
-      <div className="order-first w-full max-w-md shrink-0 pb-5 [container-type:inline-size] lg:order-none lg:w-[30%] lg:max-w-[30rem] lg:pb-0" aria-label="Countdown to ACM23">
-        <div className="grid grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)_auto_minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-[clamp(0.25rem,2cqw,0.75rem)]">
-          {units}
+    <section className="shrink-0 bg-light" aria-label="Conference countdown and sponsors">
+      <div className="mx-auto grid max-w-(--breakpoint-2xl) gap-5 px-6 py-5 sm:px-8 lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] lg:items-center lg:gap-8 lg:pt-0">
+        <div className="min-w-0">
+          <h2 className="mb-3 text-center text-[10px] font-semibold uppercase tracking-[0.2em] text-gray-500 lg:text-left lg:leading-4">
+            Sponsored by
+          </h2>
+          <SponsorGroup />
+        </div>
+        <div className="flex justify-center border-t border-slate-200 pt-5 lg:self-stretch lg:items-center lg:border-t-0 lg:border-l lg:pt-7 lg:pl-8" role="timer" aria-label="Countdown to ACM23" aria-live="off">
+          <div className="grid w-full max-w-80 grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)_auto_minmax(0,1fr)_auto_minmax(0,1fr)] gap-2 lg:max-w-none lg:gap-3">
+            {units}
+          </div>
         </div>
       </div>
     </section>
