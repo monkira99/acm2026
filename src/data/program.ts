@@ -22,6 +22,7 @@ export interface ProgramSession {
   description?: string;
   details?: string[];
   chairs?: string[];
+  events?: { time: string; title: string }[];
   talks?: ProgramTalk[];
   type: ProgramSessionType;
 }
@@ -36,8 +37,8 @@ export interface ProgramDay {
 export const programOverview = {
   theme:
     "Harnessing Microbial Resources: From Single Cells to Microbiomes for a Sustainable Bioeconomy",
-  dates: "16 - 18 November, 2026",
-  venue: "Legend Westlake Hotel, 1 Yen Phu, Hanoi, Vietnam",
+  dates: "November 16 - 18, 2026",
+  venue: "Legend Westlake Hotel, Yen Phu 1, Hanoi, Vietnam",
 };
 
 export const program: ProgramDay[] = [
@@ -55,15 +56,16 @@ export const program: ProgramDay[] = [
         "time": "8:30 - 8:45",
         "title": "Opening ceremony",
         "details": [
-          "Welcome remarks from the Chair",
-          "Welcome remarks from VNU and ACM representatives"
+          "Welcome remarks by the Chair",
+          "Welcome remarks by the VNU representative",
+          "Welcome remarks by the ACM representative"
         ],
         "type": "ceremony"
       },
       {
         "time": "8:45 - 10:05",
         "title": "Session 1: Microbial Culture Collection in Circular Bioeconomy and AI Era",
-        "chairs": ["Dr. Trinh Thanh Trung"],
+        "chairs": ["Dr. Trinh Thanh Trung", "Dr. Hsiu-Jung Lo"],
         "type": "session",
         "talks": [
           {
@@ -77,7 +79,7 @@ export const program: ProgramDay[] = [
             "time": "9:15 - 9:40",
             "title": "Innovative Utilization of Microbial Data Resources in the AI Era",
             "speaker": "Prof. Dr. Juncai Ma",
-            "affiliation": "Chinese Academy of Sciences, Beijing, China",
+            "affiliation": "World Data Centre for Microorganisms, Institute of Microbiology, Chinese Academy of Sciences, China",
             "keynote": "Selected keynote"
           },
           {
@@ -97,7 +99,7 @@ export const program: ProgramDay[] = [
       {
         "time": "10:30 - 12:25",
         "title": "Session 2: Microbial Culture Collection in Circular Bioeconomy and AI Era",
-        "chairs": ["Dr. Hsiu-Jung Lo"],
+        "chairs": ["Dr. Chatrudee Suwannachart", "Dr. Gina R. Dedeles"],
         "type": "session",
         "talks": [
           {
@@ -114,7 +116,7 @@ export const program: ProgramDay[] = [
           },
           {
             "time": "11:10 - 11:30",
-            "title": "From conservation to valorization: KCTC fungal resources as a platform for bio-ppcycling and a sustainable bioeconomy",
+            "title": "From conservation to valorization: KCTC fungal resources as a platform for bio-upcycling and a sustainable bioeconomy",
             "speaker": "Dr. Mi Kyung Lee",
             "affiliation": "Korean Collection for Type Cultures (KCTC), Biological Resource Center, Korea Research Institute of Bioscience and Biotechnology (KRIBB), Korea"
           },
@@ -137,7 +139,7 @@ export const program: ProgramDay[] = [
               { "scientificName": "Syzygites megalocarpus" },
               " (Mucoromycetes): insights from transcriptome analysis."
             ],
-            "speaker": "Dr. C. Moriya",
+            "speaker": "Dr. Chise Moriya",
             "affiliation": "Biological Resource Center, National Institute of Technology and Evaluation, Japan"
           }
         ]
@@ -210,7 +212,7 @@ export const program: ProgramDay[] = [
       },
       {
         "time": "16:00 - 17:35",
-        "title": "Session 4: Microbiome-based strategies for plant and animal health",
+        "title": "Session 4: Microbiome-based Strategies for Plant and Animal Health",
         "chairs": ["Dr. Kinoshita Hiroshi", "Assoc. Prof. Dr. Dinh Thuy Hang"],
         "type": "session",
         "talks": [
@@ -227,7 +229,7 @@ export const program: ProgramDay[] = [
           {
             "time": "16:20 - 16:40",
             "title": "Rice microbiome in biocontrolling the bacterial leaf blight (BLB) diseases",
-            "speaker": "Prof. Dr. Dinh Thuy Hang",
+            "speaker": "Assoc. Prof. Dr. Dinh Thuy Hang",
             "affiliation": "Institute of Microbiology and Biotechnology, Vietnam National University, Hanoi, Vietnam"
           },
           {
@@ -268,29 +270,17 @@ export const program: ProgramDay[] = [
     "date": "November 17, 2026",
     "sessions": [
       {
-        "time": "8:30 - 9:45",
-        "title": "T/F Report",
-        "type": "assembly"
-      },
-      {
-        "time": "9:45 - 09:55",
-        "title": "Short Break",
-        "type": "break"
-      },
-      {
-        "time": "9:55 - 11:20",
-        "title": "General Assembly of ACM23",
-        "type": "assembly"
-      },
-      {
-        "time": "11:20 - 11:30",
-        "title": "Short Break",
-        "type": "break"
-      },
-      {
-        "time": "11:30 - 12:30",
-        "title": "ACM Member Report (3 minutes for each organization’s poster)",
-        "type": "assembly"
+        "time": "8:30 - 12:30",
+        "title": "Session 5: Task Force Reports and General Assembly",
+        "chairs": ["Dr. Trinh Thanh Trung", "Ms. Funabiki Rie"],
+        "type": "assembly",
+        "events": [
+          { "time": "8:30 - 9:45", "title": "T/F Report" },
+          { "time": "9:45 - 09:55", "title": "Short Break" },
+          { "time": "9:55 - 11:20", "title": "General Assembly of ACM23" },
+          { "time": "11:20 - 11:30", "title": "Short Break" },
+          { "time": "11:30 - 12:30", "title": "ACM Member Report (3 minutes for each organization’s poster)" }
+        ]
       },
       {
         "time": "12:30 - 13:30",
@@ -299,8 +289,41 @@ export const program: ProgramDay[] = [
       },
       {
         "time": "13:30 - 15:00",
-        "title": "Session 5: Flash talks (3 - 5 minutes for research finding posters)",
-        "type": "session"
+        "title": "Session 6: Flash Talks (3 - 5 minutes for research finding posters)",
+        "chairs": ["Dr. Hoang Thi Lan Anh", "Dr. Trinh Thanh Trung"],
+        "type": "session",
+        "talks": [
+          {
+            "time": "13:30 - 13:35",
+            "title": [
+              "Characterization of the soil bacterial community associated with ",
+              { "scientificName": "Rafflesia consueloae" },
+              " and its ",
+              { "scientificName": "Tetrastigma" },
+              " sp. Host"
+            ],
+            "speaker": "Cedrick Verdejo Alguzar",
+            "affiliation": "Microbiological Research and Services Laboratory, Natural Sciences Research Institute, University of the Philippines Diliman, Quezon City 1101"
+          },
+          {
+            "time": "13:35 - 13:40",
+            "title": "Unveiling the MICP potential of Actinomycetes from Caramoan cave speleothems in Camarines Sur, Philippines",
+            "speaker": "Catherine Joyce Orate",
+            "affiliation": "Microbiological Research and Services Laboratory, Natural Sciences Research Institute, Miranda Hall, Quirino corner P. Velasquez St., University of the Philippines - Diliman, Quezon City"
+          },
+          {
+            "time": "13:40 - 13:45",
+            "title": "Dynamics of rice microbiomes reveal core vertically transmitted seed endophytes",
+            "speaker": "Dr. Ma Yinan",
+            "affiliation": "National Key Laboratory of Agricultural Microbiology and Key Laboratory of Agricultural Microbiome (MARA), Biotechnology Research Institute, Chinese Academy of Agricultural Sciences, Beijing 100081, China"
+          },
+          {
+            "time": "13:45 - 13:50",
+            "title": "Diversity and functional potential of paddy soil microbial resources along an elevation gradient in Yunnan and Guangxi, China",
+            "speaker": "Dr. Zhiyong Ruan",
+            "affiliation": "State Key Laboratory of Efficient Utilization of Arable Land in China/CAAS-CIAT Joint Laboratory in Advanced Technologies for Sustainable Agriculture, Institute of Agricultural Resources and Regional Planning, Chinese Academy of Agricultural Sciences, Beijing, China"
+          }
+        ]
       },
       {
         "time": "15:00 - 15:30",
@@ -309,7 +332,7 @@ export const program: ProgramDay[] = [
       },
       {
         "time": "15:30 - 17:30",
-        "title": "Session 6: Microbes for human health and safe foods",
+        "title": "Session 7: Microbes for Human Health and Safe Foods",
         "chairs": ["Dr. Ju Huck Lee", "Prof. Dr. Zunita Zakaria"],
         "type": "session",
         "talks": [

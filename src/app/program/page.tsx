@@ -84,6 +84,24 @@ export default function ProgramPage() {
                       </div>
                     </div>
 
+                    {session.events && (
+                      <ol className="mt-4 divide-y divide-[#2260AD]/15 border-t border-[#2260AD]/15">
+                        {session.events.map((event) => (
+                          <li
+                            key={`${event.time}-${event.title}`}
+                            className="grid gap-3 py-5 last:pb-0 sm:grid-cols-[9rem_1fr]"
+                          >
+                            <p className="text-sm font-bold leading-7 tabular-nums text-[#2260AD]">
+                              {event.time}
+                            </p>
+                            <h4 className="text-base font-bold leading-7 text-[#143D78]">
+                              {event.title}
+                            </h4>
+                          </li>
+                        ))}
+                      </ol>
+                    )}
+
                     {session.talks && (
                       <ol className="mt-4 divide-y divide-[#2260AD]/15 border-t border-[#2260AD]/15">
                         {session.talks.map((talk) => (

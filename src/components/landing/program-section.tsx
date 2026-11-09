@@ -13,7 +13,7 @@ const dayHighlights: Record<string, string[]> = {
   ],
   "day-2": [
     "ACM23 General Assembly & Task Force report",
-    "Scientific Sessions 5–6",
+    "Scientific Sessions 6–7",
     "Wrap-up",
   ],
   "day-3": [
@@ -24,9 +24,15 @@ const dayHighlights: Record<string, string[]> = {
 
 // Facts counted from the schedule — not invented.
 const facts = [
-  { value: "3", label: "Days" },
-  { value: "6", label: "Scientific sessions" },
-  { value: "5", label: "Keynote lectures" },
+  { value: String(program.length), label: "Days" },
+  {
+    value: String(program.flatMap((day) => day.sessions).filter((session) => /^Session \d+:/.test(session.title)).length),
+    label: "Sessions",
+  },
+  {
+    value: String(program.flatMap((day) => day.sessions).flatMap((session) => session.talks ?? []).filter((talk) => talk.keynote).length),
+    label: "Keynote lectures",
+  },
   { value: "Posters", label: "ACM member reports" },
 ];
 

@@ -143,8 +143,9 @@ export async function createProgramPdf(
 
   function sessionHeading(session: ProgramSession) {
     const height = sessionHeight(session);
-    const scientific = session.type === "session";
-    if (scientific) rectangle(MARGIN, y, WIDTH, height, pale);
+    if (session.type === "session" || session.events?.length) {
+      rectangle(MARGIN, y, WIDTH, height, pale);
+    }
     text(session.time, MARGIN + 9, y + 8, 8.5, bold, blue);
     let top = y + 7;
     top += paragraph(session.title, TEXT_X, top, 10, 12.5, bold, ink);
@@ -197,11 +198,22 @@ export async function createProgramPdf(
       + wrap(talk.affiliation, regular, 8, TEXT_WIDTH).length * 10.2 + 18;
   }
 
+  type Event = NonNullable<ProgramSession["events"]>[number];
+  function eventHeight(event: Event) {
+    return wrap(event.title, bold, 9.2, TEXT_WIDTH).length * 11.8 + 16;
+  }
+
+  function firstEntryHeight(session: ProgramSession) {
+    if (session.events?.[0]) return eventHeight(session.events[0]);
+    if (session.talks?.[0]) return talkHeight(session.talks[0]);
+    return 0;
+  }
+
   for (const [dayIndex, day] of days.entries()) {
     currentDay = day;
     const opening = day.sessions[0];
     const firstBlock = opening
-      ? sessionHeight(opening) + (opening.talks?.[0] ? talkHeight(opening.talks[0]) : 0)
+      ? sessionHeight(opening) + firstEntryHeight(opening)
       : 0;
     // Keep each date with its first event, while avoiding mostly empty pages.
     if (dayIndex === 0 || y + 51 + firstBlock > BOTTOM) addPage();
@@ -209,10 +221,18 @@ export async function createProgramPdf(
     dayHeading();
 
     for (const session of day.sessions) {
-      const firstTalk = session.talks?.[0];
-      const minimum = sessionHeight(session) + (firstTalk ? talkHeight(firstTalk) : 0);
+      const minimum = sessionHeight(session) + firstEntryHeight(session);
       if (y + minimum > BOTTOM) addPage(true);
       sessionHeading(session);
+
+      for (const event of session.events ?? []) {
+        const height = eventHeight(event);
+        if (y + height > BOTTOM) addPage(true);
+        text(event.time, MARGIN + 9, y + 8, 8.2, bold, blue);
+        paragraph(event.title, TEXT_X, y + 7, 9.2, 11.8, bold, ink);
+        y += height;
+        page.drawLine({ start: { x: TEXT_X, y: PAGE_HEIGHT - y }, end: { x: PAGE_WIDTH - MARGIN, y: PAGE_HEIGHT - y }, thickness: 0.5, color: rule });
+      }
 
       for (const talk of session.talks ?? []) {
         const height = talkHeight(talk);
