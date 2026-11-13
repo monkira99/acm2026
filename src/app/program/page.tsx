@@ -109,9 +109,10 @@ export default function ProgramPage() {
                             key={`${talk.time}-${talk.speaker}`}
                             className="grid gap-3 py-5 last:pb-0 sm:grid-cols-[9rem_1fr]"
                           >
-                            <p className="text-sm font-bold leading-7 tabular-nums text-[#2260AD]">
-                              {talk.time}
-                            </p>
+                            <div className="flex w-fit flex-col items-center text-sm leading-7 tabular-nums text-[#2260AD]">
+                              {talk.time && <p className="font-bold">{talk.time}</p>}
+                              {talk.duration && <p>({talk.duration})</p>}
+                            </div>
                             <div className="min-w-0 max-w-[75ch]">
                               <h4 className="text-base font-bold leading-7 text-[#143D78]">
                                 {talk.keynote && `${talk.keynote}: `}

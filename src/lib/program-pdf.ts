@@ -239,7 +239,8 @@ export async function createProgramPdf(
         if (y + height > BOTTOM) {
           addPage(true);
         }
-        text(talk.time, MARGIN + 9, y + 8, 8.2, bold, blue);
+        if (talk.time) text(talk.time, MARGIN + 9, y + 8, 8.2, bold, blue);
+        if (talk.duration) text(`(${talk.duration})`, MARGIN + 9, y + 20, 8, regular, muted);
         let top = y + 7;
         for (const line of titleLines(talk)) {
           let x = TEXT_X;
